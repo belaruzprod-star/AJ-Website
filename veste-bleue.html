@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>document.documentElement.classList.add('js')</script>
+<script>document.documentElement.classList.add('js');try{if(sessionStorage.getItem('aj-veil')==='1'&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('chrome-enter')}catch(e){}</script>
 <title>Veste bleue ceinturée — AJ</title>
 <meta name="description" content="Veste bleue ceinturée, pièce unique cousue par Julia. Bleu profond au reflet lustré, ceinture et parements en toile de Jouy crème et bleu.">
 <meta property="og:type" content="website">
@@ -19,41 +19,108 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/scenes/chrome.css">
+<link rel="stylesheet" href="assets/css/scenes/hero.css">
+<link rel="stylesheet" href="assets/css/scenes/manifeste.css">
+<link rel="stylesheet" href="assets/css/scenes/pieces.css">
+<link rel="stylesheet" href="assets/css/scenes/campagne.css">
+<link rel="stylesheet" href="assets/css/scenes/julia.css">
+<link rel="stylesheet" href="assets/css/scenes/contact.css">
+<link rel="stylesheet" href="assets/css/scenes/detail.css">
 </head>
 <body class="inner">
-<div class="progress" aria-hidden="true"></div>
+<script type="application/json" id="aj-data">{"brand": {"name": "AJ", "baseline": "Vestes en pièces uniques, cousues par Julia dans des tissus achetés en France.", "year": "2026"}, "texts": {"hero_eyebrow": "AJ · Vestes en pièces uniques", "hero_title": ["Une veste.", "Une seule."], "hero_lead": "Chaque veste est cousue par Julia, dans des tissus achetés en France. Pas d’usine, pas de série : un seul exemplaire de chaque.", "manifeste": ["Pas d’usine.", "Pas de série.", "Une seule veste de chaque.", "Cousue par Julia.", "Tissus achetés en France."], "julia_title": "Cousue par une seule personne.", "julia_lead": "AJ est le projet de Julia et Antoine. Les vestes sont cousues par Julia, une par une.", "julia_body": ["Julia a un BTS Mode. Elle travaille comme conseillère de vente en prêt-à-porter féminin dans le Marais et coud par passion. Chaque veste AJ est cousue par elle, sur sa Juki 7000A.", "Pas d’usine, pas de série. Chaque veste existe en un seul exemplaire. Une fois cousue, il n’y en aura pas d’autre identique.", "Les tissus sont achetés en France.", "Julia propose aussi des retouches : ourlets et autres retouches."], "contact_title": "Nous écrire.", "contact_lead": "Pour une pièce, une retouche, ou simplement une question.", "contact_wait": "Notre adresse de contact sera publiée ici prochainement.", "contact_note": "Si une pièce vous intéresse, précisez laquelle. Nous vous répondrons.", "cta_piece": "Cette pièce vous intéresse ?", "btn_write": "Nous écrire", "btn_pieces": "Voir les pièces"}, "nav": [["index.html", "Accueil"], ["pieces.html", "Pièces"], ["atelier.html", "Julia"], ["retouches.html", "Retouches"], ["contact.html", "Contact"], ["visuels.html", "À propos des visuels"], ["mentions-legales.html", "Mentions légales"]], "images": {"01": {"name": "01-bleu-ouvert", "jpg1536": "assets/img/01-bleu-ouvert-1536.jpg", "jpg768": "assets/img/01-bleu-ouvert-768.jpg", "webp1536": "assets/img/01-bleu-ouvert-1536.webp", "webp768": "assets/img/01-bleu-ouvert-768.webp", "depth": "assets/depth/01-bleu-ouvert.png", "pos": [0.4, 0.5], "alt": "La veste bleue ceinturée portée ouverte, parements en toile de Jouy le long de l’encolure, vue de face.", "width": 1536, "height": 1024}, "02": {"name": "02-bleu-dos", "jpg1536": "assets/img/02-bleu-dos-1536.jpg", "jpg768": "assets/img/02-bleu-dos-768.jpg", "webp1536": "assets/img/02-bleu-dos-1536.webp", "webp768": "assets/img/02-bleu-dos-768.webp", "depth": "assets/depth/02-bleu-dos.png", "pos": [0.39, 0.5], "alt": "Dos de la veste bleue, entièrement en toile de Jouy crème et bleu, ceinture à la taille.", "width": 1536, "height": 1024}, "03": {"name": "03-bleu-ferme", "jpg1536": "assets/img/03-bleu-ferme-1536.jpg", "jpg768": "assets/img/03-bleu-ferme-768.jpg", "webp1536": "assets/img/03-bleu-ferme-1536.webp", "webp768": "assets/img/03-bleu-ferme-768.webp", "depth": "assets/depth/03-bleu-ferme.png", "pos": [0.34, 0.5], "alt": "La veste bleue portée avec les parements rabattus, encolure en V unie, ceinture en toile de Jouy.", "width": 1536, "height": 1024}, "04": {"name": "04-ecru-face", "jpg1536": "assets/img/04-ecru-face-1536.jpg", "jpg768": "assets/img/04-ecru-face-768.jpg", "webp1536": "assets/img/04-ecru-face-1536.webp", "webp768": "assets/img/04-ecru-face-768.webp", "depth": "assets/depth/04-ecru-face.png", "pos": [0.33, 0.5], "alt": "La surchemise écrue côtelée zippée, col pointu, vue de face.", "width": 1536, "height": 1024}, "05": {"name": "05-ecru-dos", "jpg1536": "assets/img/05-ecru-dos-1536.jpg", "jpg768": "assets/img/05-ecru-dos-768.jpg", "webp1536": "assets/img/05-ecru-dos-1536.webp", "webp768": "assets/img/05-ecru-dos-768.webp", "depth": "assets/depth/05-ecru-dos.png", "pos": [0.34, 0.5], "alt": "Dos de la surchemise écrue, panneau entier en toile de Jouy gris sauge et crème.", "width": 1536, "height": 1024}, "06": {"name": "06-indigo-face", "jpg1536": "assets/img/06-indigo-face-1536.jpg", "jpg768": "assets/img/06-indigo-face-768.jpg", "webp1536": "assets/img/06-indigo-face-1536.webp", "webp768": "assets/img/06-indigo-face-768.webp", "depth": "assets/depth/06-indigo-face.png", "pos": [0.37, 0.5], "alt": "La veste indigo zippée, deux poches basses bordées de toile de Jouy, vue de face.", "width": 1536, "height": 1024}, "07": {"name": "07-indigo-dos", "jpg1536": "assets/img/07-indigo-dos-1536.jpg", "jpg768": "assets/img/07-indigo-dos-768.jpg", "webp1536": "assets/img/07-indigo-dos-1536.webp", "webp768": "assets/img/07-indigo-dos-768.webp", "depth": "assets/depth/07-indigo-dos.png", "pos": [0.64, 0.5], "alt": "Dos de la veste indigo, panneau entier en toile de Jouy beige et bleu.", "width": 1536, "height": 1024}, "08": {"name": "08-indigo-duo", "jpg1536": "assets/img/08-indigo-duo-1536.jpg", "jpg768": "assets/img/08-indigo-duo-768.jpg", "webp1536": "assets/img/08-indigo-duo-1536.webp", "webp768": "assets/img/08-indigo-duo-768.webp", "depth": "assets/depth/08-indigo-duo.png", "pos": [0.55, 0.5], "alt": "La veste indigo vue de dos, portée à côté d’une seconde silhouette en tenue noire.", "width": 1536, "height": 1024}, "09": {"name": "09-ecru-porte", "jpg1536": "assets/img/09-ecru-porte-1536.jpg", "jpg768": "assets/img/09-ecru-porte-768.jpg", "webp1536": "assets/img/09-ecru-porte-1536.webp", "webp768": "assets/img/09-ecru-porte-768.webp", "depth": "assets/depth/09-ecru-porte.png", "pos": [0.42, 0.5], "alt": "La surchemise écrue vue de trois quarts dos, toile de Jouy gris sauge.", "width": 1536, "height": 1024}}, "pieces": [{"slug": "veste-bleue", "num": "01", "name": "Veste bleue ceinturée", "short": "Bleu profond au reflet lustré, ceinture et parements en toile de Jouy crème et bleu.", "lead": "Une veste bleu profond au reflet lustré, longueur hanches, dont la taille n’est marquée que par une ceinture étroite en toile de Jouy.", "body": ["Les parements en toile de Jouy crème et bleu descendent le long de l’encolure en V jusqu’à la ceinture. Ils se portent ouverts, ou rabattus à l’intérieur pour une encolure unie.", "Le dos est entièrement en toile de Jouy : des chasseurs sur les épaules, quelques oiseaux au milieu, une scène pastorale dense sous la ceinture, reprise en partie à l’ourlet."], "details": [["Coupe", "Épaules tombantes, manches droites, longueur hanches"], ["Ceinture", "Toile de Jouy, boucle à clip noire"], ["Poches", "Aucune"], ["Dos", "Toile de Jouy crème et bleu"]], "cover": "01", "back": "02", "images": [["01", null], ["03", "Ici, les parements sont rabattus à l’intérieur."], ["02", null]]}, {"slug": "surchemise-ecrue", "num": "02", "name": "Surchemise écrue côtelée", "short": "Longue et ample, zip central, dos entier en toile de Jouy gris sauge.", "lead": "Une surchemise longue et ample, écrue et côtelée, fermée par un zip central, avec un dos entier en toile de Jouy gris sauge.", "body": ["Le col pointu rabattu est côtelé horizontalement, le corps et les manches verticalement. Le devant est uni, sans poche apparente.", "Le dos est un panneau entier de toile de Jouy gris sauge et crème : des chasseurs en haut, des oiseaux au milieu, une scène champêtre autour d’un mât de mai vers le bas."], "details": [["Coupe", "Longue et ample, épaules tombantes, manches droites"], ["Fermeture", "Zip central"], ["Poches", "Aucune apparente"], ["Dos", "Toile de Jouy gris sauge et crème"]], "cover": "04", "back": "05", "images": [["04", null], ["05", null], ["09", null]]}, {"slug": "veste-indigo", "num": "03", "name": "Veste indigo", "short": "Denim indigo, zip métal, poches bordées de toile de Jouy, dos entier beige et bleu.", "lead": "Une veste longue et droite en denim indigo, fermée par un zip métal. Les deux poches sont bordées de toile de Jouy ; le dos est un panneau entier de toile beige et bleu.", "body": ["Col pointu rabattu, épaules tombantes, manches droites, ourlet simple. Deux poches basses, légèrement inclinées, bordées de toile de Jouy crème et bleu.", "Au dos : une chaumière en haut à gauche, un héron en haut à droite, une famille au milieu, à gauche, des bâtiments et des feuillages plus bas."], "details": [["Coupe", "Longue et droite, épaules tombantes, manches droites"], ["Fermeture", "Zip métal"], ["Poches", "Deux poches basses bordées de toile de Jouy"], ["Dos", "Toile de Jouy beige et bleu"]], "cover": "06", "back": "07", "images": [["06", null], ["07", null], ["08", "La tenue noire de la seconde silhouette n’est pas une pièce AJ."]]}]}</script>
+<!-- Chrome commun AJ : monogramme, bouton Menu, menu plein écran, aperçu, indicateur de scènes, rideau de transition, curseur.
+     À insérer une fois par page, juste après <body> (avant .loader / .skip / <main>). Chemins relatifs à la racine du site.
+     Sans JavaScript : le <nav> est une liste de liens ordinaire, visible en haut de page ; le bouton, l'indicateur,
+     le rideau et le curseur restent inertes. Avec JavaScript (html.js) : le nav devient l'overlay, le bouton apparaît. -->
+<div class="chrome" id="chrome">
+  <a class="chrome-mark" href="index.html" aria-label="AJ, accueil"><img src="assets/logo/aj-monogramme-papier.svg" alt="" width="36" height="33" decoding="async"></a>
+  <button class="chrome-menu-btn" type="button" aria-expanded="false" aria-controls="chrome-menu"><span class="chrome-menu-btn-word" data-text="Menu">Menu</span><i class="chrome-menu-glyph" aria-hidden="true"></i></button>
+  <nav class="chrome-menu" id="chrome-menu" aria-label="Navigation principale">
+    <div class="chrome-menu-inner">
+      <ol class="chrome-menu-list">
+        <li class="chrome-menu-item"><a href="index.html" data-preview="02"><span class="chrome-menu-num" aria-hidden="true">01</span><span class="chrome-menu-word" data-text="Accueil">Accueil</span></a></li>
+        <li class="chrome-menu-item"><a href="pieces.html" data-preview="01"><span class="chrome-menu-num" aria-hidden="true">02</span><span class="chrome-menu-word" data-text="Pièces">Pièces</span></a></li>
+        <li class="chrome-menu-item"><a href="atelier.html" data-preview="05"><span class="chrome-menu-num" aria-hidden="true">03</span><span class="chrome-menu-word" data-text="Julia">Julia</span></a></li>
+        <li class="chrome-menu-item"><a href="retouches.html" data-preview="04"><span class="chrome-menu-num" aria-hidden="true">04</span><span class="chrome-menu-word" data-text="Retouches">Retouches</span></a></li>
+        <li class="chrome-menu-item"><a href="contact.html" data-preview="07"><span class="chrome-menu-num" aria-hidden="true">05</span><span class="chrome-menu-word" data-text="Contact">Contact</span></a></li>
+        <li class="chrome-menu-item is-secondary"><a href="visuels.html" data-preview="08"><span class="chrome-menu-num" aria-hidden="true">06</span><span class="chrome-menu-word" data-text="À propos des visuels">À propos des visuels</span></a></li>
+        <li class="chrome-menu-item is-secondary"><a href="mentions-legales.html" data-preview="06"><span class="chrome-menu-num" aria-hidden="true">07</span><span class="chrome-menu-word" data-text="Mentions légales">Mentions légales</span></a></li>
+      </ol>
+      <div class="chrome-menu-preview" aria-hidden="true"></div>
+      <p class="chrome-menu-foot"><span class="chrome-menu-foot-brand">AJ</span><span class="chrome-menu-foot-line">Vestes en pièces uniques, cousues par Julia dans des tissus achetés en France.</span><span class="chrome-menu-foot-year">© 2026 AJ</span></p>
+    </div>
+  </nav>
+  <nav class="chrome-progress" aria-label="Scènes" hidden></nav>
+  <div class="chrome-veil" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"><div class="cursor-dot"></div><div class="cursor-ring"><span class="cursor-label"></span></div></div>
+</div>
 <a class="skip" href="#contenu">Aller au contenu</a>
-<header class="site-header solid"><div class="wrap bar"><a class="brand" href="index.html" aria-label="AJ, accueil"><img src="assets/logo/aj-monogramme-papier.svg" alt="" width="38" height="35"><span aria-hidden="true">AJ</span></a><nav class="nav" aria-label="Navigation principale"><a href="pieces.html" data-scramble aria-current="true">Pièces</a><a href="atelier.html" data-scramble>Julia</a><a href="retouches.html" data-scramble>Retouches</a><a href="contact.html" data-scramble>Contact</a></nav></div></header>
 <main id="contenu">
-<section class="section page-head"><div class="wrap">
-<div class="piece-head">
-<div class="piece-intro"><p class="eyebrow" data-reveal data-scramble>01 · Pièce unique</p><h1 data-split>Veste bleue ceinturée</h1>
-<p class="lead" data-reveal style="--i:2">Une veste bleu profond au reflet lustré, longueur hanches, dont la taille n’est marquée que par une ceinture étroite en toile de Jouy.</p></div>
-<figure class="fig piece-cover" style="--pos:40% 50%" data-cursor="view"><picture><source type="image/webp" srcset="assets/img/01-bleu-ouvert-768.webp 768w, assets/img/01-bleu-ouvert-1536.webp 1536w" sizes="(min-width: 860px) 45vw, 92vw"><img src="assets/img/01-bleu-ouvert-1536.jpg" srcset="assets/img/01-bleu-ouvert-768.jpg 768w, assets/img/01-bleu-ouvert-1536.jpg 1536w" sizes="(min-width: 860px) 45vw, 92vw" width="1536" height="1024" alt="La veste bleue ceinturée portée ouverte, parements en toile de Jouy le long de l’encolure, vue de face." fetchpriority="high" decoding="async" style="view-transition-name:piece-veste-bleue"></picture></figure>
-<div class="piece-more"><p data-reveal style="--i:0">Les parements en toile de Jouy crème et bleu descendent le long de l’encolure en V jusqu’à la ceinture. Ils se portent ouverts, ou rabattus à l’intérieur pour une encolure unie.</p><p data-reveal style="--i:1">Le dos est entièrement en toile de Jouy : des chasseurs sur les épaules, quelques oiseaux au milieu, une scène pastorale dense sous la ceinture, reprise en partie à l’ourlet.</p>
-<dl class="details" data-reveal style="--i:2"><div><dt>Coupe</dt><dd>Épaules tombantes, manches droites, longueur hanches</dd></div><div><dt>Ceinture</dt><dd>Toile de Jouy, boucle à clip noire</dd></div><div><dt>Poches</dt><dd>Aucune</dd></div><div><dt>Dos</dt><dd>Toile de Jouy crème et bleu</dd></div></dl></div>
-</div>
-</div></section>
-<section class="section tight"><div class="wrap"><div class="gallery"><figure class="fig wipe" data-reveal style="--i:0;--pos:34% 50%" data-cursor="view"><picture><source type="image/webp" srcset="assets/img/03-bleu-ferme-768.webp 768w, assets/img/03-bleu-ferme-1536.webp 1536w" sizes="(min-width: 1300px) 1128px, 92vw"><img src="assets/img/03-bleu-ferme-1536.jpg" srcset="assets/img/03-bleu-ferme-768.jpg 768w, assets/img/03-bleu-ferme-1536.jpg 1536w" sizes="(min-width: 1300px) 1128px, 92vw" width="1536" height="1024" alt="La veste bleue portée avec les parements rabattus, encolure en V unie, ceinture en toile de Jouy." loading="lazy" decoding="async"></picture><figcaption>Ici, les parements sont rabattus à l’intérieur.</figcaption></figure><figure class="fig wipe" data-reveal style="--i:0;--pos:39% 50%" data-cursor="view"><picture><source type="image/webp" srcset="assets/img/02-bleu-dos-768.webp 768w, assets/img/02-bleu-dos-1536.webp 1536w" sizes="(min-width: 1300px) 1128px, 92vw"><img src="assets/img/02-bleu-dos-1536.jpg" srcset="assets/img/02-bleu-dos-768.jpg 768w, assets/img/02-bleu-dos-1536.jpg 1536w" sizes="(min-width: 1300px) 1128px, 92vw" width="1536" height="1024" alt="Dos de la veste bleue, entièrement en toile de Jouy crème et bleu, ceinture à la taille." loading="lazy" decoding="async"></picture></figure></div></div></section>
-<section class="section tight"><div class="wrap">
-<div class="cta" data-reveal><p>Cette pièce vous intéresse ?</p><a class="btn" href="contact.html" data-scramble data-aj-mailto="À propos de — Veste bleue ceinturée">Nous écrire</a></div>
-</div></section>
+<section class="scene scene-detail" data-scene="detail" data-scene-name="Pièce" data-slug="veste-bleue" id="detail" aria-labelledby="detail-title-flat">
+<div class="detail-inner" data-slug="veste-bleue"><div class="detail-media-col"><div class="detail-media" style="--pos:40% 50%"><div class="detail-media-in" data-detail-photo="01"><picture><source type="image/webp" srcset="assets/img/01-bleu-ouvert-768.webp 768w, assets/img/01-bleu-ouvert-1536.webp 1536w" sizes="(min-width: 900px) 52vw, 100vw"><img src="assets/img/01-bleu-ouvert-1536.jpg" srcset="assets/img/01-bleu-ouvert-768.jpg 768w, assets/img/01-bleu-ouvert-1536.jpg 1536w" sizes="(min-width: 900px) 52vw, 100vw" width="1536" height="1024" alt="La veste bleue ceinturée portée ouverte, parements en toile de Jouy le long de l’encolure, vue de face." decoding="async" fetchpriority="high"></picture></div><span class="detail-bignum" aria-hidden="true">01</span></div></div><div class="detail-text"><p class="eyebrow detail-eyebrow" data-in style="--i:0">01 · Pièce unique</p><h1 class="detail-name" id="detail-title-flat"><span class="w"><span class="wi" style="--i:0">Veste</span></span> <span class="w"><span class="wi" style="--i:1">bleue</span></span> <span class="w"><span class="wi" style="--i:2">ceinturée</span></span></h1><p class="lead detail-lead" data-in style="--i:3">Une veste bleu profond au reflet lustré, longueur hanches, dont la taille n’est marquée que par une ceinture étroite en toile de Jouy.</p><div class="detail-body" data-in style="--i:4"><p>Les parements en toile de Jouy crème et bleu descendent le long de l’encolure en V jusqu’à la ceinture. Ils se portent ouverts, ou rabattus à l’intérieur pour une encolure unie.</p><p>Le dos est entièrement en toile de Jouy : des chasseurs sur les épaules, quelques oiseaux au milieu, une scène pastorale dense sous la ceinture, reprise en partie à l’ourlet.</p></div><dl class="details detail-details" data-in style="--i:5"><div><dt>Coupe</dt><dd>Épaules tombantes, manches droites, longueur hanches</dd></div><div><dt>Ceinture</dt><dd>Toile de Jouy, boucle à clip noire</dd></div><div><dt>Poches</dt><dd>Aucune</dd></div><div><dt>Dos</dt><dd>Toile de Jouy crème et bleu</dd></div></dl></div><div class="detail-gallery" data-in style="--i:6"><div class="detail-strip" tabindex="0" role="region" aria-label="Autres images — Veste bleue ceinturée" data-lenis-prevent><figure class="detail-item" style="--pos:34% 50%"><div class="detail-item-pic"><picture><source type="image/webp" srcset="assets/img/03-bleu-ferme-768.webp 768w, assets/img/03-bleu-ferme-1536.webp 1536w" sizes="(min-width: 900px) 1000px, 84vw"><img src="assets/img/03-bleu-ferme-1536.jpg" srcset="assets/img/03-bleu-ferme-768.jpg 768w, assets/img/03-bleu-ferme-1536.jpg 1536w" sizes="(min-width: 900px) 1000px, 84vw" width="1536" height="1024" alt="La veste bleue portée avec les parements rabattus, encolure en V unie, ceinture en toile de Jouy." loading="lazy" decoding="async"></picture></div><figcaption><span class="detail-item-num">02 / 03</span><span class="detail-item-cap">Ici, les parements sont rabattus à l’intérieur.</span></figcaption></figure><figure class="detail-item" style="--pos:39% 50%"><div class="detail-item-pic"><picture><source type="image/webp" srcset="assets/img/02-bleu-dos-768.webp 768w, assets/img/02-bleu-dos-1536.webp 1536w" sizes="(min-width: 900px) 1000px, 84vw"><img src="assets/img/02-bleu-dos-1536.jpg" srcset="assets/img/02-bleu-dos-768.jpg 768w, assets/img/02-bleu-dos-1536.jpg 1536w" sizes="(min-width: 900px) 1000px, 84vw" width="1536" height="1024" alt="Dos de la veste bleue, entièrement en toile de Jouy crème et bleu, ceinture à la taille." loading="lazy" decoding="async"></picture></div><figcaption><span class="detail-item-num">03 / 03</span></figcaption></figure></div></div><div class="detail-cta" data-in style="--i:7"><p class="detail-cta-text">Cette pièce vous intéresse ?</p><a class="btn" href="contact.html" data-aj-mailto="À propos de — Veste bleue ceinturée">Nous écrire</a></div><nav class="detail-nav" aria-label="Autres pièces" data-in style="--i:8"><a class="detail-nav-link prev" href="veste-indigo.html" data-detail-go="veste-indigo" rel="prev"><span class="detail-nav-label">Précédente</span><span class="detail-nav-name"><em>03</em> Veste indigo</span></a><a class="detail-nav-link next" href="surchemise-ecrue.html" data-detail-go="surchemise-ecrue" rel="next"><span class="detail-nav-label">Suivante</span><span class="detail-nav-name"><em>02</em> Surchemise écrue côtelée</span></a></nav></div>
+</section>
+<!-- AJ — scène « contact » : scène finale de l'accueil, et pied de page de toutes les pages.
+     Textes : pieces.json (texts.contact_*, brand.baseline, nav sans Accueil) et contrat (« © 2026 AJ », « Une seule veste de chaque. »).
+     site.js remplit [data-aj="email"] (lien mailto + classe contact-big) et [data-aj="instagram"] quand config.js est rempli.
+     Chemins relatifs à la racine du site. Lisible à plat sans JavaScript : le script ne fait que découper le titre et animer. -->
+<section class="scene scene-contact compact" data-scene="contact" id="contact" aria-labelledby="contact-title">
+  <div class="contact-main">
+    <div class="contact-field" aria-hidden="true">
+      <div class="contact-space">
+        <div class="contact-plane contact-floor"><div class="contact-grid"></div></div>
+        <div class="contact-plane contact-ceil"><div class="contact-grid"></div></div>
+      </div>
+    </div>
+    <div class="wrap">
+      <h2 class="contact-title" id="contact-title"><span class="w">Nous</span> <span class="w w-outline">écrire.</span></h2>
+      <div class="contact-row">
+        <p class="lead contact-lead">Pour une pièce, une retouche, ou simplement une question.</p>
+        <div class="contact-links">
+          <p class="muted" data-aj="email">Notre adresse de contact sera publiée ici prochainement.</p>
+          <p data-aj="instagram" hidden></p>
+          <p class="contact-note">Si une pièce vous intéresse, précisez laquelle. Nous vous répondrons.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="contact-foot">
+    <div class="wrap">
+      <div class="contact-foot-grid">
+        <div class="contact-id">
+          <a class="contact-mono" href="index.html" aria-label="AJ, accueil"><img src="assets/logo/aj-monogramme-papier.svg" alt="" width="72" height="66"></a>
+          <p class="contact-baseline">Vestes en pièces uniques, cousues par Julia dans des tissus achetés en France.</p>
+        </div>
+        <nav class="contact-nav" aria-label="Pied de page">
+          <a href="pieces.html"><span class="n" aria-hidden="true">01</span><span class="t">Pièces</span></a>
+          <a href="atelier.html"><span class="n" aria-hidden="true">02</span><span class="t">Julia</span></a>
+          <a href="retouches.html"><span class="n" aria-hidden="true">03</span><span class="t">Retouches</span></a>
+          <a href="contact.html"><span class="n" aria-hidden="true">04</span><span class="t">Contact</span></a>
+          <a href="visuels.html"><span class="n" aria-hidden="true">05</span><span class="t">À propos des visuels</span></a>
+          <a href="mentions-legales.html"><span class="n" aria-hidden="true">06</span><span class="t">Mentions légales</span></a>
+        </nav>
+      </div>
+      <div class="contact-legal"><span>© 2026 AJ</span><span>Une seule veste de chaque.</span></div>
+    </div>
+  </footer>
+</section>
 </main>
-<footer class="site-footer"><div class="wrap">
-<div class="foot">
-<div data-reveal><a class="brand" href="index.html" aria-label="AJ, accueil"><img src="assets/logo/aj-monogramme-papier.svg" alt="" width="30" height="27"><span aria-hidden="true">AJ</span></a>
-<p>Vestes en pièces uniques, cousues par Julia dans des tissus achetés en France.</p></div>
-<nav aria-label="Pied de page" data-reveal style="--i:1"><a href="pieces.html">Pièces</a><a href="atelier.html">Julia</a><a href="retouches.html">Retouches</a><a href="contact.html">Contact</a><a href="visuels.html">À propos des visuels</a><a href="mentions-legales.html">Mentions légales</a></nav>
-<div data-reveal style="--i:2"><p>Pas d’usine, pas de série. Une seule veste de chaque, et pas de réassort.</p></div>
-</div>
-<div class="legal" data-reveal style="--i:3"><span>© 2026 AJ</span><span>Une seule veste de chaque.</span></div>
-</div></footer>
-<div class="cursor" aria-hidden="true"><div class="cursor-dot"></div><div class="cursor-ring"><span class="cursor-label"></span></div></div>
+<div class="detail-overlay" data-detail-overlay hidden></div>
 <script src="assets/js/config.js"></script>
 <script src="assets/js/site.js"></script>
 <script src="assets/js/lenis.min.js"></script>
 <script src="assets/js/gsap.min.js"></script>
 <script src="assets/js/ScrollTrigger.min.js"></script>
-<script src="assets/js/motion.js"></script>
+<script src="assets/js/core.js"></script>
+<script src="assets/js/photo3d.js"></script>
+<script src="assets/js/scenes/chrome.js"></script>
+<script src="assets/js/scenes/hero.js"></script>
+<script src="assets/js/scenes/manifeste.js"></script>
+<script src="assets/js/scenes/pieces.js"></script>
+<script src="assets/js/scenes/campagne.js"></script>
+<script src="assets/js/scenes/julia.js"></script>
+<script src="assets/js/scenes/contact.js"></script>
+<script src="assets/js/scenes/detail.js"></script>
 </body>
 </html>
