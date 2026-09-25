@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Démo — depth</title>
+<meta name="theme-color" content="#0b0f13">
+<link rel="stylesheet" href="../assets/css/fonts.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+<style>
+  .depth-sheet{padding:48px 16px 96px;max-width:1400px;margin:0 auto}
+  .depth-sheet h1{font-family:var(--font-display,serif);font-weight:400;font-size:clamp(28px,4vw,48px);margin:0 0 8px}
+  .depth-sheet p.lead{max-width:60ch;margin:0 0 32px}
+  .depth-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;align-items:start;margin:0 0 28px}
+  .depth-row figure{margin:0;position:relative}
+  .depth-row img{display:block;width:100%;height:auto;aspect-ratio:3/2;background:var(--bg-2,#141a20);border:1px solid var(--line,#222)}
+  .depth-row figcaption{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted,#8a8578);margin-top:6px}
+  .depth-row .blend img.map{position:absolute;inset:0;mix-blend-mode:screen;opacity:.55}
+  @media (max-width:700px){.depth-row{grid-template-columns:1fr 1fr}.depth-row .blend{display:none}}
+</style>
+</head>
+<body>
+<main class="depth-sheet">
+  <h1>Cartes de profondeur</h1>
+  <p class="lead">Contact-sheet des neuf cartes heuristiques (<code>assets/depth/*.png</code>, 768×512, blanc = proche, noir = loin). Colonne 1 : rendu ; colonne 2 : carte ; colonne 3 : superposition.</p>
+  <div id="rows"></div>
+</main>
+<noscript>
+  <div class="depth-sheet"><p>Activez JavaScript pour construire la planche, ou ouvrez directement <code>assets/depth/</code>.</p></div>
+</noscript>
+<script>
+(function () {
+  var names = ['01-bleu-ouvert','02-bleu-dos','03-bleu-ferme','04-ecru-face','05-ecru-dos','06-indigo-face','07-indigo-dos','08-indigo-duo','09-ecru-porte'];
+  var html = names.map(function (n) {
+    var img = '../assets/img/' + n + '-768.jpg', map = '../assets/depth/' + n + '.png';
+    return '<div class="depth-row">' +
+      '<figure><img src="' + img + '" width="768" height="512" alt="" loading="lazy"><figcaption>' + n + ' — rendu</figcaption></figure>' +
+      '<figure><img src="' + map + '" width="768" height="512" alt="" loading="lazy"><figcaption>carte de profondeur</figcaption></figure>' +
+      '<figure class="blend"><img src="' + img + '" width="768" height="512" alt="" loading="lazy"><img class="map" src="' + map + '" width="768" height="512" alt="" loading="lazy"><figcaption>superposition</figcaption></figure>' +
+      '</div>';
+  }).join('');
+  document.getElementById('rows').innerHTML = html;
+})();
+</script>
+</body>
+</html>

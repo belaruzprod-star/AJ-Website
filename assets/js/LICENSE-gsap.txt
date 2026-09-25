@@ -1,0 +1,3 @@
+GSAP (GreenSock Animation Platform) 3.15.0 — fichiers gsap.min.js et ScrollTrigger.min.js.
+Distribué sous la « GSAP Standard License » (gratuite, sans frais) : https://gsap.com/standard-license
+Utilisé ici pour les animations du site AJ.

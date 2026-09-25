@@ -1,0 +1,122 @@
+/* Scène « pieces » : anneau 3D de trois panneaux (perspective CSS). */
+.scene-pieces{
+  --ring-w:clamp(280px,min(34vw,44vh),520px);   /* largeur d'un panneau (de face : taille réelle) */
+  --ring-r:calc(var(--ring-w) * 1.05);            /* rayon de l'anneau */
+  --ring-tilt:-3deg;
+  --ring-a:0deg;                                  /* rotation de l'anneau, pilotée par le JS */
+  position:relative;height:100svh;min-height:560px;overflow:clip;
+  background:var(--bg);color:var(--text);
+}
+.scene-pieces .pieces-head{
+  position:absolute;left:0;right:0;top:clamp(56px,9vh,110px);z-index:3;pointer-events:none;
+  padding:0 var(--gutter);text-align:center;
+}
+.scene-pieces .pieces-head .eyebrow{margin-bottom:.9em}
+.scene-pieces .pieces-title{
+  margin:0;font:400 clamp(28px,4.2vw,64px)/1.05 var(--font-display);letter-spacing:-.015em;color:var(--text);
+}
+
+/* Scène en perspective */
+.scene-pieces .ring-stage{
+  position:absolute;inset:0;display:grid;place-items:center;
+  padding-top:clamp(150px,21vh,200px);box-sizing:border-box;
+  perspective:1400px;perspective-origin:50% 48%;
+}
+.scene-pieces .ring{
+  position:relative;width:var(--ring-w);height:calc(var(--ring-w) * 1.25 + 150px);   /* image 4:5 + bloc texte */
+  transform-style:preserve-3d;
+  /* l'anneau est reculé de son rayon : le panneau de face est à Z = 0, à sa taille réelle */
+  transform:translateZ(calc(-1 * var(--ring-r))) rotateX(var(--ring-tilt)) rotateY(var(--ring-a));
+  will-change:transform;
+  touch-action:pan-y;
+}
+.scene-pieces .ring-panel{
+  position:absolute;top:0;left:0;width:100%;
+  display:block;color:var(--text);text-decoration:none;
+  /* position sur le cylindre ; --face (JS) redresse les panneaux latéraux vers le regard */
+  transform:rotateY(calc(var(--i) * 120deg)) translateZ(var(--ring-r)) rotateY(var(--face,0deg));
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  outline:none;
+}
+.scene-pieces .ring-media{
+  position:relative;width:100%;aspect-ratio:4/5;overflow:hidden;background:var(--bg-2,#11171d);
+}
+.scene-pieces .ring-media picture,.scene-pieces .ring-media img{
+  display:block;width:100%;height:100%;
+}
+.scene-pieces .ring-media img{object-fit:cover;object-position:var(--pos,50% 50%)}
+.scene-pieces .ring-media canvas{position:absolute;inset:0;width:100%;height:100%}
+/* Voile d'assombrissement des panneaux qui ne sont pas de face */
+.scene-pieces .ring-media::after{
+  content:"";position:absolute;inset:0;background:#05080b;opacity:.72;
+  transition:opacity .6s var(--ease-out);
+}
+.scene-pieces .ring-panel.is-front .ring-media::after{opacity:0}
+.scene-pieces .ring-panel:focus-visible .ring-media{outline:1px solid var(--text);outline-offset:6px}
+
+.scene-pieces .ring-text{
+  display:block;padding:18px 0 0;
+  opacity:.28;transform:translateY(6px);
+  transition:opacity .6s var(--ease-out),transform .6s var(--ease-out);
+}
+.scene-pieces .ring-panel.is-front .ring-text{opacity:1;transform:none}
+.scene-pieces .ring-num{
+  display:block;font:500 11px/1.5 var(--font-body);letter-spacing:.2em;color:var(--muted);margin-bottom:.5em;
+}
+.scene-pieces .ring-name{
+  display:block;font:400 clamp(24px,2.6vw,40px)/1.05 var(--font-display);letter-spacing:-.01em;color:var(--text);
+}
+.scene-pieces .ring-short{
+  display:block;margin-top:.55em;font:400 14px/1.55 var(--font-body);color:var(--muted);max-width:32em;
+}
+.scene-pieces .ring-cta{
+  display:inline-block;margin-top:1.1em;font:500 11.5px/1 var(--font-body);letter-spacing:.16em;text-transform:uppercase;color:var(--text);
+  border-bottom:1px solid var(--text);padding-bottom:.45em;
+}
+.scene-pieces .ring-hint{
+  position:absolute;left:var(--gutter);bottom:clamp(18px,4vh,40px);margin:0;text-align:left;
+  font:500 10.5px/1.5 var(--font-body);letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+  opacity:.75;pointer-events:none;
+}
+.scene-pieces .ring-hint-line{display:block;width:1px;height:28px;margin:0 0 10px;background:var(--muted);opacity:.6}
+.scene-pieces.is-dragging .ring{cursor:grabbing}
+.scene-pieces .ring{cursor:grab}
+.scene-pieces .ring-stage{user-select:none;-webkit-user-select:none}
+
+/* Mobile : panneaux plus larges, rayon plus court */
+@media (max-width:760px){
+  .scene-pieces{--ring-w:min(78vw,52vh);--ring-r:calc(var(--ring-w) * 1.05)}
+  .scene-pieces .ring-stage{perspective:1000px}
+  .scene-pieces .pieces-head{top:clamp(44px,8vh,80px)}
+  .scene-pieces .ring-stage{padding-top:clamp(120px,19vh,170px)}
+  .scene-pieces .ring-name{font-size:clamp(22px,7vw,30px)}
+  .scene-pieces .ring-short{font-size:13px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .scene-pieces .ring-hint{display:none}
+}
+@media (max-height:640px){
+  .scene-pieces{--ring-w:clamp(200px,36vh,420px)}
+}
+
+/* Sans JS ou mouvement réduit : les trois panneaux à plat, empilés, lisibles */
+html:not(.js) .scene-pieces,html.reduce .scene-pieces{
+  height:auto;min-height:0;overflow:visible;padding:clamp(80px,12vh,140px) 0 clamp(64px,10vh,120px);
+}
+html:not(.js) .scene-pieces .pieces-head,html.reduce .scene-pieces .pieces-head{
+  position:static;pointer-events:auto;margin-bottom:clamp(40px,6vh,72px);
+}
+html:not(.js) .scene-pieces .ring-stage,html.reduce .scene-pieces .ring-stage{
+  position:static;display:block;perspective:none;padding:0 var(--gutter);
+}
+html:not(.js) .scene-pieces .ring,html.reduce .scene-pieces .ring{
+  width:100%;max-width:var(--max);margin:0 auto;height:auto;transform:none;transform-style:flat;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,44px);cursor:auto;
+}
+html:not(.js) .scene-pieces .ring-panel,html.reduce .scene-pieces .ring-panel{
+  position:relative;top:auto;left:auto;width:auto;transform:none;backface-visibility:visible;
+}
+html:not(.js) .scene-pieces .ring-media::after,html.reduce .scene-pieces .ring-media::after{opacity:0}
+html:not(.js) .scene-pieces .ring-text,html.reduce .scene-pieces .ring-text{opacity:1;transform:none}
+html:not(.js) .scene-pieces .ring-hint,html.reduce .scene-pieces .ring-hint{display:none}
+@media (max-width:760px){
+  html:not(.js) .scene-pieces .ring,html.reduce .scene-pieces .ring{grid-template-columns:1fr;gap:48px}
+}

@@ -1,0 +1,44 @@
+<!-- AJ — scène « contact » : scène finale de l'accueil, et pied de page de toutes les pages.
+     Textes : pieces.json (texts.contact_*, brand.baseline, nav sans Accueil) et contrat (« © 2026 AJ », « Une seule veste de chaque. »).
+     site.js remplit [data-aj="email"] (lien mailto + classe contact-big) et [data-aj="instagram"] quand config.js est rempli.
+     Chemins relatifs à la racine du site. Lisible à plat sans JavaScript : le script ne fait que découper le titre et animer. -->
+<section class="scene scene-contact" data-scene="contact" id="contact" aria-labelledby="contact-title">
+  <div class="contact-main">
+    <div class="contact-field" aria-hidden="true">
+      <div class="contact-space">
+        <div class="contact-plane contact-floor"><div class="contact-grid"></div></div>
+        <div class="contact-plane contact-ceil"><div class="contact-grid"></div></div>
+      </div>
+    </div>
+    <div class="wrap">
+      <h2 class="contact-title" id="contact-title"><span class="w">Nous</span> <span class="w w-outline">écrire.</span></h2>
+      <div class="contact-row">
+        <p class="lead contact-lead">Pour une pièce, une retouche, ou simplement une question.</p>
+        <div class="contact-links">
+          <p class="muted" data-aj="email">Notre adresse de contact sera publiée ici prochainement.</p>
+          <p data-aj="instagram" hidden></p>
+          <p class="contact-note">Si une pièce vous intéresse, précisez laquelle. Nous vous répondrons.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="contact-foot">
+    <div class="wrap">
+      <div class="contact-foot-grid">
+        <div class="contact-id">
+          <a class="contact-mono" href="index.html" aria-label="AJ, accueil"><img src="assets/logo/aj-monogramme-papier.svg" alt="" width="72" height="66"></a>
+          <p class="contact-baseline">Vestes en pièces uniques, cousues par Julia dans des tissus achetés en France.</p>
+        </div>
+        <nav class="contact-nav" aria-label="Pied de page">
+          <a href="pieces.html"><span class="n" aria-hidden="true">01</span><span class="t">Pièces</span></a>
+          <a href="atelier.html"><span class="n" aria-hidden="true">02</span><span class="t">Julia</span></a>
+          <a href="retouches.html"><span class="n" aria-hidden="true">03</span><span class="t">Retouches</span></a>
+          <a href="contact.html"><span class="n" aria-hidden="true">04</span><span class="t">Contact</span></a>
+          <a href="visuels.html"><span class="n" aria-hidden="true">05</span><span class="t">À propos des visuels</span></a>
+          <a href="mentions-legales.html"><span class="n" aria-hidden="true">06</span><span class="t">Mentions légales</span></a>
+        </nav>
+      </div>
+      <div class="contact-legal"><span>© 2026 AJ</span><span>Une seule veste de chaque.</span></div>
+    </div>
+  </footer>
+</section>

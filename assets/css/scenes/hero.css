@@ -1,0 +1,54 @@
+/* Scène « hero » : plein écran, image 07 en cover (object-position var(--pos)), voile en dégradé fort à gauche
+   et en bas (contraste du texte), léger sur la veste (droite / haut). Titre Cormorant en deux lignes = deux couches
+   en perspective (la seconde plus proche : translateZ + parallaxe souris plus ample). Sans JS ou en mouvement réduit,
+   tout est visible d'emblée ; les états initiaux de l'entrée sont posés par hero.js, pas par le CSS. */
+
+.scene-hero{position:relative;height:100vh;height:100svh;min-height:540px;overflow:hidden;isolation:isolate;background:var(--bg);color:var(--text)}
+
+/* ---- Image ---------------------------------------------------------------- */
+.hero-media{position:absolute;inset:0;z-index:0;overflow:hidden;transform-origin:50% 50%;background:var(--bg-2)}
+.hero-media picture,.hero-media img{position:absolute;inset:0;width:100%;height:100%;margin:0;object-fit:cover;object-position:var(--pos,50% 50%)}
+.hero-media canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+.hero-veil{position:absolute;inset:0;z-index:2;pointer-events:none;background:
+  linear-gradient(to top,rgba(11,15,19,.96) 0%,rgba(11,15,19,.78) 22%,rgba(11,15,19,.38) 48%,rgba(11,15,19,.06) 72%,rgba(11,15,19,0) 84%,rgba(11,15,19,.22) 100%),
+  linear-gradient(to right,rgba(11,15,19,.9) 0%,rgba(11,15,19,.7) 24%,rgba(11,15,19,.3) 48%,rgba(11,15,19,.04) 64%,rgba(11,15,19,0) 76%)}
+
+/* ---- Texte ---------------------------------------------------------------- */
+.hero-content{position:relative;z-index:3;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:96px var(--gutter) clamp(40px,7vh,84px)}
+.hero-text{max-width:min(100%,60rem);will-change:transform}
+.hero-eyebrow{color:var(--text);margin-bottom:1.7em}
+.hero-title{font-family:var(--font-display);font-weight:500;font-size:clamp(52px,12vw,190px);line-height:.9;letter-spacing:-.02em;margin:0 0 .2em;text-wrap:initial;perspective:1200px;perspective-origin:18% 60%}
+.hero-line{display:block;transform-style:preserve-3d;white-space:nowrap}
+.hero-l2{font-style:italic;font-weight:400;transform:translateZ(40px)}
+.hero-title .w{display:inline-block;overflow:hidden;vertical-align:top;padding:.06em .1em .16em;margin:-.06em -.1em -.16em;perspective:700px}
+.hero-title .wi{display:inline-block;transform-origin:50% 100%;backface-visibility:hidden}
+.hero-lead{max-width:24em;margin-bottom:2em}
+.hero-cta{margin:0}
+
+/* ---- Indicateur de défilement --------------------------------------------- */
+.hero-scroll{position:absolute;right:var(--gutter);bottom:clamp(36px,6vh,72px);z-index:4;display:flex;flex-direction:column;align-items:center;gap:14px;color:var(--text);text-decoration:none;font:500 10px/1 var(--font-body);letter-spacing:.24em;text-transform:uppercase;opacity:.85}
+.hero-scroll:hover{color:var(--text);opacity:1}
+.hero-scroll i{display:block;position:relative;width:1px;height:64px;background:rgba(232,227,216,.28);overflow:hidden}
+.hero-scroll i::after{content:"";position:absolute;left:0;top:0;width:100%;height:100%;background:var(--text);transform:translateY(-100%)}
+.js:not(.reduce) .hero-scroll i::after{animation:hero-scroll 2.4s var(--ease-inout) infinite}
+@keyframes hero-scroll{0%{transform:translateY(-100%)}55%{transform:translateY(0)}100%{transform:translateY(100%)}}
+
+/* ---- Mobile --------------------------------------------------------------- */
+@media (max-width:860px){
+  .hero-veil{background:
+    linear-gradient(to top,rgba(11,15,19,.97) 0%,rgba(11,15,19,.9) 26%,rgba(11,15,19,.62) 48%,rgba(11,15,19,.18) 68%,rgba(11,15,19,0) 82%,rgba(11,15,19,.3) 100%),
+    linear-gradient(to right,rgba(11,15,19,.5) 0%,rgba(11,15,19,.2) 40%,rgba(11,15,19,0) 70%)}
+  .hero-content{padding-top:72px;padding-bottom:clamp(28px,5vh,56px)}
+  .hero-title{line-height:.94;perspective:800px}
+  .hero-lead{font-size:clamp(18px,4.6vw,21px);max-width:22em;margin-bottom:1.6em}
+  .hero-eyebrow{margin-bottom:1.3em}
+  .hero-scroll{bottom:clamp(30px,5vh,56px);gap:10px}
+  .hero-scroll-label{display:none}
+  .hero-scroll i{height:44px}
+}
+@media (max-width:480px){.hero-scroll{right:calc(var(--gutter) - 2px)}.hero-cta .btn{padding:.9em 1.4em}}
+@media (max-height:560px){.scene-hero{min-height:0}.hero-content{padding-top:56px}.hero-title{font-size:clamp(36px,11vh,120px)}.hero-lead{font-size:17px;margin-bottom:1em}.hero-eyebrow{margin-bottom:.8em}.hero-scroll{display:none}}
+
+/* ---- Mouvement réduit / sans JS : rien n'est masqué, aucune profondeur animée ---- */
+html.reduce .hero-l2{transform:none}
+html.reduce .hero-text{will-change:auto}
