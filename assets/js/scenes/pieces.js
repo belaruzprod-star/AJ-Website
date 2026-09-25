@@ -21,21 +21,24 @@
   var n = panels.length;
   var G = AJ.gsap, ST = AJ.ScrollTrigger;
 
-  var state = { scrollAngle: 0, drag: 0, front: -1, photo: null, moved: false, settling: null };
+  var state = { scrollAngle: 0, drag: 0, front: -1, moved: false, settling: null };
   var st = null;
 
   function mod(k) { return ((k % n) + n) % n; }
   function angle() { return state.scrollAngle + state.drag; }
   function frontIndex(a) { return mod(Math.round(-a / STEP)); }
 
-  /* Photo3D : une seule instance, réattachée quand le panneau de face change */
+  /* Photo3D : une instance par panneau, créée à la première mise de face ; seule celle de face tourne (les autres en pause).
+     Trois contextes WebGL au plus ; sans AJ.Photo3D (ou en mouvement réduit) : l'image reste. */
+  var photos = [];
   function attachPhoto(panel) {
-    var P = window.AJ && window.AJ.Photo3D;
-    if (state.photo) { try { state.photo.destroy(); } catch (e) {} state.photo = null; }
+    var P = window.AJ && window.AJ.Photo3D, idx = panels.indexOf(panel);
     if (!P || typeof P.attach !== 'function' || AJ.reduce) return;
+    photos.forEach(function (inst, i) { if (inst && i !== idx) { try { inst.pause(); } catch (e) {} } });
+    if (photos[idx]) { try { photos[idx].resume(); } catch (e) {} return; }
     var media = panel.querySelector('.ring-media'), key = panel.getAttribute('data-key');
     if (!media || !key || !AJ.images || !AJ.images[key]) return;
-    try { state.photo = P.attach(media, { key: key, amount: PHOTO3D_AMOUNT, scroll: false }); } catch (e) { state.photo = null; }
+    try { photos[idx] = P.attach(media, { key: key, amount: PHOTO3D_AMOUNT, scroll: false }); } catch (e) { photos[idx] = null; }
   }
 
   function setFront(i, silent) {
