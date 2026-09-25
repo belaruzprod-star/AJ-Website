@@ -173,14 +173,15 @@ em{font-style:normal;color:var(--muted)}
    Les règles préfixées par .js ne s'appliquent que si JavaScript est actif ; sans JS, ou si
    l'utilisateur préfère réduire les animations (.reduce), tout est visible immédiatement. */
 @view-transition{navigation:auto}
-::view-transition-old(root){animation:vt-out .35s ease both}
-::view-transition-new(root){animation:vt-in .5s ease both}
-@keyframes vt-out{to{opacity:0}}
-@keyframes vt-in{from{opacity:0}}
+::view-transition-old(root){animation:vt-out .5s var(--ease-inout) both}
+::view-transition-new(root){animation:vt-in .7s var(--ease-inout) both}
+@keyframes vt-out{to{opacity:0;transform:translateY(-4%) scale(.98)}}
+@keyframes vt-in{from{opacity:0;transform:translateY(6%)}}
 .site-header{view-transition-name:site-header}
 ::view-transition-group(site-header){animation-duration:.01s}
 
-/* Grain de film */
+/* Grain et vignette */
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:44;background:radial-gradient(ellipse at center,transparent 58%,rgba(0,0,0,.42) 100%)}
 body::after{content:"";position:fixed;inset:-100px;pointer-events:none;z-index:45;opacity:.055;mix-blend-mode:screen;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .7 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:240px 240px}
 @media (hover:hover){.js:not(.reduce) body::after{animation:grain 1.2s steps(6) infinite}}
 @keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-30px,20px)}40%{transform:translate(20px,-40px)}60%{transform:translate(-40px,-10px)}80%{transform:translate(30px,30px)}100%{transform:translate(0,0)}}
@@ -189,47 +190,90 @@ body::after{content:"";position:fixed;inset:-100px;pointer-events:none;z-index:4
 .progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:60;background:var(--text);transform:scaleX(var(--p,0));transform-origin:left;pointer-events:none;opacity:0}
 .js:not(.reduce) .progress{opacity:.8}
 
-/* Rideau d'introduction */
-.intro{display:none}
-.js:not(.reduce) .intro{display:grid;place-items:center;position:fixed;inset:0;z-index:100;background:var(--bg);animation:intro-out .9s var(--ease-inout) 1.4s forwards}
-.js:not(.reduce) .intro img{width:76px;height:auto;opacity:0;transform:translateY(12px);animation:intro-in .9s var(--ease-out) .1s forwards}
-@keyframes intro-in{to{opacity:1;transform:none}}
-@keyframes intro-out{to{transform:translateY(-100%);visibility:hidden}}
+/* Préchargeur : compteur puis rideau qui s'ouvre en deux */
+.loader{display:none}
+.js:not(.reduce) .loader{display:block;position:fixed;inset:0;z-index:100;pointer-events:none;animation:loader-safety 0s 6.5s forwards}
+@keyframes loader-safety{to{visibility:hidden}}
+.loader-panel{position:absolute;left:0;right:0;height:50.5%;background:var(--bg)}
+.loader-top{top:0}.loader-bottom{bottom:0}
+.loader-inner{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:22px}
+.loader-inner img{width:64px;height:auto}
+.loader-count{font-family:var(--font-display);font-size:clamp(56px,9vw,120px);line-height:1;letter-spacing:-.02em;color:var(--text);font-variant-numeric:tabular-nums}
+.loader-bar{width:min(240px,50vw);height:1px;background:rgba(232,227,216,.15);overflow:hidden}
+.loader-bar i{display:block;height:100%;background:var(--text);transform:scaleX(0);transform-origin:left}
+
+/* Curseur personnalisé (souris uniquement) */
+.cursor{display:none}
+@media (hover:hover) and (pointer:fine){
+  .js:not(.reduce).has-cursor,.js:not(.reduce).has-cursor a,.js:not(.reduce).has-cursor button{cursor:none}
+  .js:not(.reduce) .cursor{display:block;position:fixed;top:0;left:0;z-index:120;pointer-events:none;opacity:0;transition:opacity .3s}
+  .js:not(.reduce) .cursor.on{opacity:1}
+  .cursor-dot{position:absolute;top:-3px;left:-3px;width:6px;height:6px;border-radius:50%;background:var(--text);mix-blend-mode:difference}
+  .cursor-ring{position:absolute;top:-20px;left:-20px;width:40px;height:40px;border-radius:50%;border:1px solid rgba(232,227,216,.7);display:grid;place-items:center;mix-blend-mode:difference;transition:width .35s var(--ease-out),height .35s var(--ease-out),top .35s var(--ease-out),left .35s var(--ease-out),background .35s,border-color .35s}
+  .cursor-label{font:500 11px/1 var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--bg);opacity:0;transition:opacity .25s}
+  .cursor.link .cursor-ring{width:56px;height:56px;top:-28px;left:-28px;border-color:var(--text)}
+  .cursor.view .cursor-ring{width:88px;height:88px;top:-44px;left:-44px;background:var(--text);border-color:var(--text);mix-blend-mode:normal}
+  .cursor.view .cursor-dot{opacity:0}
+  .cursor.view .cursor-label{opacity:1}
+  .cursor.down .cursor-ring{transform:scale(.85)}
+}
+
+/* Hero : WebGL au-dessus de l'image, zoom lent et parallaxe */
+.hero picture{z-index:-3}
+.hero .gl{position:absolute;inset:0;z-index:-2;will-change:transform}
+.hero canvas{position:absolute;left:0;top:-6%;width:100%;height:112%;display:block;opacity:0;transition:opacity .6s}
+.hero canvas.on{opacity:1}
+.js:not(.reduce) .hero picture,.js:not(.reduce) .hero .gl{transform:scale(1.12);transition:transform 2.8s var(--ease-out)}
+.js:not(.reduce) .hero.in picture,.js:not(.reduce) .hero.in .gl{transform:scale(1)}
 
 /* Apparitions au défilement */
-.js:not(.reduce) [data-reveal]:not([data-split]){opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease-out),transform 1s var(--ease-out);transition-delay:calc(var(--i,0)*90ms)}
+.js:not(.reduce) [data-reveal]:not([data-split]){opacity:0;transform:translateY(32px);transition:opacity 1.1s var(--ease-out),transform 1.1s var(--ease-out);transition-delay:calc(var(--i,0)*90ms)}
 .js:not(.reduce) [data-reveal]:not([data-split]).in{opacity:1;transform:none}
-/* Le clip est posé sur <picture>, pas sur la figure observée : Chrome tient compte du clip-path dans l'IntersectionObserver. */
+/* Images révélées par balayage : le clip est sur <picture>, pas sur la figure (mesure de visibilité) */
 .js:not(.reduce) .wipe[data-reveal]{opacity:1;transform:none}
-.js:not(.reduce) .wipe[data-reveal] picture{display:block;clip-path:inset(0 0 100% 0);transition:clip-path 1.3s var(--ease-inout);transition-delay:calc(var(--i,0)*90ms)}
-.js:not(.reduce) .wipe[data-reveal] img{transform:scale(1.12);transition:transform 1.8s var(--ease-out);transition-delay:calc(var(--i,0)*90ms)}
-.js:not(.reduce) .wipe[data-reveal] figcaption{opacity:0;transition:opacity .8s ease;transition-delay:calc(var(--i,0)*90ms + .5s)}
+.js:not(.reduce) .wipe[data-reveal] picture{display:block;clip-path:inset(0 100% 0 0);transition:clip-path 1.4s var(--ease-inout);transition-delay:calc(var(--i,0)*90ms)}
+.js:not(.reduce) .wipe[data-reveal] img{transform:scale(1.25);filter:blur(6px) brightness(1.4);transition:transform 2s var(--ease-out),filter 1.6s var(--ease-out);transition-delay:calc(var(--i,0)*90ms)}
+.js:not(.reduce) .wipe[data-reveal] figcaption{opacity:0;transition:opacity .8s ease;transition-delay:calc(var(--i,0)*90ms + .6s)}
 .js:not(.reduce) .wipe[data-reveal].in picture{clip-path:inset(0)}
-.js:not(.reduce) .wipe[data-reveal].in img{transform:none}
+.js:not(.reduce) .wipe[data-reveal].in img{transform:none;filter:none}
 .js:not(.reduce) .wipe[data-reveal].in figcaption{opacity:1}
 
-/* Titres mot à mot */
-.js:not(.reduce) [data-split] .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.14em;margin-bottom:-.14em}
-.js:not(.reduce) [data-split] .wi{display:inline-block;transform:translateY(110%);transition:transform 1.1s var(--ease-out);transition-delay:calc(var(--i,0)*55ms)}
-.js:not(.reduce) [data-split].in .wi{transform:none}
+/* Titres mot à mot, en 3D */
+.js:not(.reduce) [data-split]{perspective:700px}
+.js:not(.reduce) [data-split] .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.14em;margin-bottom:-.14em;transform-style:preserve-3d}
+.js:not(.reduce) [data-split] .wi{display:inline-block;transform:translateY(110%) rotateX(-50deg);transform-origin:50% 100%;opacity:0;filter:blur(8px);transition:transform 1.2s var(--ease-out),opacity .9s var(--ease-out),filter 1s var(--ease-out);transition-delay:calc(var(--i,0)*60ms)}
+.js:not(.reduce) [data-split].in .wi{transform:none;opacity:1;filter:blur(0)}
 
-/* Bande défilante */
+/* Cisaillement des images selon la vitesse de défilement */
+.js:not(.reduce) .fig:not(.piece-cover) picture,.js:not(.reduce) .strip-item picture{transform:skewY(var(--skew,0deg));will-change:transform}
+
+/* Cartes : inclinaison 3D, éclat, bascule vers le dos avec glitch */
+.card{perspective:900px}
+.card .pic{transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) skewY(var(--skew,0deg));transition:transform .5s var(--ease-out);transform-style:preserve-3d}
+.card .glare{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0;transition:opacity .4s;mix-blend-mode:screen;background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),rgba(232,227,216,.28),transparent 42%)}
+.card:hover .glare{opacity:1}
+@keyframes glitch{0%{clip-path:inset(0 0 82% 0);transform:translate(-8px,0)}15%{clip-path:inset(28% 0 44% 0);transform:translate(7px,0)}30%{clip-path:inset(62% 0 8% 0);transform:translate(-5px,0)}45%{clip-path:inset(8% 0 72% 0);transform:translate(6px,0)}60%{clip-path:inset(46% 0 22% 0);transform:translate(-3px,0)}75%{clip-path:inset(18% 0 58% 0);transform:translate(2px,0)}100%{clip-path:inset(0);transform:none}}
+.js:not(.reduce) .card:hover .back{animation:glitch .6s steps(1,end) both}
+
+/* Bande défilante : pilotée par le script (vitesse et sens du défilement) ; statique sans JS */
 .marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0;font-family:var(--font-display);font-size:clamp(24px,3.4vw,44px);line-height:1;white-space:nowrap;color:var(--text)}
-.marquee .track{display:inline-flex;align-items:center}
+.marquee .track{display:inline-flex;align-items:center;will-change:transform}
 .marquee span{padding:0 .8em}
 .marquee .dot{color:var(--muted);font-size:.5em}
-.js:not(.reduce) .marquee .track{animation:marquee 46s linear infinite;will-change:transform}
-@keyframes marquee{to{transform:translateX(-50%)}}
 
-/* Galerie horizontale de la campagne */
+/* Galerie horizontale de la campagne : défilement natif, ou section épinglée sur bureau (.pinned) */
 .strip{display:flex;gap:clamp(12px,2vw,24px);overflow-x:auto;scroll-snap-type:x mandatory;padding:0 var(--gutter) 12px;scrollbar-width:none;-webkit-overflow-scrolling:touch;cursor:grab}
 .strip::-webkit-scrollbar{display:none}
 .strip:active{cursor:grabbing}
-.strip-item{flex:0 0 min(78vw,640px);scroll-snap-align:start;text-decoration:none;color:var(--muted)}
+.strip-item{flex:0 0 min(78vw,720px);scroll-snap-align:start;text-decoration:none;color:var(--muted)}
 .strip-item .fig img{aspect-ratio:3/2;object-fit:cover}
 .strip-item figcaption{display:flex;justify-content:space-between;gap:12px}
 .strip-item figcaption b{font-weight:500;color:var(--text)}
 .strip-item:hover figcaption b{text-decoration:underline;text-underline-offset:.2em}
+.strip-section.pinned{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:clamp(56px,9vw,128px);padding-bottom:40px;overflow:hidden;overflow:clip}
+.strip-section.pinned .section-head{margin-bottom:clamp(20px,3vw,36px)}
+.strip-section.pinned .strip{overflow:visible;position:relative;scroll-snap-type:none;cursor:auto}
+.strip-section.pinned .strip-item{flex-basis:min(760px,calc((100vh - 320px) * 1.5))}
 
 /* Lenis (défilement inertiel) : règles de base recommandées */
 html.lenis,html.lenis body{height:auto}

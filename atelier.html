@@ -13,7 +13,7 @@
 <meta property="og:image" content="https://belaruzprod-star.github.io/AJ-Website/assets/img/07-indigo-dos-1536.jpg">
 <meta property="og:image:width" content="1536">
 <meta property="og:image:height" content="1024">
-<meta property="og:image:alt" content="Rendu de campagne généré par IA, mannequin fictif : dos de la veste indigo en toile de Jouy.">
+<meta property="og:image:alt" content="Dos de la veste indigo en toile de Jouy.">
 <meta name="theme-color" content="#0b0f13">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -23,13 +23,13 @@
 <body class="inner">
 <div class="progress" aria-hidden="true"></div>
 <a class="skip" href="#contenu">Aller au contenu</a>
-<header class="site-header solid"><div class="wrap bar"><a class="brand" href="index.html" aria-label="AJ, accueil"><img src="assets/logo/aj-monogramme-papier.svg" alt="" width="38" height="35"><span aria-hidden="true">AJ</span></a><nav class="nav" aria-label="Navigation principale"><a href="pieces.html">Pièces</a><a href="atelier.html" aria-current="page">Julia</a><a href="retouches.html">Retouches</a><a href="contact.html">Contact</a></nav></div></header>
+<header class="site-header solid"><div class="wrap bar"><a class="brand" href="index.html" aria-label="AJ, accueil"><img src="assets/logo/aj-monogramme-papier.svg" alt="" width="38" height="35"><span aria-hidden="true">AJ</span></a><nav class="nav" aria-label="Navigation principale"><a href="pieces.html" data-scramble>Pièces</a><a href="atelier.html" data-scramble aria-current="page">Julia</a><a href="retouches.html" data-scramble>Retouches</a><a href="contact.html" data-scramble>Contact</a></nav></div></header>
 <main id="contenu">
 <section class="section page-head"><div class="wrap">
 <div class="split">
-<div><p class="eyebrow" data-reveal>Julia</p><h1 data-split>Une veste à la fois.</h1>
+<div><p class="eyebrow" data-reveal data-scramble>Julia</p><h1 data-split>Une veste à la fois.</h1>
 <p class="lead" data-reveal style="--i:2">AJ est le projet de Julia et Antoine. Les vestes sont cousues par Julia, une par une.</p></div>
-<figure class="fig wipe" data-reveal style="--i:1;--pos:34% 50%"><picture><source type="image/webp" srcset="assets/img/05-ecru-dos-768.webp 768w, assets/img/05-ecru-dos-1536.webp 1536w" sizes="(min-width: 860px) 45vw, 92vw"><img src="assets/img/05-ecru-dos-1536.jpg" srcset="assets/img/05-ecru-dos-768.jpg 768w, assets/img/05-ecru-dos-1536.jpg 1536w" sizes="(min-width: 860px) 45vw, 92vw" width="1536" height="1024" alt="Rendu généré par IA : dos de la surchemise écrue, panneau entier en toile de Jouy gris sauge et crème." fetchpriority="high" decoding="async"></picture><figcaption>Rendu de campagne généré par IA à partir de la pièce réelle, mannequin fictif. Les couleurs, motifs et coutures peuvent différer de la pièce. <a href="visuels.html">À propos des visuels</a>.</figcaption></figure>
+<figure class="fig wipe" data-reveal style="--i:1;--pos:34% 50%" data-cursor="view"><picture><source type="image/webp" srcset="assets/img/05-ecru-dos-768.webp 768w, assets/img/05-ecru-dos-1536.webp 1536w" sizes="(min-width: 860px) 45vw, 92vw"><img src="assets/img/05-ecru-dos-1536.jpg" srcset="assets/img/05-ecru-dos-768.jpg 768w, assets/img/05-ecru-dos-1536.jpg 1536w" sizes="(min-width: 860px) 45vw, 92vw" width="1536" height="1024" alt="Dos de la surchemise écrue, panneau entier en toile de Jouy gris sauge et crème." fetchpriority="high" decoding="async"></picture></figure>
 </div>
 </div></section>
 <section class="section tight"><div class="wrap"><div class="prose">
@@ -48,13 +48,16 @@
 <div data-reveal><a class="brand" href="index.html" aria-label="AJ, accueil"><img src="assets/logo/aj-monogramme-papier.svg" alt="" width="30" height="27"><span aria-hidden="true">AJ</span></a>
 <p>Vestes en pièces uniques, cousues par Julia dans des tissus achetés en France.</p></div>
 <nav aria-label="Pied de page" data-reveal style="--i:1"><a href="pieces.html">Pièces</a><a href="atelier.html">Julia</a><a href="retouches.html">Retouches</a><a href="contact.html">Contact</a><a href="visuels.html">À propos des visuels</a><a href="mentions-legales.html">Mentions légales</a></nav>
-<div data-reveal style="--i:2"><p>Les images de vestes de ce site sont des rendus de campagne générés par un outil d’intelligence artificielle à partir des pièces réelles. Les mannequins et les décors sont fictifs. Nous l’expliquons dans <a href="visuels.html">À propos des visuels</a>.</p></div>
+<div data-reveal style="--i:2"><p>Pas d’usine, pas de série. Une seule veste de chaque, et pas de réassort.</p></div>
 </div>
 <div class="legal" data-reveal style="--i:3"><span>© 2026 AJ</span><span>Une seule veste de chaque.</span></div>
 </div></footer>
+<div class="cursor" aria-hidden="true"><div class="cursor-dot"></div><div class="cursor-ring"><span class="cursor-label"></span></div></div>
 <script src="assets/js/config.js"></script>
 <script src="assets/js/site.js"></script>
 <script src="assets/js/lenis.min.js"></script>
+<script src="assets/js/gsap.min.js"></script>
+<script src="assets/js/ScrollTrigger.min.js"></script>
 <script src="assets/js/motion.js"></script>
 </body>
 </html>

@@ -21,8 +21,8 @@ Le site est **statique** (HTML, CSS, un peu de JavaScript), **sans framework ni 
 | `assets/css/fonts.css`, `assets/fonts/` | Polices auto-hébergées (Cormorant Garamond, Inter, licence OFL) |
 | `assets/js/config.js` | **Coordonnées de contact, à remplir** (voir plus bas) |
 | `assets/js/site.js` | Injecte les coordonnées dans les pages |
-| `assets/js/motion.js` | Animations et effets (voir plus bas) |
-| `assets/js/lenis.min.js` | Défilement inertiel, bibliothèque libre Lenis (licence MIT, embarquée) |
+| `assets/js/motion.js`, `assets/js/hero-gl.js` | Animations, effets et hero WebGL (voir plus bas) |
+| `assets/js/lenis.min.js`, `assets/js/gsap.min.js`, `assets/js/ScrollTrigger.min.js` | Bibliothèques d'animation embarquées (Lenis, MIT ; GSAP, licence standard gratuite) |
 | `assets/img/` | Les neuf rendus, en WebP et JPEG, en 768 et 1536 px de large |
 | `assets/logo/`, `favicon.svg`, `apple-touch-icon.png` | Monogramme AJ (silhouette vectorielle, optimisée) |
 | `.nojekyll` | Indique à GitHub Pages de servir les fichiers tels quels |
@@ -74,24 +74,29 @@ Conformément au brief, le site ne mentionne **ni prix, ni tailles, ni compositi
 
 - Polices Cormorant Garamond et Inter : SIL Open Font License 1.1, texte dans `assets/fonts/OFL.txt`.
 - Lenis (défilement inertiel) : licence MIT, texte dans `assets/js/LICENSE-lenis.txt`.
+- GSAP et ScrollTrigger (animations) : licence standard gratuite de GSAP, note dans `assets/js/LICENSE-gsap.txt`.
 - Monogramme, textes et rendus : AJ.
 
 ## Animations et effets
 
-Le site utilise un système d'animations léger, sans service externe :
+Le site utilise un système d'animations sans service externe (GSAP et Lenis sont embarqués, gratuits) :
 
-- rideau d'introduction avec le monogramme sur l'accueil, une seule fois par session ;
-- titres qui montent mot à mot, textes et cartes qui apparaissent au défilement, images révélées par balayage ;
-- zoom lent et parallaxe sur l'image d'accueil ;
-- en-tête fixe qui devient un bandeau de verre flouté au défilement et se cache quand on descend ;
-- bande défilante, galerie horizontale de la campagne, cartes qui basculent vers la vue de dos au survol ;
-- boutons magnétiques, grain de film, transitions animées entre les pages (navigateurs récents) ;
-- défilement inertiel (Lenis) sur les appareils à souris.
+- préchargeur sur l'accueil (compteur, puis rideau qui s'ouvre en deux), une seule fois par session ;
+- hero en WebGL : distorsion liquide qui réagit à la souris, brume animée, apparition par dissolution, zoom lent et parallaxe ; l'image reste affichée telle quelle sans WebGL, et la définition du rendu baisse toute seule sur un appareil lent ;
+- titres qui entrent mot à mot en 3D avec un flou, intitulés qui se décodent caractère par caractère, liens et boutons qui se brouillent au survol ;
+- textes et cartes qui apparaissent au défilement, images révélées par balayage ;
+- cartes qui s'inclinent en 3D sous la souris avec un éclat, et basculent vers la vue de dos avec un glitch ;
+- images qui se cisaillent selon la vitesse de défilement, bande défilante qui accélère et suit le sens du défilement ;
+- galerie de campagne épinglée qui défile horizontalement quand on descend (sur ordinateur), défilement horizontal natif sur mobile ;
+- curseur personnalisé (point et anneau, « Voir » sur les images), boutons magnétiques, grain de film et vignette ;
+- en-tête en verre flouté qui se cache quand on descend, barre de progression, transitions animées entre les pages, défilement inertiel.
 
-Tout est désactivé automatiquement pour les personnes qui ont demandé à leur système de réduire les animations, et le site reste entièrement lisible sans JavaScript. Pour retirer un effet, supprimer le bloc correspondant dans `assets/js/motion.js` ou dans la section « Mouvement » de `assets/css/site.css`.
+Tout est désactivé automatiquement pour les personnes qui ont demandé à leur système de réduire les animations, et le site reste entièrement lisible sans JavaScript. Les réglages sont dans `assets/js/motion.js` (préchargeur, textes, curseur, cartes, galerie), `assets/js/hero-gl.js` (hero WebGL) et la section « Mouvement » de `assets/css/site.css`.
 
 ## Les visuels
 
-Les neuf images sont des rendus de campagne générés par IA à partir de photos des vraies pièces, avec des mannequins et des décors fictifs. Le site le signale sous chaque image, sous les grilles, dans le pied de page, et l'explique sur `visuels.html`. Les pantalons noirs, sous-pulls et masques visibles sur les rendus sont un stylisme généré, pas des créations AJ.
+Les neuf images sont des rendus de campagne générés par IA à partir de photos des vraies pièces, avec des mannequins et des décors fictifs. À la demande d'Antoine, **aucune mention n'apparaît sur ou sous les images**, ni dans les textes alternatifs. L'information n'existe plus qu'à un endroit : la page `visuels.html` (« À propos des visuels »), liée depuis le pied de page et les mentions légales.
+
+Point de vigilance, à décider avant publication : en droit français, présenter comme des photos des images qui ne montrent pas fidèlement le produit peut relever de la pratique commerciale trompeuse (Code de la consommation, art. L121-2), et le règlement européen sur l'IA impose depuis août 2026 de signaler les contenus générés qui pourraient passer pour authentiques. Garder la page « À propos des visuels » accessible est le minimum ; l'endroit et la forme du signalement restent votre choix. Les pantalons noirs, sous-pulls et masques visibles sur les rendus sont un stylisme généré, pas des créations AJ. Le rendu de face de la veste indigo montre un liseré clair sur l'épaule que la description ne mentionne pas : à faire confirmer par Julia.
 
 Les PNG originaux produits par ChatGPT portent des Content Credentials (C2PA) qui attestent leur origine ; les versions optimisées du site (WebP et JPEG redimensionnés) ne les conservent pas. Gardez les PNG originaux hors du dépôt : ils en font foi si besoin.
