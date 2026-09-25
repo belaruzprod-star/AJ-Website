@@ -15,7 +15,7 @@
     camStart: -1.7,             // caméra au départ (unités image : l’image i est à z = i)
     camEnd: 8.45,               // caméra à la fin : la neuvième image vient de dépasser la caméra
     titleSpan: 1.0,             // unités de caméra pendant lesquelles le titre s’éloigne
-    fadeOut: [-0.04, -0.36],    // rel = i − cam : opacité 1 → 0 quand l’image dépasse la caméra (échelle 1,04 → 1,48)
+    fadeOut: [-0.03, -0.3],     // rel = i − cam : opacité 1 → 0 quand l’image dépasse la caméra (échelle 1,03 → 1,43)
     fogNear: [0.18, 0.95],      // rel : voile 0 → fogNearMax juste derrière le plan focal (l’image suivante attend, voilée, que la précédente soit passée)
     fogNearMax: 0.42,
     fog: [0.95, 3.4],           // rel : voile fogNearMax → fogMax au loin

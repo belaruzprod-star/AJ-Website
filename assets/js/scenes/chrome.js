@@ -87,7 +87,7 @@
     doc.classList.add('menu-open'); menu.classList.add('is-open'); btn.setAttribute('aria-expanded', 'true');
     decode(btnWord, 'Fermer', CFG.btnDecodeDur);
     if (AJ.lenis) { try { AJ.lenis.stop(); } catch (e) {} }
-    setInert(true); buildPreviews();
+    setInert(true); buildPreviews(); measurePreview();
     links.forEach(function (a, i) {
       var w = a.querySelector('.chrome-menu-word'); if (!w) return;
       var t = w.getAttribute('data-text');
@@ -147,15 +147,16 @@
       inner.appendChild(pic); pv.pics[key] = pic;
     });
     preview.appendChild(inner); pv.inner = inner;
+    AJ.on('resize', measurePreview);
   }
-  function measurePreview() { pv.w = preview.offsetWidth || 0; pv.h = preview.offsetHeight || 0; }
+  function measurePreview() { if (pv.built) { pv.w = preview.offsetWidth || 0; pv.h = preview.offsetHeight || 0; } }
   function showPreview(key, x, y, snap) {
     if (!pv.built || !pv.pics[key]) return;
     if (pv.key !== key) {
       if (pv.key && pv.pics[pv.key]) pv.pics[pv.key].classList.remove('is-on');
       pv.pics[key].classList.add('is-on'); pv.key = key;
     }
-    measurePreview();
+    if (!pv.w) measurePreview();
     pv.tx = x + pv.w * CFG.previewOffset[0]; pv.ty = y + pv.h * CFG.previewOffset[1];
     if (!pv.on || snap) { pv.x = pv.tx; pv.y = pv.ty; }
     if (!pv.on) { pv.on = true; preview.classList.add('is-on'); startLoop(); }

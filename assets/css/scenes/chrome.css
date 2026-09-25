@@ -4,11 +4,11 @@
 
 :root{
   --chrome-top:clamp(18px,2.6vh,28px);          /* hauteur du monogramme et du bouton */
-  --chrome-menu-fs:min(10vw,11vh);              /* corps des cinq liens principaux */
-  --chrome-menu-fs-2:min(4vw,4.6vh);            /* corps des deux liens secondaires */
   --chrome-menu-dur:.9s;                        /* durée du rideau du menu */
-  --chrome-veil-dur:.45s;                       /* rideau avant navigation (synchro avec CFG.veilDur) */
+  --chrome-veil-dur:.45s;                       /* rideau avant navigation (synchro avec CFG.veilDur dans chrome.js) */
 }
+/* Corps des liens du menu : --chrome-menu-fs (cinq liens principaux) et --chrome-menu-fs-2 (deux secondaires),
+   définis sur .chrome-menu : version sans JS, version overlay (.js), version mobile (fin de fichier). */
 
 /* ------------------------------------------------------------------ Monogramme (haut gauche) */
 .chrome-mark{position:fixed;top:var(--chrome-top);left:var(--gutter);z-index:70;display:block;width:36px;line-height:0;color:var(--text);view-transition-name:chrome-mark}
