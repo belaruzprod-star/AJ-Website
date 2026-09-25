@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<base href="../">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add('js')</script>
+<title>Démo — campagne</title>
+<meta name="theme-color" content="#0b0f13">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/scenes/campagne.css">
+</head>
+<body>
+<script type="application/json" id="aj-data">{
+ "brand": {
+  "name": "AJ",
+  "baseline": "Vestes en pièces uniques, cousues par Julia dans des tissus achetés en France.",
+  "year": "2026"
+ },
+ "texts": {
+  "hero_eyebrow": "AJ · Vestes en pièces uniques",
+  "hero_title": [
+   "Une veste.",
+   "Une seule."
+  ],
+  "hero_lead": "Chaque veste est cousue par Julia, dans des tissus achetés en France. Pas d’usine, pas de série : un seul exemplaire de chaque.",
+  "manifeste": [
+   "Pas d’usine.",
+   "Pas de série.",
+   "Une seule veste de chaque.",
+   "Cousue par Julia.",
+   "Tissus achetés en France."
+  ],
+  "julia_title": "Cousue par une seule personne.",
+  "julia_lead": "AJ est le projet de Julia et Antoine. Les vestes sont cousues par Julia, une par une.",
+  "julia_body": [
+   "Julia a un BTS Mode. Elle travaille comme conseillère de vente en prêt-à-porter féminin dans le Marais et coud par passion. Chaque veste AJ est cousue par elle, sur sa Juki 7000A.",
+   "Pas d’usine, pas de série. Chaque veste existe en un seul exemplaire. Une fois cousue, il n’y en aura pas d’autre identique.",
+   "Les tissus sont achetés en France.",
+   "Julia propose aussi des retouches : ourlets et autres retouches."
+  ],
+  "contact_title": "Nous écrire.",
+  "contact_lead": "Pour une pièce, une retouche, ou simplement une question.",
+  "contact_wait": "Notre adresse de contact sera publiée ici prochainement.",
+  "contact_note": "Si une pièce vous intéresse, précisez laquelle. Nous vous répondrons.",
+  "cta_piece": "Cette pièce vous intéresse ?",
+  "btn_write": "Nous écrire",
+  "btn_pieces": "Voir les pièces"
+ },
+ "nav": [
+  [
+   "index.html",
+   "Accueil"
+  ],
+  [
+   "pieces.html",
+   "Pièces"
+  ],
+  [
+   "atelier.html",
+   "Julia"
+  ],
+  [
+   "retouches.html",
+   "Retouches"
+  ],
+  [
+   "contact.html",
+   "Contact"
+  ],
+  [
+   "visuels.html",
+   "À propos des visuels"
+  ],
+  [
+   "mentions-legales.html",
+   "Mentions légales"
+  ]
+ ],
+ "images": {
+  "01": {
+   "name": "01-bleu-ouvert",
+   "jpg1536": "assets/img/01-bleu-ouvert-1536.jpg",
+   "jpg768": "assets/img/01-bleu-ouvert-768.jpg",
+   "webp1536": "assets/img/01-bleu-ouvert-1536.webp",
+   "webp768": "assets/img/01-bleu-ouvert-768.webp",
+   "depth": "assets/depth/01-bleu-ouvert.png",
+   "pos": [
+    0.4,
+    0.5
+   ],
+   "alt": "La veste bleue ceinturée portée ouverte, parements en toile de Jouy le long de l’encolure, vue de face.",
+   "width": 1536,
+   "height": 1024
+  },
+  "02": {
+   "name": "02-bleu-dos",
+   "jpg1536": "assets/img/02-bleu-dos-1536.jpg",
+   "jpg768": "assets/img/02-bleu-dos-768.jpg",
+   "webp1536": "assets/img/02-bleu-dos-1536.webp",
+   "webp768": "assets/img/02-bleu-dos-768.webp",
+   "depth": "assets/depth/02-bleu-dos.png",
+   "pos": [
+    0.39,
+    0.5
+   ],
+   "alt": "Dos de la veste bleue, entièrement en toile de Jouy crème et bleu, ceinture à la taille.",
+   "width": 1536,
+   "height": 1024
+  },
+  "03": {
+   "name": "03-bleu-ferme",
+   "jpg1536": "assets/img/03-bleu-ferme-1536.jpg",
+   "jpg768": "assets/img/03-bleu-ferme-768.jpg",
+   "webp1536": "assets/img/03-bleu-ferme-1536.webp",
+   "webp768": "assets/img/03-bleu-ferme-768.webp",
+   "depth": "assets/depth/03-bleu-ferme.png",
+   "pos": [
+    0.34,
+    0.5
+   ],
+   "alt": "La veste bleue portée avec les parements rabattus, encolure en V unie, ceinture en toile de Jouy.",
+   "width": 1536,
+   "height": 1024
+  },
+  "04": {
+   "name": "04-ecru-face",
+   "jpg1536": "assets/img/04-ecru-face-1536.jpg",
+   "jpg768": "assets/img/04-ecru-face-768.jpg",
+   "webp1536": "assets/img/04-ecru-face-1536.webp",
+   "webp768": "assets/img/04-ecru-face-768.webp",
+   "depth": "assets/depth/04-ecru-face.png",
+   "pos": [
+    0.33,
+    0.5
+   ],
+   "alt": "La surchemise écrue côtelée zippée, col pointu, vue de face.",
+   "width": 1536,
+   "height": 1024
+  },
+  "05": {
+   "name": "05-ecru-dos",
+   "jpg1536": "assets/img/05-ecru-dos-1536.jpg",
+   "jpg768": "assets/img/05-ecru-dos-768.jpg",
+   "webp1536": "assets/img/05-ecru-dos-1536.webp",
+   "webp768": "assets/img/05-ecru-dos-768.webp",
+   "depth": "assets/depth/05-ecru-dos.png",
+   "pos": [
+    0.34,
+    0.5
+   ],
+   "alt": "Dos de la surchemise écrue, panneau entier en toile de Jouy gris sauge et crème.",
+   "width": 1536,
+   "height": 1024
+  },
+  "06": {
+   "name": "06-indigo-face",
+   "jpg1536": "assets/img/06-indigo-face-1536.jpg",
+   "jpg768": "assets/img/06-indigo-face-768.jpg",
+   "webp1536": "assets/img/06-indigo-face-1536.webp",
+   "webp768": "assets/img/06-indigo-face-768.webp",
+   "depth": "assets/depth/06-indigo-face.png",
+   "pos": [
+    0.37,
+    0.5
+   ],
+   "alt": "La veste indigo zippée, deux poches basses bordées de toile de Jouy, vue de face.",
+   "width": 1536,
+   "height": 1024
+  },
+  "07": {
+   "name": "07-indigo-dos",
+   "jpg1536": "assets/img/07-indigo-dos-1536.jpg",
+   "jpg768": "assets/img/07-indigo-dos-768.jpg",
+   "webp1536": "assets/img/07-indigo-dos-1536.webp",
+   "webp768": "assets/img/07-indigo-dos-768.webp",
+   "depth": "assets/depth/07-indigo-dos.png",
+   "pos": [
+    0.64,
+    0.5
+   ],
+   "alt": "Dos de la veste indigo, panneau entier en toile de Jouy beige et bleu.",
+   "width": 1536,
+   "height": 1024
+  },
+  "08": {
+   "name": "08-indigo-duo",
+   "jpg1536": "assets/img/08-indigo-duo-1536.jpg",
+   "jpg768": "assets/img/08-indigo-duo-768.jpg",
+   "webp1536": "assets/img/08-indigo-duo-1536.webp",
+   "webp768": "assets/img/08-indigo-duo-768.webp",
+   "depth": "assets/depth/08-indigo-duo.png",
+   "pos": [
+    0.55,
+    0.5
+   ],
+   "alt": "La veste indigo vue de dos, portée à côté d’une seconde silhouette en tenue noire.",
+   "width": 1536,
+   "height": 1024
+  },
+  "09": {
+   "name": "09-ecru-porte",
+   "jpg1536": "assets/img/09-ecru-porte-1536.jpg",
+   "jpg768": "assets/img/09-ecru-porte-768.jpg",
+   "webp1536": "assets/img/09-ecru-porte-1536.webp",
+   "webp768": "assets/img/09-ecru-porte-768.webp",
+   "depth": "assets/depth/09-ecru-porte.png",
+   "pos": [
+    0.42,
+    0.5
+   ],
+   "alt": "La surchemise écrue vue de trois quarts dos, toile de Jouy gris sauge.",
+   "width": 1536,
+   "height": 1024
+  }
+ },
+ "pieces": [
+  {
+   "slug": "veste-bleue",
+   "num": "01",
+   "name": "Veste bleue ceinturée",
+   "short": "Bleu profond au reflet lustré, ceinture et parements en toile de Jouy crème et bleu.",
+   "lead": "Une veste bleu profond au reflet lustré, longueur hanches, dont la taille n’est marquée que par une ceinture étroite en toile de Jouy.",
+   "body": [
+    "Les parements en toile de Jouy crème et bleu descendent le long de l’encolure en V jusqu’à la ceinture. Ils se portent ouverts, ou rabattus à l’intérieur pour une encolure unie.",
+    "Le dos est entièrement en toile de Jouy : des chasseurs sur les épaules, quelques oiseaux au milieu, une scène pastorale dense sous la ceinture, reprise en partie à l’ourlet."
+   ],
+   "details": [
+    [
+     "Coupe",
+     "Épaules tombantes, manches droites, longueur hanches"
+    ],
+    [
+     "Ceinture",
+     "Toile de Jouy, boucle à clip noire"
+    ],
+    [
+     "Poches",
+     "Aucune"
+    ],
+    [
+     "Dos",
+     "Toile de Jouy crème et bleu"
+    ]
+   ],
+   "cover": "01",
+   "back": "02",
+   "images": [
+    [
+     "01",
+     null
+    ],
+    [
+     "03",
+     "Ici, les parements sont rabattus à l’intérieur."
+    ],
+    [
+     "02",
+     null
+    ]
+   ]
+  },
+  {
+   "slug": "surchemise-ecrue",
+   "num": "02",
+   "name": "Surchemise écrue côtelée",
+   "short": "Longue et ample, zip central, dos entier en toile de Jouy gris sauge.",
+   "lead": "Une surchemise longue et ample, écrue et côtelée, fermée par un zip central, avec un dos entier en toile de Jouy gris sauge.",
+   "body": [
+    "Le col pointu rabattu est côtelé horizontalement, le corps et les manches verticalement. Le devant est uni, sans poche apparente.",
+    "Le dos est un panneau entier de toile de Jouy gris sauge et crème : des chasseurs en haut, des oiseaux au milieu, une scène champêtre autour d’un mât de mai vers le bas."
+   ],
+   "details": [
+    [
+     "Coupe",
+     "Longue et ample, épaules tombantes, manches droites"
+    ],
+    [
+     "Fermeture",
+     "Zip central"
+    ],
+    [
+     "Poches",
+     "Aucune apparente"
+    ],
+    [
+     "Dos",
+     "Toile de Jouy gris sauge et crème"
+    ]
+   ],
+   "cover": "04",
+   "back": "05",
+   "images": [
+    [
+     "04",
+     null
+    ],
+    [
+     "05",
+     null
+    ],
+    [
+     "09",
+     null
+    ]
+   ]
+  },
+  {
+   "slug": "veste-indigo",
+   "num": "03",
+   "name": "Veste indigo",
+   "short": "Denim indigo, zip métal, poches bordées de toile de Jouy, dos entier beige et bleu.",
+   "lead": "Une veste longue et droite en denim indigo, fermée par un zip métal. Les deux poches sont bordées de toile de Jouy ; le dos est un panneau entier de toile beige et bleu.",
+   "body": [
+    "Col pointu rabattu, épaules tombantes, manches droites, ourlet simple. Deux poches basses, légèrement inclinées, bordées de toile de Jouy crème et bleu.",
+    "Au dos : une chaumière en haut à gauche, un héron en haut à droite, une famille au milieu, à gauche, des bâtiments et des feuillages plus bas."
+   ],
+   "details": [
+    [
+     "Coupe",
+     "Longue et droite, épaules tombantes, manches droites"
+    ],
+    [
+     "Fermeture",
+     "Zip métal"
+    ],
+    [
+     "Poches",
+     "Deux poches basses bordées de toile de Jouy"
+    ],
+    [
+     "Dos",
+     "Toile de Jouy beige et bleu"
+    ]
+   ],
+   "cover": "06",
+   "back": "07",
+   "images": [
+    [
+     "06",
+     null
+    ],
+    [
+     "07",
+     null
+    ],
+    [
+     "08",
+     "La tenue noire de la seconde silhouette n’est pas une pièce AJ."
+    ]
+   ]
+  }
+ ]
+}</script>
+<main id="contenu">
+<!-- SCENE : contenu de partials/campagne.html (chemins identiques à la racine grâce à <base href="../">) -->
+<!-- Scène « campagne » : tunnel des neuf images le long de l’axe Z. HTML complet à plat (lisible sans JS) ;
+     assets/js/scenes/campagne.js et assets/css/scenes/campagne.css le mettent en scène quand html.js est présent et sans .reduce.
+     Chemins relatifs à la racine du site. -->
+<section class="scene scene-campagne" data-scene="campagne" id="campagne" aria-labelledby="campagne-title">
+  <div class="cp-head">
+    <p class="eyebrow">La campagne</p>
+    <h2 class="cp-title" id="campagne-title"><span class="cp-line"><span class="cp-line-in">Neuf vues,</span></span> <span class="cp-line"><span class="cp-line-in">trois pièces.</span></span></h2>
+  </div>
+  <div class="cp-stage">
+    <div class="cp-world">
+    <a class="cp-item" href="veste-bleue.html" data-cursor="view" data-key="01" data-slug="veste-bleue" style="--pos:40% 50%">
+      <span class="cp-frame">
+        <picture><source type="image/webp" srcset="assets/img/01-bleu-ouvert-768.webp 768w, assets/img/01-bleu-ouvert-1536.webp 1536w" sizes="(max-width: 760px) 86vw, 64vw"><img src="assets/img/01-bleu-ouvert-1536.jpg" srcset="assets/img/01-bleu-ouvert-768.jpg 768w, assets/img/01-bleu-ouvert-1536.jpg 1536w" sizes="(max-width: 760px) 86vw, 64vw" width="1536" height="1024" alt="La veste bleue ceinturée portée ouverte, parements en toile de Jouy le long de l’encolure, vue de face." decoding="async" fetchpriority="high"></picture>
+        <span class="cp-veil" aria-hidden="true"></span>
+      </span>
+      <span class="cp-cap"><span class="cp-num">01 / 09</span><b class="cp-name">Veste bleue ceinturée</b></span>
+    </a>
+    <a class="cp-item" href="veste-bleue.html" data-cursor="view" data-key="02" data-slug="veste-bleue" style="--pos:39% 50%">
+      <span class="cp-frame">
+        <picture><source type="image/webp" srcset="assets/img/02-bleu-dos-768.webp 768w, assets/img/02-bleu-dos-1536.webp 1536w" sizes="(max-width: 760px) 86vw, 64vw"><img src="assets/img/02-bleu-dos-1536.jpg" srcset="assets/img/02-bleu-dos-768.jpg 768w, assets/img/02-bleu-dos-1536.jpg 1536w" sizes="(max-width: 760px) 86vw, 64vw" width="1536" height="1024" alt="Dos de la veste bleue, entièrement en toile de Jouy crème et bleu, ceinture à la taille." decoding="async"></picture>
+        <span class="cp-veil" aria-hidden="true"></span>
+      </span>
+      <span class="cp-cap"><span class="cp-num">02 / 09</span><b class="cp-name">Veste bleue ceinturée</b></span>
+    </a>
+    <a class="cp-item" href="veste-bleue.html" data-cursor="view" data-key="03" data-slug="veste-bleue" style="--pos:34% 50%">
+      <span class="cp-frame">
+        <picture><source type="image/webp" srcset="assets/img/03-bleu-ferme-768.webp 768w, assets/img/03-bleu-ferme-1536.webp 1536w" sizes="(max-width: 760px) 86vw, 64vw"><img src="assets/img/03-bleu-ferme-1536.jpg" srcset="assets/img/03-bleu-ferme-768.jpg 768w, assets/img/03-bleu-ferme-1536.jpg 1536w" sizes="(max-width: 760px) 86vw, 64vw" width="1536" height="1024" alt="La veste bleue portée avec les parements rabattus, encolure en V unie, ceinture en toile de Jouy." loading="lazy" decoding="async"></picture>
+        <span class="cp-veil" aria-hidden="true"></span>
+      </span>
+      <span class="cp-cap"><span class="cp-num">03 / 09</span><b class="cp-name">Veste bleue ceinturée</b></span>
+    </a>
+    <a class="cp-item" href="surchemise-ecrue.html" data-cursor="view" data-key="04" data-slug="surchemise-ecrue" style="--pos:33% 50%">
+      <span class="cp-frame">
+        <picture><source type="image/webp" srcset="assets/img/04-ecru-face-768.webp 768w, assets/img/04-ecru-face-1536.webp 1536w" sizes="(max-width: 760px) 86vw, 64vw"><img src="assets/img/04-ecru-face-1536.jpg" srcset="assets/img/04-ecru-face-768.jpg 768w, assets/img/04-ecru-face-1536.jpg 1536w" sizes="(max-width: 760px) 86vw, 64vw" width="1536" height="1024" alt="La surchemise écrue côtelée zippée, col pointu, vue de face." loading="lazy" decoding="async"></picture>
+        <span class="cp-veil" aria-hidden="true"></span>
+      </span>
+      <span class="cp-cap"><span class="cp-num">04 / 09</span><b class="cp-name">Surchemise écrue côtelée</b></span>
+    </a>
+    <a class="cp-item" href="surchemise-ecrue.html" data-cursor="view" data-key="05" data-slug="surchemise-ecrue" style="--pos:34% 50%">
+      <span class="cp-frame">
+        <picture><source type="image/webp" srcset="assets/img/05-ecru-dos-768.webp 768w, assets/img/05-ecru-dos-1536.webp 1536w" sizes="(max-width: 760px) 86vw, 64vw"><img src="assets/img/05-ecru-dos-1536.jpg" srcset="assets/img/05-ecru-dos-768.jpg 768w, assets/img/05-ecru-dos-1536.jpg 1536w" sizes="(max-width: 760px) 86vw, 64vw" width="1536" height="1024" alt="Dos de la surchemise écrue, panneau entier en toile de Jouy gris sauge et crème." loading="lazy" decoding="async"></picture>
+        <span class="cp-veil" aria-hidden="true"></span>
+      </span>
+      <span class="cp-cap"><span class="cp-num">05 / 09</span><b class="cp-name">Surchemise écrue côtelée</b></span>
+    </a>
+    <a class="cp-item" href="veste-indigo.html" data-cursor="view" data-key="06" data-slug="veste-indigo" style="--pos:37% 50%">
+      <span class="cp-frame">
+        <picture><source type="image/webp" srcset="assets/img/06-indigo-face-768.webp 768w, assets/img/06-indigo-face-1536.webp 1536w" sizes="(max-width: 760px) 86vw, 64vw"><img src="assets/img/06-indigo-face-1536.jpg" srcset="assets/img/06-indigo-face-768.jpg 768w, assets/img/06-indigo-face-1536.jpg 1536w" sizes="(max-width: 760px) 86vw, 64vw" width="1536" height="1024" alt="La veste indigo zippée, deux poches basses bordées de toile de Jouy, vue de face." loading="lazy" decoding="async"></picture>
+        <span class="cp-veil" aria-hidden="true"></span>
+      </span>
+      <span class="cp-cap"><span class="cp-num">06 / 09</span><b class="cp-name">Veste indigo</b></span>
+    </a>
+    <a class="cp-item" href="veste-indigo.html" data-cursor="view" data-key="07" data-slug="veste-indigo" style="--pos:64% 50%">
+      <span class="cp-frame">
+        <picture><source type="image/webp" srcset="assets/img/07-indigo-dos-768.webp 768w, assets/img/07-indigo-dos-1536.webp 1536w" sizes="(max-width: 760px) 86vw, 64vw"><img src="assets/img/07-indigo-dos-1536.jpg" srcset="assets/img/07-indigo-dos-768.jpg 768w, assets/img/07-indigo-dos-1536.jpg 1536w" sizes="(max-width: 760px) 86vw, 64vw" width="1536" height="1024" alt="Dos de la veste indigo, panneau entier en toile de Jouy beige et bleu." loading="lazy" decoding="async"></picture>
+        <span class="cp-veil" aria-hidden="true"></span>
+      </span>
+      <span class="cp-cap"><span class="cp-num">07 / 09</span><b class="cp-name">Veste indigo</b></span>
+    </a>
+    <a class="cp-item" href="veste-indigo.html" data-cursor="view" data-key="08" data-slug="veste-indigo" style="--pos:55% 50%">
+      <span class="cp-frame">
+        <picture><source type="image/webp" srcset="assets/img/08-indigo-duo-768.webp 768w, assets/img/08-indigo-duo-1536.webp 1536w" sizes="(max-width: 760px) 86vw, 64vw"><img src="assets/img/08-indigo-duo-1536.jpg" srcset="assets/img/08-indigo-duo-768.jpg 768w, assets/img/08-indigo-duo-1536.jpg 1536w" sizes="(max-width: 760px) 86vw, 64vw" width="1536" height="1024" alt="La veste indigo vue de dos, portée à côté d’une seconde silhouette en tenue noire." loading="lazy" decoding="async"></picture>
+        <span class="cp-veil" aria-hidden="true"></span>
+      </span>
+      <span class="cp-cap"><span class="cp-num">08 / 09</span><b class="cp-name">Veste indigo</b></span>
+    </a>
+    <a class="cp-item" href="surchemise-ecrue.html" data-cursor="view" data-key="09" data-slug="surchemise-ecrue" style="--pos:42% 50%">
+      <span class="cp-frame">
+        <picture><source type="image/webp" srcset="assets/img/09-ecru-porte-768.webp 768w, assets/img/09-ecru-porte-1536.webp 1536w" sizes="(max-width: 760px) 86vw, 64vw"><img src="assets/img/09-ecru-porte-1536.jpg" srcset="assets/img/09-ecru-porte-768.jpg 768w, assets/img/09-ecru-porte-1536.jpg 1536w" sizes="(max-width: 760px) 86vw, 64vw" width="1536" height="1024" alt="La surchemise écrue vue de trois quarts dos, toile de Jouy gris sauge." loading="lazy" decoding="async"></picture>
+        <span class="cp-veil" aria-hidden="true"></span>
+      </span>
+      <span class="cp-cap"><span class="cp-num">09 / 09</span><b class="cp-name">Surchemise écrue côtelée</b></span>
+    </a>
+    </div>
+  </div>
+</section>
+</main>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/js/lenis.min.js"></script>
+<script src="assets/js/gsap.min.js"></script>
+<script src="assets/js/ScrollTrigger.min.js"></script>
+<script src="assets/js/core.js"></script>
+<script src="assets/js/photo3d.js"></script>
+<script src="assets/js/scenes/campagne.js"></script>
+</body>
+</html>

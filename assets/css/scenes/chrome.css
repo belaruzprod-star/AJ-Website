@@ -1,0 +1,140 @@
+/* Chrome commun AJ : monogramme, bouton Menu, menu plein écran (rideau), aperçu au survol, indicateur de scènes,
+   rideau de transition de page, compléments du curseur. Dépend des variables de site.css (.cursor y est déjà stylé).
+   Classes posées sur <html> par chrome.js : has-cursor, menu-open, chrome-leave, chrome-enter. Classes attendues : js, reduce, ready. */
+
+:root{
+  --chrome-top:clamp(18px,2.6vh,28px);          /* hauteur du monogramme et du bouton */
+  --chrome-menu-fs:min(10vw,11vh);              /* corps des cinq liens principaux */
+  --chrome-menu-fs-2:min(4vw,4.6vh);            /* corps des deux liens secondaires */
+  --chrome-menu-dur:.9s;                        /* durée du rideau du menu */
+  --chrome-veil-dur:.45s;                       /* rideau avant navigation (synchro avec CFG.veilDur) */
+}
+
+/* ------------------------------------------------------------------ Monogramme (haut gauche) */
+.chrome-mark{position:fixed;top:var(--chrome-top);left:var(--gutter);z-index:70;display:block;width:36px;line-height:0;color:var(--text);view-transition-name:chrome-mark}
+.chrome-mark img{width:36px;height:auto;transition:transform .6s var(--ease-out)}
+.chrome-mark:hover img,.chrome-mark:focus-visible img{transform:rotate(-8deg) scale(1.06)}
+
+/* ------------------------------------------------------------------ Bouton Menu (haut droite) : inutile sans JS */
+.chrome-menu-btn{display:none}
+.js .chrome-menu-btn{position:fixed;top:calc(var(--chrome-top) - 8px);right:var(--gutter);z-index:70;display:inline-flex;align-items:center;gap:12px;margin:0;padding:.7em 0 .7em .7em;border:0;background:none;color:var(--text);font:500 12px/1 var(--font-body);letter-spacing:.2em;text-transform:uppercase;cursor:pointer;-webkit-tap-highlight-color:transparent;view-transition-name:chrome-menu-btn}
+.chrome-menu-btn-word{display:inline-block;white-space:nowrap}
+.chrome-menu-glyph{position:relative;display:block;width:18px;height:9px;flex:none}
+.chrome-menu-glyph::before,.chrome-menu-glyph::after{content:"";position:absolute;left:0;width:100%;height:1px;background:currentColor;transition:transform .5s var(--ease-inout),top .5s var(--ease-inout)}
+.chrome-menu-glyph::before{top:0}
+.chrome-menu-glyph::after{top:8px}
+.chrome-menu-btn[aria-expanded="true"] .chrome-menu-glyph::before{top:4px;transform:rotate(45deg)}
+.chrome-menu-btn[aria-expanded="true"] .chrome-menu-glyph::after{top:4px;transform:rotate(-45deg)}
+.chrome-menu-btn::after{content:"";position:absolute;left:.7em;right:0;bottom:.35em;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease-inout)}
+.chrome-menu-btn:hover::after,.chrome-menu-btn:focus-visible::after{transform:none;transform-origin:left}
+
+/* Apparition du chrome fixe quand la page est prête (après le préchargeur) ; filet de sécurité si .ready n'arrive jamais */
+.js:not(.reduce) .chrome-mark,.js:not(.reduce) .chrome-menu-btn,.js:not(.reduce) .chrome-progress{opacity:0;transition:opacity .9s var(--ease-out) .25s;animation:chrome-safety 0s 6.5s forwards}
+.js:not(.reduce).ready .chrome-mark,.js:not(.reduce).ready .chrome-menu-btn,.js:not(.reduce).ready .chrome-progress{opacity:1;animation:none}
+@keyframes chrome-safety{to{opacity:1}}
+
+/* ------------------------------------------------------------------ Menu : liste ordinaire sans JS (corps plus mesuré, dégagée du monogramme) */
+.chrome-menu{padding:calc(var(--chrome-top) + 56px) var(--gutter) 24px;--chrome-menu-fs:clamp(30px,4.6vw,64px);--chrome-menu-fs-2:clamp(20px,2.4vw,32px)}
+.js .chrome-menu{--chrome-menu-fs:min(10vw,11vh);--chrome-menu-fs-2:min(4vw,4.6vh)}
+.chrome-menu-list{list-style:none;margin:0;padding:0}
+.chrome-menu-item{margin:0}
+.chrome-menu-item a{display:grid;grid-template-columns:3.4rem 1fr;align-items:start;color:var(--text);text-decoration:none;font-family:var(--font-display);font-weight:400;font-size:var(--chrome-menu-fs);line-height:.92;letter-spacing:-.015em}
+.chrome-menu-item.is-secondary a{font-size:var(--chrome-menu-fs-2);line-height:1.1;letter-spacing:0}
+.chrome-menu-item:not(.is-secondary)+.is-secondary{margin-top:clamp(14px,2.8vh,30px)}
+.chrome-menu-num{font:500 11px/1 var(--font-body);letter-spacing:.18em;color:var(--muted);padding-top:calc(var(--chrome-menu-fs) * .2)}
+.chrome-menu-item.is-secondary .chrome-menu-num{padding-top:calc(var(--chrome-menu-fs-2) * .3)}
+.chrome-menu-item a[aria-current] .chrome-menu-num{color:var(--text)}
+.chrome-menu-item a[aria-current] .chrome-menu-num::after{content:"";display:block;width:14px;height:1px;background:var(--text);margin-top:7px}
+.chrome-menu-word{display:inline-block;justify-self:start;transition:color .4s,transform .6s var(--ease-out)}
+.chrome-menu-item a:focus-visible{outline-offset:8px}
+.chrome-menu-preview{display:none}
+.chrome-menu-foot{display:flex;flex-wrap:wrap;gap:6px 24px;align-items:baseline;margin:clamp(20px,5vh,56px) 0 0;font:400 12px/1.5 var(--font-body);letter-spacing:.04em;color:var(--muted);text-wrap:pretty}
+.chrome-menu-foot-brand{font-family:var(--font-display);font-size:22px;letter-spacing:.08em;line-height:1;color:var(--text)}
+.chrome-menu-foot-year{margin-left:auto;white-space:nowrap}
+
+/* ------------------------------------------------------------------ Menu avec JS : rideau plein écran */
+.js .chrome-menu{position:fixed;inset:0;z-index:65;padding:0;background:var(--bg-2);overflow:hidden;visibility:hidden;clip-path:inset(0 0 100% 0);transition:clip-path var(--chrome-menu-dur) var(--ease-inout),visibility 0s var(--chrome-menu-dur)}
+.js .chrome-menu::before{content:"";position:absolute;inset:0;background:var(--bg);transform:translateY(-101%);transition:transform var(--chrome-menu-dur) var(--ease-inout)}
+.js .chrome-menu.is-open{visibility:visible;clip-path:inset(0);transition:clip-path var(--chrome-menu-dur) var(--ease-inout)}
+.js .chrome-menu.is-open::before{transform:none;transition-delay:.06s}
+/* grain statique, même texture que le site (site.css anime la sienne sous le menu ; ici copie inerte, sans animation) */
+.js .chrome-menu::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.055;mix-blend-mode:screen;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .7 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:240px 240px}
+.js .chrome-menu-inner{position:relative;z-index:1;display:flex;flex-direction:column;height:100%;padding:calc(var(--chrome-top) + 52px) var(--gutter) max(clamp(18px,4vh,40px),env(safe-area-inset-bottom));overflow:auto;overscroll-behavior:contain;scrollbar-width:none}
+.js .chrome-menu-inner::-webkit-scrollbar{display:none}
+.js .chrome-menu-list{position:relative;z-index:1;margin-top:auto;mix-blend-mode:difference}
+.js .chrome-menu-foot{position:relative;z-index:1;margin-bottom:auto;opacity:0;transition:opacity .7s var(--ease-out) .55s}
+.js .chrome-menu.is-open .chrome-menu-foot{opacity:1}
+/* entrée des mots, l'un après l'autre (le décodage JS suit le même calendrier : 240 ms + 70 ms par lien) */
+.js:not(.reduce) .chrome-menu-word{opacity:0;transform:translateY(.32em);transition:opacity .55s var(--ease-out),transform .8s var(--ease-out),color .4s}
+.js:not(.reduce) .chrome-menu.is-open .chrome-menu-word{opacity:1;transform:none;transition-delay:calc(.24s + var(--i,0) * 70ms)}
+.js:not(.reduce) .chrome-menu:not(.is-open) .chrome-menu-word{transition:opacity .3s,transform 0s .3s}
+.chrome-menu-item:nth-child(1) .chrome-menu-word{--i:0}
+.chrome-menu-item:nth-child(2) .chrome-menu-word{--i:1}
+.chrome-menu-item:nth-child(3) .chrome-menu-word{--i:2}
+.chrome-menu-item:nth-child(4) .chrome-menu-word{--i:3}
+.chrome-menu-item:nth-child(5) .chrome-menu-word{--i:4}
+.chrome-menu-item:nth-child(6) .chrome-menu-word{--i:5}
+.chrome-menu-item:nth-child(7) .chrome-menu-word{--i:6}
+.chrome-menu-item:nth-child(n+8) .chrome-menu-word{--i:7}
+/* survol : le lien visé reste crème, les autres s'estompent */
+@media (hover:hover){
+  .js .chrome-menu-list:hover .chrome-menu-word{color:rgba(232,227,216,.34)}
+  .js .chrome-menu-list a:hover .chrome-menu-word{color:var(--text);transform:translateX(.04em)}
+}
+/* aperçu d'image qui suit la souris (créé par chrome.js, souris précise seulement) */
+.js .chrome-menu-preview{display:block;position:absolute;left:0;top:0;z-index:0;width:clamp(200px,24vw,400px);aspect-ratio:3/2;pointer-events:none;will-change:transform}
+.js .chrome-menu-preview-in{position:absolute;inset:0;overflow:hidden;background:var(--bg-2);opacity:0;transform:scale(.88);transition:opacity .45s var(--ease-out),transform .8s var(--ease-out)}
+.js .chrome-menu-preview.is-on .chrome-menu-preview-in{opacity:1;transform:none}
+.chrome-menu-preview picture,.chrome-menu-preview img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--pos,50% 50%)}
+.chrome-menu-preview picture{opacity:0;transition:opacity .35s}
+.chrome-menu-preview picture.is-on{opacity:1}
+.chrome-menu-preview img{transform:scale(1.06);transition:transform 1.2s var(--ease-out)}
+.chrome-menu-preview picture.is-on img{transform:none}
+@media (max-width:860px),(hover:none){.js .chrome-menu-preview{display:none}}
+/* verrou du défilement pendant l'ouverture (gouttière stable : pas de saut de mise en page) */
+html.menu-open{overflow:hidden;scrollbar-gutter:stable}
+html.menu-open .chrome-progress{visibility:hidden}
+
+/* ------------------------------------------------------------------ Indicateur de scènes (droite), construit par chrome.js */
+.chrome-progress{display:none}
+.js .chrome-progress:not([hidden]){display:block;position:fixed;right:clamp(14px,2.2vw,32px);top:50%;transform:translateY(-50%);z-index:60}
+.chrome-progress ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.chrome-progress a{display:flex;align-items:center;justify-content:flex-end;gap:12px;height:24px;padding-left:10px;color:var(--text);text-decoration:none}
+.chrome-progress-name{font:500 10px/1 var(--font-body);letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;opacity:0;transform:translateX(6px);transition:opacity .45s var(--ease-out),transform .45s var(--ease-out)}
+.chrome-progress a[aria-current] .chrome-progress-name{opacity:1;transform:none}
+.chrome-progress a:not([aria-current]):hover .chrome-progress-name,.chrome-progress a:not([aria-current]):focus-visible .chrome-progress-name{opacity:.55;transform:none}
+.chrome-progress-line{position:relative;display:block;flex:none;width:16px;height:1px;background:rgba(232,227,216,.28);transition:width .5s var(--ease-out)}
+.chrome-progress-line::after{content:"";position:absolute;inset:0;background:var(--text);transform:scaleX(var(--p,0));transform-origin:left}
+.chrome-progress a[aria-current] .chrome-progress-line{width:28px}
+.chrome-progress a:focus-visible{outline-offset:2px}
+@media (max-width:860px){.js .chrome-progress:not([hidden]){display:none}}
+
+/* ------------------------------------------------------------------ Rideau de transition de page */
+.chrome-veil{display:none}
+.js:not(.reduce) .chrome-veil{display:block;position:fixed;inset:0;z-index:110;background:var(--bg);transform:translateY(101%);pointer-events:none;view-transition-name:chrome-veil}
+.js:not(.reduce) .chrome-veil::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:rgba(232,227,216,.22)}
+.js:not(.reduce).chrome-leave .chrome-veil{transform:none;transition:transform var(--chrome-veil-dur) var(--ease-inout)}
+.js:not(.reduce).chrome-enter .chrome-veil{transform:none;animation:chrome-veil-out .75s var(--ease-inout) .08s both}
+@keyframes chrome-veil-out{from{transform:none}to{transform:translateY(-101%)}}
+/* Compatibilité avec l'API View Transitions déclarée dans site.css (@view-transition) : le chrome fixe ne suit pas le fondu de la racine */
+::view-transition-group(chrome-mark),::view-transition-group(chrome-menu-btn),::view-transition-group(chrome-veil){animation-duration:.01s}
+::view-transition-old(chrome-veil),::view-transition-new(chrome-veil){animation-duration:.01s;mix-blend-mode:normal}
+
+/* ------------------------------------------------------------------ Curseur : compléments (base dans site.css) */
+@media (hover:hover) and (pointer:fine){
+  .js:not(.reduce) .cursor.hidden{opacity:0}
+  .js:not(.reduce) .cursor .cursor-ring{will-change:transform}
+  .js:not(.reduce).has-cursor [data-cursor="view"],.js:not(.reduce).has-cursor [role="button"],.js:not(.reduce).has-cursor label{cursor:none}
+}
+
+/* ------------------------------------------------------------------ Mobile */
+@media (max-width:600px){
+  :root{--chrome-top:16px}
+  .js .chrome-menu{--chrome-menu-fs:min(15vw,7.4vh);--chrome-menu-fs-2:min(6.6vw,3.6vh)}
+  .chrome-mark,.chrome-mark img{width:30px}
+  .js .chrome-menu-btn{font-size:11px;letter-spacing:.18em}
+  .chrome-menu-item a{grid-template-columns:2.4rem 1fr}
+  .chrome-menu-num{font-size:10px}
+  .chrome-menu-foot{font-size:11px;gap:4px 16px}
+  .chrome-menu-foot-line{flex-basis:100%}
+}

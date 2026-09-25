@@ -1,0 +1,59 @@
+/* Scène « julia » — image 05 plein écran (Photo3D) derrière un voile, texte sur la moitié droite.
+   Bureau : section épinglée, lecture guidée mot à mot au défilement (voir scenes/julia.js).
+   Mobile (≤ 860 px) : image en haut recadrée 4:5, texte dessous, révélation par paragraphe.
+   Sans JS ou en mouvement réduit : tout est visible à plat (aucune règle ne cache le contenu hors .js:not(.reduce)). */
+
+.scene-julia{position:relative;isolation:isolate;min-height:100vh;min-height:100svh;background:var(--bg);color:var(--text);overflow:hidden;overflow:clip}
+
+/* Image : conteneur positionné reçu par AJ.Photo3D.attach (le canvas se pose dessus, le voile reste au-dessus du canvas) */
+.scene-julia .julia-media{position:absolute;inset:0;z-index:0;overflow:hidden;background:var(--bg);transform-origin:50% 50%}
+.scene-julia .julia-media picture{position:absolute;inset:0;display:block}
+.scene-julia .julia-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--pos,50% 50%)}
+.scene-julia .julia-media canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.scene-julia .julia-veil{position:absolute;inset:0;z-index:3;pointer-events:none;background:
+  linear-gradient(to right,rgba(11,15,19,.12) 0%,rgba(11,15,19,.12) 34%,rgba(11,15,19,.62) 49%,rgba(11,15,19,.86) 59%,rgba(11,15,19,.93) 100%),
+  linear-gradient(to top,rgba(11,15,19,.82) 0%,rgba(11,15,19,.3) 18%,rgba(11,15,19,0) 42%),
+  linear-gradient(to bottom,rgba(11,15,19,.4) 0%,rgba(11,15,19,0) 20%)}
+
+/* Texte : grille en deux colonnes, colonne de droite */
+.scene-julia .julia-content{position:relative;z-index:2;min-height:100vh;min-height:100svh;display:grid;grid-template-columns:1fr 1fr;align-items:center;column-gap:clamp(24px,4vw,64px);padding:clamp(56px,9vh,120px) var(--gutter)}
+.scene-julia .julia-text{grid-column:2;position:relative;padding-left:clamp(22px,2.6vw,40px);max-width:38em}
+.scene-julia .julia-line{position:absolute;left:0;top:.35em;bottom:.35em;width:1px;background:rgba(232,227,216,.5);transform-origin:50% 0;pointer-events:none}
+.scene-julia .julia-eyebrow{color:var(--text);opacity:.72;margin-bottom:1.6em}
+.scene-julia .julia-title{font-size:clamp(46px,min(6.2vw,10.5vh),108px);line-height:.98;letter-spacing:-.018em;font-weight:500;margin:0 0 .34em;text-wrap:balance;perspective:900px}
+.scene-julia .julia-lead{margin:0 0 1.5em;max-width:30em;font-size:clamp(20px,min(2vw,3.2vh),27px)}
+.scene-julia .julia-body p{font-size:clamp(15.5px,min(1.2vw,2vh),18px);line-height:1.6;margin:0 0 1.05em;max-width:34em;text-wrap:pretty}
+.scene-julia .julia-body p:last-child{margin-bottom:0}
+.scene-julia .julia-cta{margin:2em 0 0}
+
+/* Mots (créés par le script) */
+.scene-julia .jw{display:inline-block;white-space:nowrap}
+.scene-julia .julia-title .jw{transform-style:preserve-3d;backface-visibility:hidden}
+
+/* Avant l'initialisation du script (mouvement autorisé) : le texte reste invisible le temps du découpage, avec une sécurité à 4 s */
+.js:not(.reduce) .scene-julia:not(.is-ready) .julia-text>*{opacity:0;animation:julia-safety 0s 4s forwards}
+@keyframes julia-safety{to{opacity:1}}
+
+/* Écrans peu hauts (bureau) : tout doit tenir dans la fenêtre épinglée */
+@media (min-width:861px) and (max-height:820px){
+  .scene-julia .julia-content{padding-top:clamp(40px,6vh,72px);padding-bottom:clamp(40px,6vh,72px)}
+  .scene-julia .julia-eyebrow{margin-bottom:1.1em}
+  .scene-julia .julia-lead{margin-bottom:1.1em}
+  .scene-julia .julia-body p{line-height:1.5;margin-bottom:.8em}
+  .scene-julia .julia-cta{margin-top:1.4em}
+}
+
+/* Mobile et écrans étroits : image en haut recadrée 4:5, texte dessous */
+@media (max-width:860px){
+  .scene-julia{min-height:0}
+  .scene-julia .julia-media{position:relative;inset:auto;width:100%;aspect-ratio:4/5;max-height:80svh}
+  .scene-julia .julia-veil{background:
+    linear-gradient(to top,rgba(11,15,19,1) 0%,rgba(11,15,19,.55) 14%,rgba(11,15,19,0) 40%),
+    linear-gradient(to bottom,rgba(11,15,19,.42) 0%,rgba(11,15,19,0) 22%)}
+  .scene-julia .julia-content{min-height:0;display:block;padding:clamp(20px,5vw,40px) var(--gutter) clamp(64px,12vw,96px)}
+  .scene-julia .julia-text{padding-left:18px;max-width:none}
+  .scene-julia .julia-eyebrow{margin-bottom:1.2em}
+  .scene-julia .julia-title{font-size:clamp(40px,11.5vw,72px)}
+  .scene-julia .julia-lead{font-size:clamp(20px,5.6vw,26px);margin-bottom:1.2em}
+  .scene-julia .julia-body p{font-size:16.5px;max-width:none}
+}

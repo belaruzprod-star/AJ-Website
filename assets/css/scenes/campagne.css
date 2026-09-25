@@ -1,0 +1,69 @@
+/* Scène « campagne » : tunnel des neuf images le long de l’axe Z.
+   Par défaut (sans JS, ou html.reduce) : les neuf images empilées à plat, lisibles, avec légendes et liens.
+   Sous html.js:not(.reduce) : section plein écran épinglée, images positionnées par assets/js/scenes/campagne.js
+   (transform/opacity/filter seulement). Réglages numériques : en tête de campagne.js. */
+
+/* ------------------------------------------------------------------ Base (à plat) */
+.scene-campagne{position:relative;background:var(--bg);color:var(--text);overflow:clip}
+.scene-campagne .cp-head{max-width:var(--max);margin:0 auto;padding:clamp(56px,9vw,128px) var(--gutter) clamp(28px,4vw,48px)}
+.scene-campagne .cp-head .eyebrow{margin-bottom:1.4em}
+.scene-campagne .cp-title{font-size:clamp(40px,7vw,112px);letter-spacing:-.015em;line-height:1;margin:0}
+.scene-campagne .cp-line{display:inline-block;vertical-align:bottom}
+.scene-campagne .cp-line-in{display:inline-block}
+.scene-campagne .cp-world{max-width:var(--max);margin:0 auto;padding:0 var(--gutter) clamp(56px,9vw,128px);display:grid;gap:clamp(32px,5vw,72px)}
+.scene-campagne .cp-item{display:block;color:var(--text);text-decoration:none;width:100%}
+.scene-campagne .cp-frame{display:block;position:relative;aspect-ratio:3/2;overflow:hidden;background:var(--bg-2)}
+.scene-campagne .cp-frame picture,.scene-campagne .cp-frame img{display:block;width:100%;height:100%}
+.scene-campagne .cp-frame img{object-fit:cover;object-position:var(--pos,50% 50%)}
+.scene-campagne .cp-frame canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+.scene-campagne .cp-veil{display:none}
+.scene-campagne .cp-cap{display:flex;align-items:baseline;gap:1.4em;margin-top:12px;font:500 12px/1.5 var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.scene-campagne .cp-cap b{font-weight:500;color:var(--text)}
+.scene-campagne .cp-num{font-variant-numeric:tabular-nums}
+.scene-campagne .cp-item:focus-visible{outline:2px solid var(--accent);outline-offset:6px}
+
+/* ------------------------------------------------------------------ Tunnel (JS actif, mouvement autorisé) */
+.js:not(.reduce) .scene-campagne:not(.cp-flat){height:100vh;overflow:clip;isolation:isolate}
+.js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-stage{position:absolute;inset:0;overflow:clip}
+/* lueur froide au point de fuite : la lumière au bout du tunnel */
+.js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-stage::before{content:"";position:absolute;inset:0;pointer-events:none;background:
+  radial-gradient(ellipse 36% 30% at 50% 50%,rgba(168,195,230,.09),rgba(168,195,230,.03) 45%,rgba(168,195,230,0) 100%)}
+.js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-world{position:absolute;inset:0;max-width:none;margin:0;padding:0;display:block}
+.js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-item{position:absolute;left:50%;top:50%;width:var(--cp-w,64vw);transform:translate(-50%,-50%);transform-origin:50% 50%;opacity:0;pointer-events:none;backface-visibility:hidden;will-change:transform,opacity}
+/* la plus proche de la caméra est au-dessus : ordre statique, l’ordre de passage est celui du DOM */
+.js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-item:nth-child(1){z-index:9}
+.js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-item:nth-child(2){z-index:8}
+.js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-item:nth-child(3){z-index:7}
+.js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-item:nth-child(4){z-index:6}
+.js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-item:nth-child(5){z-index:5}
+.js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-item:nth-child(6){z-index:4}
+.js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-item:nth-child(7){z-index:3}
+.js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-item:nth-child(8){z-index:2}
+.js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-item:nth-child(9){z-index:1}
+.js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-item:focus-visible{outline-offset:10px}
+.js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-frame{background:var(--bg)}
+/* voile de profondeur : opacité pilotée par le script (0 au plan focal, ~.9 au loin) */
+.js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-veil{display:block;position:absolute;inset:-1px;z-index:2;background:#0f151c;opacity:0;pointer-events:none}
+/* légende ancrée au coin bas‑gauche, contre‑mise à l’échelle par le script pour rester à taille constante */
+.js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-cap{position:absolute;left:0;top:100%;margin-top:16px;transform-origin:0 0;opacity:0}
+.js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-cap::before{content:"";display:inline-block;width:22px;height:1px;background:var(--muted);vertical-align:middle;margin-right:.2em}
+
+/* titre d’entrée, en avant du tunnel ; s’éloigne (scale ↓, fondu, flou) quand la caméra avance */
+.js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-head{position:absolute;inset:0;z-index:20;max-width:none;margin:0;padding:0 var(--gutter);display:grid;place-content:center;text-align:center;pointer-events:none;will-change:transform,opacity}
+.js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-head .eyebrow{margin-bottom:2.2em;opacity:0}
+.js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-line{overflow:hidden;padding:0 .06em .12em;margin-bottom:-.12em}
+.js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-line-in{transform:translateY(112%)}
+.js:not(.reduce) .scene-campagne:not(.cp-flat).is-in .cp-head .eyebrow{opacity:1}
+.js:not(.reduce) .scene-campagne:not(.cp-flat).is-in .cp-line-in{transform:none}
+
+@media (max-width:760px){
+  .js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-item{--cp-w:86vw}
+  /* portrait : cadrage 4/5 (object-fit cover, --pos), pour que l’image ait de la présence sur un écran haut */
+  .js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-frame{aspect-ratio:4/5}
+  .js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-cap{margin-top:12px;font-size:11px;gap:1em}
+  .js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-stage::before{background:radial-gradient(ellipse 60% 26% at 50% 50%,rgba(168,195,230,.08),rgba(168,195,230,0) 100%)}
+  .js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-title{font-size:clamp(38px,11vw,64px)}
+}
+@media (max-height:520px){
+  .js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-item{--cp-w:50vw}
+}

@@ -1,0 +1,91 @@
+/* AJ — scène « contact » : scène finale plein écran (titre géant en profondeur) et pied de page de toutes les pages.
+   Chargée après site.css. Sans JavaScript et en mode reduce, tout est visible à plat : seules les règles
+   préfixées .js:not(.reduce) masquent des éléments, et le script les révèle. Réglages : variables ci-dessous. */
+.scene-contact{
+  --c-title:clamp(54px,17vw,250px);     /* taille du titre « Nous écrire. » */
+  --c-stroke:max(1px,.0055em);          /* épaisseur du contour du second mot */
+  --c-mail:clamp(30px,4.8vw,76px);      /* taille de l'adresse une fois injectée par site.js (réduite par le script si elle ne tient pas sur une ligne) */
+  --c-nav:clamp(30px,3.8vw,58px);       /* taille des liens du pied de page */
+  --c-line:rgba(232,227,216,.09);       /* lignes du sol */
+  --c-line-2:rgba(232,227,216,.05);     /* lignes du plafond */
+  --c-step:120px;                       /* pas de la grille (px, mesuré au bord proche) */
+  --c-drift:9s;                         /* durée d'un pas de dérive */
+  --c-tilt:74deg;                       /* inclinaison des plans */
+  --c-persp:720px;                      /* perspective du champ */
+  position:relative;isolation:isolate;background:var(--bg);color:var(--text);overflow:hidden;overflow:clip;
+}
+
+/* ------------------------------------------------------------------ Bloc principal (plein écran) */
+.contact-main{position:relative;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:clamp(96px,14vh,170px) 0 clamp(48px,7vh,80px)}
+.contact-main>.wrap{position:relative;z-index:1}
+.scene-contact.compact .contact-main{min-height:0;padding-top:clamp(72px,10vh,120px)}
+
+/* Champ de lignes en fuite : un sol et un plafond en perspective CSS, dérive lente, fondu aux bords. Non figuratif. */
+.contact-field{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;perspective:var(--c-persp);perspective-origin:50% 50%;
+  -webkit-mask-image:radial-gradient(ellipse 62% 58% at 50% 50%,#000 30%,transparent 100%);mask-image:radial-gradient(ellipse 62% 58% at 50% 50%,#000 30%,transparent 100%)}
+.contact-space{position:absolute;inset:0;transform-style:preserve-3d}
+.contact-plane{position:absolute;left:-70%;width:240%;height:150%;overflow:hidden;backface-visibility:hidden}
+.contact-floor{bottom:0;transform-origin:50% 100%;transform:rotateX(var(--c-tilt));
+  -webkit-mask-image:linear-gradient(to top,#000 0,rgba(0,0,0,.7) 30%,transparent 78%);mask-image:linear-gradient(to top,#000 0,rgba(0,0,0,.7) 30%,transparent 78%)}
+.contact-ceil{top:0;transform-origin:50% 0;transform:rotateX(calc(-1 * var(--c-tilt)));
+  -webkit-mask-image:linear-gradient(to bottom,#000 0,rgba(0,0,0,.6) 25%,transparent 68%);mask-image:linear-gradient(to bottom,#000 0,rgba(0,0,0,.6) 25%,transparent 68%)}
+.contact-grid{position:absolute;left:0;right:0;top:calc(-1 * var(--c-step));height:calc(100% + var(--c-step));
+  background-image:repeating-linear-gradient(90deg,var(--c-line) 0 1px,transparent 1px var(--c-step)),repeating-linear-gradient(0deg,var(--c-line) 0 1px,transparent 1px var(--c-step));
+  will-change:transform;animation:contact-drift-down var(--c-drift) linear infinite}
+.contact-ceil .contact-grid{top:0;--c-line:var(--c-line-2);animation-name:contact-drift-up}
+@keyframes contact-drift-down{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,var(--c-step),0)}}
+@keyframes contact-drift-up{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,calc(-1 * var(--c-step)),0)}}
+.reduce .contact-grid{animation:none}
+
+/* Titre : Cormorant, très grand ; second mot en contour pour le relief. Les lettres (.ch) sont créées par le script. */
+.contact-title{font-family:var(--font-display);font-weight:400;font-size:var(--c-title);line-height:.92;letter-spacing:-.02em;margin:0 0 .16em -.03em;perspective:1000px;perspective-origin:50% 60%;text-wrap:initial}
+.contact-title .w{display:inline-block;white-space:nowrap;transform-style:preserve-3d}
+.contact-title .ch{display:inline-block;transform-origin:50% 100%;backface-visibility:hidden}
+.contact-title .w-outline{color:transparent;-webkit-text-stroke:var(--c-stroke) var(--text)}
+@supports not (-webkit-text-stroke:1px #000){.contact-title .w-outline{color:var(--muted)}}
+
+/* Lead à gauche, coordonnées à droite */
+.contact-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(24px,4vw,72px);align-items:end;margin-top:clamp(20px,3vw,40px)}
+.contact-lead{margin:0;max-width:22em}
+.contact-links p{margin:0 0 .8em}
+.contact-links p:last-child{margin-bottom:0}
+.scene-contact [data-aj="email"]{font-family:var(--font-body);font-size:15.5px;line-height:1.6;color:var(--muted);letter-spacing:.01em;max-width:30em;margin:0 0 1em}
+/* Adresse injectée par site.js (classe contact-big, définie plus petite dans site.css) : ici en très grand */
+.scene-contact .contact-big{font-family:var(--font-display);font-size:var(--c-mail);line-height:1.05;letter-spacing:-.01em;color:var(--text);max-width:none;margin:0 0 .4em;overflow-wrap:anywhere}
+.scene-contact .contact-big a{color:var(--text);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.12em;text-decoration-color:rgba(232,227,216,.32);transition:text-decoration-color .5s}
+.scene-contact .contact-big a:hover,.scene-contact .contact-big a:focus-visible{text-decoration-color:var(--text)}
+.scene-contact [data-aj="instagram"]{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;margin:0 0 1.2em}
+.scene-contact [data-aj="instagram"] a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px;transition:color .35s,border-color .35s}
+.scene-contact [data-aj="instagram"] a:hover,.scene-contact [data-aj="instagram"] a:focus-visible{color:var(--text);border-color:var(--text)}
+.contact-note{font-size:14px;line-height:1.6;color:var(--muted);max-width:30em;text-wrap:pretty}
+
+/* ------------------------------------------------------------------ Pied de page */
+.contact-foot{position:relative;z-index:1;border-top:1px solid var(--line);padding:clamp(40px,6vh,64px) 0 clamp(24px,4vh,36px)}
+.contact-foot-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:clamp(32px,5vw,96px);align-items:start}
+.contact-id{display:grid;gap:22px;justify-items:start;align-content:start}
+.contact-mono{display:inline-block;width:72px;line-height:0;color:var(--text)}
+.contact-mono img{width:100%;height:auto;transform-origin:50% 55%;transition:transform .8s var(--ease-out)}
+.contact-mono:hover img,.contact-mono:focus-visible img{transform:rotate(-9deg)}
+.contact-baseline{margin:0;font-size:14px;line-height:1.6;color:var(--muted);max-width:24em;text-wrap:pretty}
+.contact-nav{display:grid;gap:.1em;justify-items:start}
+.contact-nav a{display:flex;align-items:baseline;gap:.55em;color:var(--text);text-decoration:none;font-family:var(--font-display);font-weight:400;font-size:var(--c-nav);line-height:1.12;letter-spacing:-.01em}
+.contact-nav .n{font:500 11px/1 var(--font-body);letter-spacing:.16em;color:var(--muted);min-width:2.6em;transition:color .35s}
+.contact-nav .t{display:inline-block;transition:transform .55s var(--ease-out),color .35s}
+.contact-nav a:hover .n,.contact-nav a:focus-visible .n{color:var(--accent)}
+.contact-nav a:hover .t,.contact-nav a:focus-visible .t{transform:translateX(.12em)}
+.contact-legal{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;margin-top:clamp(36px,5vh,56px);padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;letter-spacing:.02em;color:var(--muted)}
+
+/* ------------------------------------------------------------------ États d'entrée (JavaScript actif, sans reduce) */
+.js:not(.reduce) .scene-contact:not(.is-in) :is(.contact-title,.contact-lead,[data-aj],.contact-note,.contact-field){opacity:0}
+.js:not(.reduce) .scene-contact:not(.is-foot-in) :is(.contact-mono,.contact-baseline,.contact-nav a,.contact-legal){opacity:0}
+
+/* ------------------------------------------------------------------ Mobile et petites hauteurs */
+@media (max-width:760px){
+  .contact-main{padding:clamp(88px,14vh,130px) 0 40px}
+  .contact-row{grid-template-columns:minmax(0,1fr);gap:22px;align-items:start}
+  .contact-foot-grid{grid-template-columns:minmax(0,1fr);gap:36px}
+  .contact-nav{gap:.15em}
+  .contact-mono{width:56px}
+  .scene-contact{--c-step:96px;--c-persp:560px}
+}
+@media (max-height:520px){.contact-main{min-height:0;padding:80px 0 40px}}

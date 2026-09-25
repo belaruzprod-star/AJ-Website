@@ -1,0 +1,17 @@
+<!-- Scène « detail » — fiche d'une pièce. Deux montages, à coller selon la page.
+     Feuille : assets/css/scenes/detail.css — script : assets/js/scenes/detail.js (après core.js et photo3d.js).
+
+     1) OVERLAY (index.html, pieces.html : toute page qui appelle AJ.openPiece(slug)).
+        Conteneur vide, rempli par detail.js. Sa place dans la page n'a pas d'importance : le script le déplace
+        directement sous <body>. S'il est absent, le script le crée. Ouverture directe : index.html?piece=veste-bleue -->
+<div class="detail-overlay" data-detail-overlay hidden></div>
+
+<!-- 2) À PLAT (veste-bleue.html, surchemise-ecrue.html, veste-indigo.html : liens profonds).
+        detail.js remplace le contenu de la section par le rendu de la pièce data-slug (même contenu que l'overlay,
+        mêmes effets d'entrée, Photo3D sur la cover, galerie horizontale, « Nous écrire », précédente / suivante).
+        Sans JavaScript, c'est le contenu ci-dessous qui est lu : l'intégrateur y colle, pour chaque page, le repli
+        statique de la pièce (balisage identique à celui produit par detail.js : exemple pour veste-bleue ci-dessous,
+        à régénérer pour les deux autres pièces en changeant data-slug, num, name, lead, body, details, images). -->
+<section class="scene scene-detail" data-scene="detail" data-slug="veste-bleue" id="detail" aria-labelledby="detail-title-flat">
+<!--DETAIL-FALLBACK-->
+</section>
