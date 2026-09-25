@@ -9,6 +9,7 @@
   var SETTLE = 0.9;             /* durée du recalage après glisser (s) */
   var PHOTO3D_AMOUNT = 0.7;     /* intensité Photo3D du panneau de face */
   var CLICK_TOLERANCE = 6;      /* px : au-delà, un pointerup n'est plus un clic */
+  var FACE_K = 0.3, FACE_P = 4; /* redressement des panneaux latéraux : angle vu = φ·(K + (1−K)·(|φ|/180)^P) */
 
   var section = document.querySelector('[data-scene="pieces"]');
   if (!section) return;
@@ -19,7 +20,6 @@
   if (!stage || !ring || !panels.length) return;
   var n = panels.length;
   var G = AJ.gsap, ST = AJ.ScrollTrigger;
-  var tilt = (getComputedStyle(section).getPropertyValue('--ring-tilt') || '-3deg').trim();
 
   var state = { scrollAngle: 0, drag: 0, front: -1, photo: null, moved: false, settling: null };
   var st = null;
@@ -51,7 +51,12 @@
 
   function render() {
     var a = angle();
-    ring.style.transform = 'rotateX(' + tilt + ') rotateY(' + a.toFixed(3) + 'deg)';
+    ring.style.setProperty('--ring-a', a.toFixed(3) + 'deg');
+    for (var i = 0; i < n; i++) {
+      var phi = a + i * STEP; phi = phi - 360 * Math.round(phi / 360);           /* angle du panneau vu de face, dans ]-180, 180] */
+      var t = Math.abs(phi) / 180, facing = phi * (FACE_K + (1 - FACE_K) * Math.pow(t, FACE_P));
+      panels[i].style.setProperty('--face', (facing - phi).toFixed(3) + 'deg');
+    }
     setFront(frontIndex(a));
   }
 
@@ -120,13 +125,15 @@
     if (state.settling) { state.settling.kill(); state.settling = null; }
     drag = { x: e.clientX, x0: e.clientX, t: e.timeStamp, v: 0, id: e.pointerId };
     state.moved = false;
-    try { stage.setPointerCapture(e.pointerId); } catch (err) {}
   });
   stage.addEventListener('pointermove', function (e) {
     if (!drag || e.pointerId !== drag.id) return;
     var dx = e.clientX - drag.x, dt = Math.max(1, e.timeStamp - drag.t);
     var k = DRAG_DEG_PER_PX * (window.innerWidth < 760 ? 1.5 : 1);
-    if (!state.moved && Math.abs(e.clientX - drag.x0) > CLICK_TOLERANCE) { state.moved = true; section.classList.add('is-dragging'); }
+    if (!state.moved && Math.abs(e.clientX - drag.x0) > CLICK_TOLERANCE) {
+      state.moved = true; section.classList.add('is-dragging');
+      try { stage.setPointerCapture(e.pointerId); } catch (err) {}   /* capturé seulement après un vrai glisser : un clic simple reste un clic */
+    }
     if (!state.moved) return;
     state.drag += dx * k;
     drag.v = drag.v * 0.6 + (dx * k / dt) * 0.4;
@@ -137,8 +144,8 @@
     if (!drag || (e && e.pointerId !== drag.id)) return;
     var v = drag.v; drag = null;
     section.classList.remove('is-dragging');
-    try { stage.releasePointerCapture(e.pointerId); } catch (err) {}
     if (!state.moved) return;
+    try { stage.releasePointerCapture(e.pointerId); } catch (err) {}
     var a = angle() + v * INERTIA_MS;
     settleTo(Math.round(a / STEP) * STEP);
     /* state.moved reste vrai jusqu'au clic synthétique qui suit, pour l'annuler */
@@ -171,9 +178,10 @@
   var ready = AJ.ready && typeof AJ.ready.then === 'function' ? AJ.ready : Promise.resolve();
   ready.then(function () {
     var head = section.querySelector('.pieces-head');
-    G.from([head, ring], { opacity: 0, y: 36, duration: 1.3, stagger: 0.12, ease: 'power3.out', clearProps: 'opacity,transform',
-      scrollTrigger: { trigger: section, start: 'top 75%', once: true },
-      onComplete: render });
+    G.from(head, { opacity: 0, y: 36, duration: 1.3, ease: 'power3.out', clearProps: 'opacity,transform',
+      scrollTrigger: { trigger: section, start: 'top 75%', once: true } });
+    G.from(stage, { opacity: 0, duration: 1.6, ease: 'power2.out', clearProps: 'opacity',
+      scrollTrigger: { trigger: section, start: 'top 75%', once: true } });
     attachPhoto(panels[state.front]);
   });
 })();

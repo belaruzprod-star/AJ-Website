@@ -1,8 +1,9 @@
 /* Scène « pieces » : anneau 3D de trois panneaux (perspective CSS). */
 .scene-pieces{
-  --ring-w:clamp(280px,34vw,520px);
-  --ring-r:clamp(420px,52vw,780px);
+  --ring-w:clamp(280px,min(34vw,44vh),520px);   /* largeur d'un panneau (de face : taille réelle) */
+  --ring-r:calc(var(--ring-w) * 1.05);            /* rayon de l'anneau */
   --ring-tilt:-3deg;
+  --ring-a:0deg;                                  /* rotation de l'anneau, pilotée par le JS */
   position:relative;height:100svh;min-height:560px;overflow:clip;
   background:var(--bg);color:var(--text);
 }
@@ -23,7 +24,8 @@
 .scene-pieces .ring{
   position:relative;width:var(--ring-w);aspect-ratio:4/5;
   transform-style:preserve-3d;
-  transform:rotateX(var(--ring-tilt)) rotateY(0deg);
+  /* l'anneau est reculé de son rayon : le panneau de face est à Z = 0, à sa taille réelle */
+  transform:translateZ(calc(-1 * var(--ring-r))) rotateX(var(--ring-tilt)) rotateY(var(--ring-a));
   will-change:transform;
   touch-action:pan-y;
   margin-top:clamp(40px,8vh,96px);
@@ -31,7 +33,8 @@
 .scene-pieces .ring-panel{
   position:absolute;inset:0;
   display:block;color:var(--text);text-decoration:none;
-  transform:rotateY(calc(var(--i) * 120deg)) translateZ(var(--ring-r));
+  /* position sur le cylindre ; --face (JS) redresse les panneaux latéraux vers le regard */
+  transform:rotateY(calc(var(--i) * 120deg)) translateZ(var(--ring-r)) rotateY(var(--face,0deg));
   backface-visibility:hidden;-webkit-backface-visibility:hidden;
   outline:none;
 }
@@ -71,27 +74,27 @@
   border-bottom:1px solid var(--text);padding-bottom:.45em;
 }
 .scene-pieces .ring-hint{
-  position:absolute;left:0;right:0;bottom:clamp(18px,4vh,40px);margin:0;text-align:center;
+  position:absolute;left:var(--gutter);bottom:clamp(18px,4vh,40px);margin:0;text-align:left;
   font:500 10.5px/1.5 var(--font-body);letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
   opacity:.75;pointer-events:none;
 }
-.scene-pieces .ring-hint-line{display:block;width:1px;height:28px;margin:0 auto 10px;background:var(--muted);opacity:.6}
+.scene-pieces .ring-hint-line{display:block;width:1px;height:28px;margin:0 0 10px;background:var(--muted);opacity:.6}
 .scene-pieces.is-dragging .ring{cursor:grabbing}
 .scene-pieces .ring{cursor:grab}
 .scene-pieces .ring-stage{user-select:none;-webkit-user-select:none}
 
 /* Mobile : panneaux plus larges, rayon plus court */
 @media (max-width:760px){
-  .scene-pieces{--ring-w:78vw;--ring-r:min(62vw,300px)}
-  .scene-pieces .ring-stage{perspective:1100px}
+  .scene-pieces{--ring-w:min(78vw,52vh);--ring-r:calc(var(--ring-w) * 1.05)}
+  .scene-pieces .ring-stage{perspective:1000px}
   .scene-pieces .pieces-head{top:clamp(44px,8vh,80px)}
   .scene-pieces .ring{margin-top:clamp(56px,12vh,120px)}
   .scene-pieces .ring-name{font-size:clamp(22px,7vw,30px)}
-  .scene-pieces .ring-short{font-size:13px}
+  .scene-pieces .ring-short{font-size:13px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
   .scene-pieces .ring-hint{display:none}
 }
 @media (max-height:640px){
-  .scene-pieces{--ring-w:clamp(220px,28vh,420px)}
+  .scene-pieces{--ring-w:clamp(200px,36vh,420px)}
 }
 
 /* Sans JS ou mouvement réduit : les trois panneaux à plat, empilés, lisibles */

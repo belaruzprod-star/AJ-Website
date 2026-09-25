@@ -5,11 +5,11 @@
 <base href="../">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>document.documentElement.classList.add('js')</script>
-<title>Démo — manifeste</title>
+<title>Démo — pieces</title>
 <meta name="theme-color" content="#0b0f13">
 <link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/site.css">
-<link rel="stylesheet" href="assets/css/scenes/manifeste.css">
+<link rel="stylesheet" href="assets/css/scenes/pieces.css">
 </head>
 <body>
 <script type="application/json" id="aj-data">{
@@ -354,23 +354,53 @@
  ]
 }</script>
 <main id="contenu">
-<div class="demo-gap" style="height:100vh;height:100svh" aria-hidden="true"></div>
-<section class="scene scene-manifeste" data-scene="manifeste" id="manifeste" aria-label="Manifeste">
-  <div class="mf-guides" aria-hidden="true">
-    <i class="mf-guide mf-guide-v"></i>
-    <i class="mf-guide mf-guide-h"></i>
-    <span class="mf-counter"><b class="mf-counter-cur">01</b> / 05</span>
-    <span class="mf-tag">Manifeste</span>
+<div class="demo-spacer" style="height:100svh;display:grid;place-items:center;color:var(--muted);font-size:12px;letter-spacing:.16em;text-transform:uppercase" aria-hidden="true">Écran vide (avant)</div>
+<section class="scene scene-pieces" data-scene="pieces" id="pieces" aria-label="Les pièces">
+  <div class="pieces-head">
+    <p class="eyebrow">Les pièces</p>
+    <h2 class="pieces-title">Trois pièces. Une seule de chaque.</h2>
   </div>
-  <div class="mf-world">
-    <p class="mf-line" data-z="0" data-x="-0.16" data-y="-0.14"><i class="mf-num" aria-hidden="true">01</i><span class="mf-text">Pas d’usine.</span></p>
-    <p class="mf-line" data-z="1100" data-x="0.17" data-y="0.11"><i class="mf-num" aria-hidden="true">02</i><span class="mf-text">Pas de série.</span></p>
-    <p class="mf-line" data-z="2200" data-x="0" data-y="-0.03"><i class="mf-num" aria-hidden="true">03</i><span class="mf-text">Une seule veste de chaque.</span></p>
-    <p class="mf-line" data-z="3300" data-x="-0.13" data-y="0.19"><i class="mf-num" aria-hidden="true">04</i><span class="mf-text">Cousue par Julia.</span></p>
-    <p class="mf-line" data-z="4400" data-x="0.09" data-y="-0.11"><i class="mf-num" aria-hidden="true">05</i><span class="mf-text">Tissus achetés en France.</span></p>
+  <div class="ring-stage">
+    <div class="ring" role="list">
+      <a class="ring-panel" role="listitem" href="veste-bleue.html" data-slug="veste-bleue" data-key="01" data-cursor="view" style="--pos:40% 50%;--i:0">
+        <div class="ring-media">
+          <picture><source type="image/webp" srcset="assets/img/01-bleu-ouvert-768.webp 768w, assets/img/01-bleu-ouvert-1536.webp 1536w" sizes="60vw"><img src="assets/img/01-bleu-ouvert-1536.jpg" srcset="assets/img/01-bleu-ouvert-768.jpg 768w, assets/img/01-bleu-ouvert-1536.jpg 1536w" sizes="60vw" width="1536" height="1024" alt="La veste bleue ceinturée portée ouverte, parements en toile de Jouy le long de l’encolure, vue de face." decoding="async"></picture>
+        </div>
+        <div class="ring-text">
+          <span class="ring-num">01</span>
+          <span class="ring-name">Veste bleue ceinturée</span>
+          <span class="ring-short">Bleu profond au reflet lustré, ceinture et parements en toile de Jouy crème et bleu.</span>
+          <span class="ring-cta">Voir la pièce</span>
+        </div>
+      </a>
+      <a class="ring-panel" role="listitem" href="surchemise-ecrue.html" data-slug="surchemise-ecrue" data-key="04" data-cursor="view" style="--pos:33% 50%;--i:1">
+        <div class="ring-media">
+          <picture><source type="image/webp" srcset="assets/img/04-ecru-face-768.webp 768w, assets/img/04-ecru-face-1536.webp 1536w" sizes="60vw"><img src="assets/img/04-ecru-face-1536.jpg" srcset="assets/img/04-ecru-face-768.jpg 768w, assets/img/04-ecru-face-1536.jpg 1536w" sizes="60vw" width="1536" height="1024" alt="La surchemise écrue côtelée zippée, col pointu, vue de face." decoding="async"></picture>
+        </div>
+        <div class="ring-text">
+          <span class="ring-num">02</span>
+          <span class="ring-name">Surchemise écrue côtelée</span>
+          <span class="ring-short">Longue et ample, zip central, dos entier en toile de Jouy gris sauge.</span>
+          <span class="ring-cta">Voir la pièce</span>
+        </div>
+      </a>
+      <a class="ring-panel" role="listitem" href="veste-indigo.html" data-slug="veste-indigo" data-key="06" data-cursor="view" style="--pos:37% 50%;--i:2">
+        <div class="ring-media">
+          <picture><source type="image/webp" srcset="assets/img/06-indigo-face-768.webp 768w, assets/img/06-indigo-face-1536.webp 1536w" sizes="60vw"><img src="assets/img/06-indigo-face-1536.jpg" srcset="assets/img/06-indigo-face-768.jpg 768w, assets/img/06-indigo-face-1536.jpg 1536w" sizes="60vw" width="1536" height="1024" alt="La veste indigo zippée, deux poches basses bordées de toile de Jouy, vue de face." decoding="async"></picture>
+        </div>
+        <div class="ring-text">
+          <span class="ring-num">03</span>
+          <span class="ring-name">Veste indigo</span>
+          <span class="ring-short">Denim indigo, zip métal, poches bordées de toile de Jouy, dos entier beige et bleu.</span>
+          <span class="ring-cta">Voir la pièce</span>
+        </div>
+      </a>
+    </div>
+    <p class="ring-hint" aria-hidden="true"><span class="ring-hint-line"></span>Faire défiler ou glisser</p>
   </div>
 </section>
-<div class="demo-gap" style="height:100vh;height:100svh" aria-hidden="true"></div>
+
+<div class="demo-spacer" style="height:100svh;display:grid;place-items:center;color:var(--muted);font-size:12px;letter-spacing:.16em;text-transform:uppercase" aria-hidden="true">Écran vide (après)</div>
 </main>
 <script src="assets/js/config.js"></script>
 <script src="assets/js/site.js"></script>
@@ -379,6 +409,6 @@
 <script src="assets/js/ScrollTrigger.min.js"></script>
 <script src="assets/js/core.js"></script>
 <script src="assets/js/photo3d.js"></script>
-<script src="assets/js/scenes/manifeste.js"></script>
+<script src="assets/js/scenes/pieces.js"></script>
 </body>
 </html>

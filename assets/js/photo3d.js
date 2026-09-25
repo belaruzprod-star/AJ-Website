@@ -13,7 +13,7 @@
   var PARALLAX = 0.06;        /* amplitude du déplacement des uv : (profondeur − 0.5) × offset × amount × PARALLAX */
   var TILT = 0.12;            /* recul/inclinaison globale : part de PARALLAX appliquée à toute l'image (la caméra bouge un peu) */
   var INSET = 0.06;           /* marge d'échantillonnage : les uv sont rétrécies de INSET × min(amount, 1.5) pour ne pas révéler le bord */
-  var ABERR = 0.09;           /* aberration chromatique proportionnelle au déplacement (0 = aucune) */
+  var ABERR = 0.035;          /* aberration chromatique proportionnelle au déplacement (0 = aucune) */
   var MOUSE_MS = 260;         /* constante de temps de l'amortissement (ms) : plus grand = plus lent */
   var SCROLL_STRENGTH = 0.55; /* offset vertical (−1..1) dû à la position du conteneur dans l'écran (opts.scroll) */
   var GYRO_DEG = 22;          /* degrés d'inclinaison pour un offset de 1 (opts.gyro) */

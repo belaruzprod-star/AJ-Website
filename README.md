@@ -8,25 +8,25 @@ Le site est **statique** (HTML, CSS, un peu de JavaScript), **sans framework ni 
 
 | Fichier ou dossier | Rôle |
 |---|---|
-| `index.html` | Accueil |
-| `pieces.html` | Liste des pièces |
-| `veste-bleue.html`, `surchemise-ecrue.html`, `veste-indigo.html` | Une page par pièce |
-| `atelier.html` | Julia, la machine, les tissus |
-| `retouches.html` | Ourlets et autres retouches |
-| `visuels.html` | Note sur les rendus générés par IA |
-| `contact.html` | Contact |
-| `mentions-legales.html` | Mentions légales, **à compléter** |
-| `404.html` | Page introuvable |
-| `assets/css/site.css` | Feuille de style (couleurs, typographie, mise en page) |
-| `assets/css/fonts.css`, `assets/fonts/` | Polices auto-hébergées (Cormorant Garamond, Inter, licence OFL) |
-| `assets/js/config.js` | **Coordonnées de contact, à remplir** (voir plus bas) |
-| `assets/js/site.js` | Injecte les coordonnées dans les pages |
-| `assets/js/motion.js`, `assets/js/hero-gl.js` | Animations, effets et hero WebGL (voir plus bas) |
-| `assets/js/lenis.min.js`, `assets/js/gsap.min.js`, `assets/js/ScrollTrigger.min.js` | Bibliothèques d'animation embarquées (Lenis, MIT ; GSAP, licence standard gratuite) |
-| `assets/img/` | Les neuf rendus, en WebP et JPEG, en 768 et 1536 px de large |
-| `assets/logo/`, `favicon.svg`, `apple-touch-icon.png` | Monogramme AJ (silhouette vectorielle, optimisée) |
-| `.nojekyll` | Indique à GitHub Pages de servir les fichiers tels quels |
-| `.gitignore` | Exclut les sources de la campagne (`pour-claude-shinobi/`, zip) du dépôt publié |
+| `index.html` | Accueil : six scènes enchaînées (hero, manifeste, pièces, campagne, Julia, contact) |
+| `pieces.html` | Anneau 3D des pièces |
+| `veste-bleue.html`, `surchemise-ecrue.html`, `veste-indigo.html` | Fiche d'une pièce (lien profond ; sur l'accueil la même fiche s'ouvre en overlay) |
+| `atelier.html` | Julia |
+| `retouches.html`, `visuels.html`, `contact.html`, `mentions-legales.html`, `404.html` | Pages de texte et contact |
+| `partials/` | Fragments HTML de chaque scène, assemblés dans les pages par le générateur |
+| `assets/css/site.css`, `assets/css/scenes/*.css` | Base (couleurs, typographie, boutons) et feuille de chaque scène |
+| `assets/js/core.js` | Socle : contexte `window.AJ` (données, bibliothèques, préchargeur) |
+| `assets/js/photo3d.js` | Effet « photo 3D » en WebGL : parallaxe par pixel guidée par les cartes de profondeur |
+| `assets/js/scenes/*.js` | Comportement de chaque scène (chrome, hero, manifeste, pieces, campagne, julia, contact, detail) |
+| `assets/js/config.js` | **Coordonnées de contact, à remplir** |
+| `assets/js/site.js`, `lenis.min.js`, `gsap.min.js`, `ScrollTrigger.min.js` | Injection des coordonnées ; bibliothèques embarquées (Lenis MIT, GSAP licence standard gratuite) |
+| `assets/data/pieces.json` | Toutes les données : textes, pièces, images (embarquées dans chaque page) |
+| `assets/depth/` | Cartes de profondeur des neuf images (heuristiques, remplaçables : voir `assets/depth/README.md`) |
+| `assets/img/`, `assets/fonts/`, `assets/logo/`, `favicon.svg`, `apple-touch-icon.png` | Images optimisées, polices, monogramme |
+| `demo/` | Une page de démonstration par scène, pour travailler une scène isolément |
+| `.nojekyll`, `.gitignore` | Réglages GitHub Pages ; sources de campagne exclues du dépôt |
+
+Les pages HTML sont générées par un script d'assemblage (partials + données) ; on peut aussi les modifier directement.
 
 ## Publier sur GitHub Pages
 
@@ -64,10 +64,10 @@ Conformément au brief, le site ne mentionne **ni prix, ni tailles, ni compositi
 
 ## Modifier le site
 
-- **Un texte** : ouvrir le fichier HTML concerné et modifier directement. Les pages sont courtes et lisibles.
+- **Un texte** : `assets/data/pieces.json` contient tous les textes (clés `texts`, `pieces`, `brand`, `nav`) ; ils sont recopiés dans chaque page HTML dans la balise `<script id="aj-data">` et dans les fragments `partials/`. Le plus simple est de modifier le texte dans la page HTML concernée (chercher la phrase).
 - **Les coordonnées** : `assets/js/config.js`, deux champs.
-- **Ajouter une pièce** : dupliquer une page de pièce (par exemple `veste-indigo.html`), adapter le texte et les images, puis ajouter une carte dans `index.html` et `pieces.html` en copiant un bloc `<a class="card" …>`.
-- **Ajouter des images** : déposer dans `assets/img/` quatre fichiers par image, aux noms `nom-1536.webp`, `nom-768.webp`, `nom-1536.jpg`, `nom-768.jpg`. Un outil gratuit comme [Squoosh](https://squoosh.app) permet de redimensionner et convertir depuis un navigateur.
+- **Une scène** : sa feuille dans `assets/css/scenes/`, son script dans `assets/js/scenes/` (réglages en constantes en tête de fichier), son balisage dans `partials/`, sa démo dans `demo/`.
+- **Les cartes de profondeur** : remplacer les PNG de `assets/depth/` par de meilleures cartes (mêmes noms, 768×512, blanc = proche) améliore directement l'effet 3D ; méthode dans `assets/depth/README.md`.
 - **Les couleurs et polices** : en tête de `assets/css/site.css`, dans le bloc `:root`.
 
 ## Licences
@@ -79,19 +79,13 @@ Conformément au brief, le site ne mentionne **ni prix, ni tailles, ni compositi
 
 ## Animations et effets
 
-Le site utilise un système d'animations sans service externe (GSAP et Lenis sont embarqués, gratuits) :
+Le site est une expérience à défilement, sans barre de navigation classique :
 
-- préchargeur sur l'accueil (compteur, puis rideau qui s'ouvre en deux), une seule fois par session ;
-- hero en WebGL : distorsion liquide qui réagit à la souris, brume animée, apparition par dissolution, zoom lent et parallaxe ; l'image reste affichée telle quelle sans WebGL, et la définition du rendu baisse toute seule sur un appareil lent ;
-- titres qui entrent mot à mot en 3D avec un flou, intitulés qui se décodent caractère par caractère, liens et boutons qui se brouillent au survol ;
-- textes et cartes qui apparaissent au défilement, images révélées par balayage ;
-- cartes qui s'inclinent en 3D sous la souris avec un éclat, et basculent vers la vue de dos avec un glitch ;
-- images qui se cisaillent selon la vitesse de défilement, bande défilante qui accélère et suit le sens du défilement ;
-- galerie de campagne épinglée qui défile horizontalement quand on descend (sur ordinateur), défilement horizontal natif sur mobile ;
-- curseur personnalisé (point et anneau, « Voir » sur les images), boutons magnétiques, grain de film et vignette ;
-- en-tête en verre flouté qui se cache quand on descend, barre de progression, transitions animées entre les pages, défilement inertiel.
+- préchargeur (compteur, rideau qui s'ouvre) ; menu plein écran avec aperçus d'images ; curseur personnalisé ; indicateur de scènes à droite ; transitions de page ;
+- **fausse 3D** à partir des images : effet « photo 3D » (parallaxe par pixel selon une carte de profondeur, qui réagit à la souris, au défilement et au gyroscope), manifeste traversé en profondeur, anneau 3D des pièces, tunnel de la campagne ;
+- titres qui entrent en 3D, textes qui se décodent ou se lisent mot à mot au défilement, images révélées.
 
-Tout est désactivé automatiquement pour les personnes qui ont demandé à leur système de réduire les animations, et le site reste entièrement lisible sans JavaScript. Les réglages sont dans `assets/js/motion.js` (préchargeur, textes, curseur, cartes, galerie), `assets/js/hero-gl.js` (hero WebGL) et la section « Mouvement » de `assets/css/site.css`.
+Tout se désactive avec le réglage système « réduire les animations », et chaque page reste lisible sans JavaScript et sans WebGL (les images s'affichent telles quelles).
 
 ## Les visuels
 
