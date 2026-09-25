@@ -20,6 +20,8 @@ Le site est **statique** (HTML, CSS, un peu de JavaScript), **sans framework ni 
 | `assets/css/fonts.css`, `assets/fonts/` | Polices auto-hébergées (Cormorant Garamond, Inter, licence OFL) |
 | `assets/js/config.js` | **Coordonnées de contact, à remplir** (voir plus bas) |
 | `assets/js/site.js` | Injecte les coordonnées dans les pages |
+| `assets/js/motion.js` | Animations et effets (voir plus bas) |
+| `assets/js/lenis.min.js` | Défilement inertiel, bibliothèque libre Lenis (licence MIT, embarquée) |
 | `assets/img/` | Les neuf rendus, en WebP et JPEG, en 768 et 1536 px de large |
 | `assets/logo/`, `favicon.svg` | Monogramme AJ (silhouette vectorielle) |
 | `.nojekyll` | Indique à GitHub Pages de servir les fichiers tels quels |
@@ -61,6 +63,20 @@ Conformément au brief, le site ne mentionne **ni prix, ni tailles, ni compositi
 - **Ajouter une pièce** : dupliquer une page de pièce (par exemple `veste-indigo.html`), adapter le texte et les images, puis ajouter une carte dans `index.html` et `pieces.html` en copiant un bloc `<a class="card" …>`.
 - **Ajouter des images** : déposer dans `assets/img/` quatre fichiers par image, aux noms `nom-1536.webp`, `nom-768.webp`, `nom-1536.jpg`, `nom-768.jpg`. Un outil gratuit comme [Squoosh](https://squoosh.app) permet de redimensionner et convertir depuis un navigateur.
 - **Les couleurs et polices** : en tête de `assets/css/site.css`, dans le bloc `:root`.
+
+## Animations et effets
+
+Le site utilise un système d'animations léger, sans service externe :
+
+- rideau d'introduction avec le monogramme sur l'accueil, une seule fois par session ;
+- titres qui montent mot à mot, textes et cartes qui apparaissent au défilement, images révélées par balayage ;
+- zoom lent et parallaxe sur l'image d'accueil ;
+- en-tête fixe qui devient un bandeau de verre flouté au défilement et se cache quand on descend ;
+- bande défilante, galerie horizontale de la campagne, cartes qui basculent vers la vue de dos au survol ;
+- boutons magnétiques, grain de film, transitions animées entre les pages (navigateurs récents) ;
+- défilement inertiel (Lenis) sur les appareils à souris.
+
+Tout est désactivé automatiquement pour les personnes qui ont demandé à leur système de réduire les animations, et le site reste entièrement lisible sans JavaScript. Pour retirer un effet, supprimer le bloc correspondant dans `assets/js/motion.js` ou dans la section « Mouvement » de `assets/css/site.css`.
 
 ## Les visuels
 
