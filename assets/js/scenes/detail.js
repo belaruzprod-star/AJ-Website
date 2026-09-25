@@ -323,7 +323,8 @@
     var wasPrev = document.activeElement && document.activeElement.classList && document.activeElement.classList.contains('prev');
     if (old) { old.classList.remove('is-in'); old.classList.add('is-out'); }
     unmount();
-    if (opts.push !== false) { try { window.history.replaceState({ ajDetail: slug }, '', urlWith(slug)); } catch (e) {} }
+    /* L'URL suit la pièce ; l'entrée d'historique n'est « à nous » que si l'ouverture l'a créée (sinon la fermeture ferait back()) */
+    if (opts.push !== false) { try { window.history.replaceState(ownsHistory() ? { ajDetail: slug } : null, '', urlWith(slug)); } catch (e) {} }
     state.timer = setTimeout(function () {
       state.switching = false;
       if (!state.open) return;

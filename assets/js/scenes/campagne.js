@@ -35,7 +35,7 @@
        successives pour que la suivante dépasse toujours derrière la précédente */
     offsets: [[-11.3, -2.7], [11.3, -2.7], [-6, 6.9], [-2.1, -7.9], [9.2, 5.1], [-12, 0], [9.2, -5.1], [-2.1, 7.9], [-6, -6.9]],
     offsetsMobile: [[-3.8, -3.1], [3.8, -3.1], [-2, 7.7], [-0.7, -8.9], [3.1, 5.8], [-4, 0], [3.1, -5.8], [-0.7, 8.9], [-2, -7.7]],
-    photo3d: { amount: 1, dolly: 0.9 }  // dolly : amplitude de setOffset pilotée par l’approche (0 : désactivé)
+    photo3d: { amount: 1, dolly: 0.9 }  // dolly : sur écran tactile, amplitude de setOffset pilotée par l’approche (0 : désactivé) ; à la souris, Photo3D gère mouse + scroll
   };
 
   var root = document.querySelector('[data-scene="campagne"]');
@@ -147,6 +147,7 @@
 
   /* ------------------------------------------------------------------ Photo3D : une seule instance, sur l’image la plus proche du plan focal */
   var focal = -1, inst = null, active = false;
+  var useDolly = !!CFG.photo3d.dolly && !AJ.fine;   /* tactile : parallaxe pilotée par l’approche ; souris : Photo3D gère (mouse + scroll) */
   function updateFocal(cam) {
     var f = clamp(Math.round(cam), 0, n - 1);
     if (f !== focal) {
@@ -155,12 +156,12 @@
       var P3 = AJ.Photo3D;
       if (P3 && typeof P3.attach === 'function') {
         try {
-          inst = P3.attach(frames[f], { key: items[f].getAttribute('data-key'), amount: CFG.photo3d.amount, mouse: !!AJ.fine, scroll: !CFG.photo3d.dolly, gyro: false, dissolve: false, mist: false });
+          inst = P3.attach(frames[f], { key: items[f].getAttribute('data-key'), amount: CFG.photo3d.amount, mouse: !!AJ.fine, scroll: !useDolly, gyro: false, dissolve: false, mist: false });
           if (inst && !active && typeof inst.pause === 'function') inst.pause();
         } catch (e) { inst = null; }
       }
     }
-    if (inst && CFG.photo3d.dolly && typeof inst.setOffset === 'function') {
+    if (inst && useDolly && typeof inst.setOffset === 'function') {
       var rel = focal - cam;   /* approche : l’image « respire » en profondeur quand elle passe le plan focal */
       try { inst.setOffset(0, clamp(-rel * CFG.photo3d.dolly, -1, 1)); } catch (e) {}
     }
