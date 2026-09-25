@@ -3,44 +3,50 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add('js')</script>
 <title>L'atelier — AJ</title>
 <meta name="description" content="AJ est le projet de Julia et Antoine. Les vestes sont cousues par Julia, une par une, sur sa Juki 7000A, dans des tissus achetés en France.">
 <meta name="theme-color" content="#0b0f13">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/site.css">
 </head>
-<body>
+<body class="inner">
+<div class="progress" aria-hidden="true"></div>
+
 <a class="skip" href="#contenu">Aller au contenu</a>
 <header class="site-header solid"><div class="wrap bar"><a class="brand" href="index.html" aria-label="AJ, accueil"><img src="assets/logo/aj-monogramme-papier.svg" alt="" width="38" height="35"><span aria-hidden="true">AJ</span></a><nav class="nav" aria-label="Navigation principale"><a href="pieces.html">Pièces</a><a href="atelier.html" aria-current="page">Atelier</a><a href="retouches.html">Retouches</a><a href="contact.html">Contact</a></nav></div></header>
 <main id="contenu">
 <section class="section page-head"><div class="wrap">
 <div class="split">
-<div><p class="eyebrow">L'atelier</p><h1>Une veste à la fois.</h1>
-<p class="lead">AJ est le projet de Julia et Antoine. Les vestes sont cousues par Julia, une par une.</p></div>
-<figure class="fig"><picture><source type="image/webp" srcset="assets/img/05-ecru-dos-768.webp 768w, assets/img/05-ecru-dos-1536.webp 1536w" sizes="(min-width: 860px) 45vw, 92vw"><img src="assets/img/05-ecru-dos-1536.jpg" srcset="assets/img/05-ecru-dos-768.jpg 768w, assets/img/05-ecru-dos-1536.jpg 1536w" sizes="(min-width: 860px) 45vw, 92vw" width="1536" height="1024" alt="Rendu généré : dos de la surchemise écrue, panneau entier en toile de Jouy gris-sauge et crème." loading="lazy" decoding="async"></picture><figcaption>Rendu de campagne généré à partir de la pièce réelle, mannequin fictif. Les couleurs, motifs et coutures peuvent différer de la pièce. <a href="visuels.html">À propos des visuels</a>.</figcaption></figure>
+<div><p class="eyebrow" data-reveal>L'atelier</p><h1 data-split>Une veste à la fois.</h1>
+<p class="lead" data-reveal style="--i:2">AJ est le projet de Julia et Antoine. Les vestes sont cousues par Julia, une par une.</p></div>
+<figure class="fig wipe" data-reveal style="--i:1"><picture><source type="image/webp" srcset="assets/img/05-ecru-dos-768.webp 768w, assets/img/05-ecru-dos-1536.webp 1536w" sizes="(min-width: 860px) 45vw, 92vw"><img src="assets/img/05-ecru-dos-1536.jpg" srcset="assets/img/05-ecru-dos-768.jpg 768w, assets/img/05-ecru-dos-1536.jpg 1536w" sizes="(min-width: 860px) 45vw, 92vw" width="1536" height="1024" alt="Rendu généré : dos de la surchemise écrue, panneau entier en toile de Jouy gris-sauge et crème." loading="lazy" decoding="async"></picture><figcaption>Rendu de campagne généré à partir de la pièce réelle, mannequin fictif. Les couleurs, motifs et coutures peuvent différer de la pièce. <a href="visuels.html">À propos des visuels</a>.</figcaption></figure>
 </div>
 </div></section>
 <section class="section tight"><div class="wrap prose">
-<h2>Julia</h2>
-<p>Julia a un BTS Mode. Elle travaille comme conseillère de vente en prêt-à-porter féminin dans le Marais, et coud par passion. Chaque veste AJ est cousue par elle, sur sa Juki 7000A.</p>
-<h2>Une seule de chaque</h2>
-<p>Pas d'usine, pas de série. Chaque veste existe en un seul exemplaire. Quand une pièce trouve preneur, il n'y en aura pas d'autre identique.</p>
-<h2>Les tissus</h2>
-<p>Les tissus sont achetés en France. Les toiles de Jouy qui habillent les dos et les parements en font partie.</p>
-<h2>Les retouches</h2>
-<p>Julia propose aussi des retouches : ourlets et autres reprises. <a href="retouches.html">En savoir plus</a>.</p>
+<h2 data-reveal>Julia</h2>
+<p data-reveal>Julia a un BTS Mode. Elle travaille comme conseillère de vente en prêt-à-porter féminin dans le Marais, et coud par passion. Chaque veste AJ est cousue par elle, sur sa Juki 7000A.</p>
+<h2 data-reveal>Une seule de chaque</h2>
+<p data-reveal>Pas d'usine, pas de série. Chaque veste existe en un seul exemplaire. Quand une pièce trouve preneur, il n'y en aura pas d'autre identique.</p>
+<h2 data-reveal>Les tissus</h2>
+<p data-reveal>Les tissus sont achetés en France. Les toiles de Jouy qui habillent les dos et les parements en font partie.</p>
+<h2 data-reveal>Les retouches</h2>
+<p data-reveal>Julia propose aussi des retouches : ourlets et autres reprises. <a href="retouches.html">En savoir plus</a>.</p>
 </div></section>
 </main>
 <footer class="site-footer"><div class="wrap">
 <div class="foot">
-<div><a class="brand" href="index.html" aria-label="AJ, accueil"><img src="assets/logo/aj-monogramme-papier.svg" alt="" width="30" height="27"><span aria-hidden="true">AJ</span></a>
+<div data-reveal><a class="brand" href="index.html" aria-label="AJ, accueil"><img src="assets/logo/aj-monogramme-papier.svg" alt="" width="30" height="27"><span aria-hidden="true">AJ</span></a>
 <p>Vestes en pièces uniques, cousues par Julia dans des tissus achetés en France.</p></div>
-<nav aria-label="Pied de page"><a href="pieces.html">Pièces</a><a href="atelier.html">Atelier</a><a href="retouches.html">Retouches</a><a href="contact.html">Contact</a><a href="visuels.html">À propos des visuels</a></nav>
-<div><p>Les images de ce site sont des rendus de campagne générés par un outil d'intelligence artificielle à partir des pièces réelles. Les mannequins et les décors sont fictifs. <a href="visuels.html">Nous l'expliquons ici</a>.</p></div>
+<nav aria-label="Pied de page" data-reveal style="--i:1"><a href="pieces.html">Pièces</a><a href="atelier.html">Atelier</a><a href="retouches.html">Retouches</a><a href="contact.html">Contact</a><a href="visuels.html">À propos des visuels</a></nav>
+<div data-reveal style="--i:2"><p>Les images de ce site sont des rendus de campagne générés par un outil d'intelligence artificielle à partir des pièces réelles. Les mannequins et les décors sont fictifs. <a href="visuels.html">Nous l'expliquons ici</a>.</p></div>
 </div>
-<div class="legal"><span>© 2026 AJ</span><span>Une seule veste de chaque.</span></div>
+<div class="legal" data-reveal style="--i:3"><span>© 2026 AJ</span><span>Une seule veste de chaque.</span></div>
 </div></footer>
 <script src="assets/js/config.js"></script>
 <script src="assets/js/site.js"></script>
+<script src="assets/js/lenis.min.js"></script>
+<script src="assets/js/motion.js"></script>
 </body>
 </html>

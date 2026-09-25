@@ -1,5 +1,5 @@
 /* AJ — feuille de style du site. Aucune dépendance. */
-@import url("fonts.css");
+/* Les polices sont chargées par assets/css/fonts.css, lié directement dans chaque page. */
 
 :root{
   --bg:#0b0f13;
@@ -121,3 +121,112 @@ ul,ol{padding-left:1.2em}
 .legal{margin-top:36px;font-size:12.5px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
 .grid-note{font-size:12.5px;color:var(--muted);letter-spacing:.02em;margin:18px 0 0;text-wrap:pretty}
 .grid-note a{color:var(--muted)}
+
+/* ------------------------------------------------------------------ Mouvement
+   Les règles préfixées par .js ne s'appliquent que si JavaScript est actif ;
+   sans JS, ou si l'utilisateur préfère réduire les animations (.reduce), tout est visible immédiatement. */
+:root{--ease-out:cubic-bezier(.2,.7,.2,1);--ease-inout:cubic-bezier(.77,0,.18,1)}
+html.js:not(.reduce){scroll-behavior:auto}
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:vt-out .35s ease both}
+::view-transition-new(root){animation:vt-in .5s ease both}
+@keyframes vt-out{to{opacity:0}}
+@keyframes vt-in{from{opacity:0}}
+.site-header{view-transition-name:site-header}
+::view-transition-group(site-header){animation-duration:.01s}
+
+/* Grain de film */
+body::after{content:"";position:fixed;inset:-100px;pointer-events:none;z-index:45;opacity:.055;mix-blend-mode:screen;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .7 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:240px 240px}
+@media (hover:hover){.js:not(.reduce) body::after{animation:grain 1.2s steps(6) infinite}}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-30px,20px)}40%{transform:translate(20px,-40px)}60%{transform:translate(-40px,-10px)}80%{transform:translate(30px,30px)}100%{transform:translate(0,0)}}
+
+/* Barre de progression */
+.progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:60;background:var(--text);transform:scaleX(var(--p,0));transform-origin:left;pointer-events:none;opacity:0}
+.js:not(.reduce) .progress{opacity:.8}
+
+/* En-tête fixe, verre au défilement, se cache en descendant */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:40;transition:transform .55s var(--ease-inout),background .4s,border-color .4s,backdrop-filter .4s;border-bottom:1px solid transparent}
+.site-header.solid{position:fixed}
+.site-header.glass,.site-header.solid{background:rgba(11,15,19,.62);-webkit-backdrop-filter:blur(16px) saturate(1.3);backdrop-filter:blur(16px) saturate(1.3);border-bottom-color:rgba(232,227,216,.08)}
+.js:not(.reduce) .site-header.hide{transform:translateY(-101%)}
+body.inner main{padding-top:var(--header-h,76px)}
+.nav a{position:relative;border-bottom:0}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease-inout)}
+.nav a:hover::after,.nav a[aria-current=page]::after{transform:scaleX(1);transform-origin:left}
+.brand img{transition:transform .6s var(--ease-out)}
+.brand:hover img{transform:rotate(-8deg) scale(1.06)}
+@media (max-width:600px){
+  .bar{flex-wrap:nowrap;padding-top:14px;padding-bottom:14px}
+  .brand span{display:none}
+  .brand img{width:32px}
+  .nav{gap:12px}
+  .nav a{font-size:11px;letter-spacing:.1em}
+  body.inner main{--header-h:62px}
+}
+
+/* Rideau d'introduction */
+.intro{display:none}
+.js:not(.reduce) .intro{display:grid;place-items:center;position:fixed;inset:0;z-index:100;background:var(--bg);animation:intro-out .9s var(--ease-inout) 1.4s forwards}
+.js:not(.reduce) .intro img{width:76px;height:auto;opacity:0;transform:translateY(12px);animation:intro-in .9s var(--ease-out) .1s forwards}
+@keyframes intro-in{to{opacity:1;transform:none}}
+@keyframes intro-out{to{transform:translateY(-100%);visibility:hidden}}
+
+/* Hero : zoom lent et parallaxe */
+.hero-text h1{font-size:clamp(52px,9.5vw,136px);letter-spacing:-.015em}
+.hero picture{will-change:transform}
+.hero picture img{height:124%;top:-12%}
+.js:not(.reduce) .hero picture{transform:scale(1.1);transition:transform 2.6s var(--ease-out)}
+.js:not(.reduce) .hero.in picture{transform:scale(1)}
+
+/* Apparitions au défilement */
+.js:not(.reduce) [data-reveal]:not([data-split]){opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease-out),transform 1s var(--ease-out);transition-delay:calc(var(--i,0)*90ms)}
+.js:not(.reduce) [data-reveal]:not([data-split]).in{opacity:1;transform:none}
+.js:not(.reduce) .wipe[data-reveal]{opacity:1;transform:none;clip-path:inset(0 0 100% 0);transition:clip-path 1.3s var(--ease-inout);transition-delay:calc(var(--i,0)*90ms)}
+.js:not(.reduce) .wipe[data-reveal] img{transform:scale(1.12);transition:transform 1.8s var(--ease-out);transition-delay:calc(var(--i,0)*90ms)}
+.js:not(.reduce) .wipe[data-reveal].in{clip-path:inset(0)}
+.js:not(.reduce) .wipe[data-reveal].in img{transform:none}
+.fig{overflow:hidden}
+
+/* Titres mot à mot */
+.js:not(.reduce) [data-split] .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.14em;margin-bottom:-.14em}
+.js:not(.reduce) [data-split] .wi{display:inline-block;transform:translateY(110%);transition:transform 1.1s var(--ease-out);transition-delay:calc(var(--i,0)*55ms)}
+.js:not(.reduce) [data-split].in .wi{transform:none}
+
+/* Cartes : zoom et bascule vers la vue de dos au survol */
+.card .pic{display:block;position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--bg-2)}
+.card picture{display:block;position:absolute;inset:0}
+.card img{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;transition:transform 1.4s var(--ease-out),opacity .7s ease}
+.card .back{opacity:0}
+.card:hover img,.card:focus-visible img{transform:scale(1.05)}
+.card:hover .back,.card:focus-visible .back{opacity:1}
+.card .more{position:relative;border-bottom:0;padding-bottom:3px}
+.card .more::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(.35);transform-origin:left;transition:transform .5s var(--ease-inout)}
+.card:hover .more::after{transform:scaleX(1)}
+
+/* Boutons : remplissage par le bas, magnétisme */
+.btn{position:relative;overflow:hidden;isolation:isolate;transition:color .35s,transform .45s var(--ease-out)}
+.btn::before{content:"";position:absolute;inset:0;background:var(--text);transform:translateY(101%);transition:transform .5s var(--ease-inout);z-index:-1}
+.btn:hover::before,.btn:focus-visible::before{transform:none}
+.btn:hover{background:transparent;color:var(--bg)}
+
+/* Bande défilante */
+.marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0;font-family:var(--font-display);font-size:clamp(24px,3.4vw,44px);line-height:1;white-space:nowrap;color:var(--text)}
+.marquee .track{display:inline-flex;align-items:center}
+.marquee span{padding:0 .8em}
+.marquee .dot{color:var(--muted);font-size:.5em}
+.js:not(.reduce) .marquee .track{animation:marquee 46s linear infinite;will-change:transform}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* Galerie horizontale de la campagne */
+.strip{display:flex;gap:clamp(12px,2vw,24px);overflow-x:auto;scroll-snap-type:x mandatory;padding:0 var(--gutter) 12px;scrollbar-width:none;-webkit-overflow-scrolling:touch;cursor:grab}
+.strip::-webkit-scrollbar{display:none}
+.strip:active{cursor:grabbing}
+.strip-item{flex:0 0 min(78vw,640px);scroll-snap-align:start;text-decoration:none;color:var(--muted)}
+.strip-item .fig img{aspect-ratio:3/2;object-fit:cover}
+.strip-item figcaption{display:flex;justify-content:space-between;gap:12px}
+.strip-item figcaption b{font-weight:500;color:var(--text)}
+.strip-item:hover figcaption b{text-decoration:underline;text-underline-offset:.2em}
+
+/* Lenis (défilement inertiel) : règles de base recommandées */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth iframe{pointer-events:none}

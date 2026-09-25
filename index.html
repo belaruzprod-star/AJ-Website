@@ -3,81 +3,91 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add('js')</script>
 <title>AJ — Vestes en pièces uniques, cousues par Julia</title>
 <meta name="description" content="AJ : des vestes en pièces uniques, cousues une par une par Julia dans des tissus achetés en France. Pas d'usine, pas de série.">
 <meta name="theme-color" content="#0b0f13">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
+<div class="progress" aria-hidden="true"></div>
+<div class="intro" aria-hidden="true"><img src="assets/logo/aj-monogramme-papier.svg" alt="" width="76" height="70"></div>
 <a class="skip" href="#contenu">Aller au contenu</a>
 <header class="site-header"><div class="wrap bar"><a class="brand" href="index.html" aria-label="AJ, accueil"><img src="assets/logo/aj-monogramme-papier.svg" alt="" width="38" height="35"><span aria-hidden="true">AJ</span></a><nav class="nav" aria-label="Navigation principale"><a href="pieces.html">Pièces</a><a href="atelier.html">Atelier</a><a href="retouches.html">Retouches</a><a href="contact.html">Contact</a></nav></div></header>
 <main id="contenu">
-<section class="hero" style="--pos:60% 40%">
-<picture><source type="image/webp" srcset="assets/img/07-indigo-dos-768.webp 768w, assets/img/07-indigo-dos-1536.webp 1536w" sizes="100vw"><img src="assets/img/07-indigo-dos-1536.jpg" srcset="assets/img/07-indigo-dos-768.jpg 768w, assets/img/07-indigo-dos-1536.jpg 1536w" sizes="100vw" width="1536" height="1024" alt="Rendu généré : dos de la veste indigo, panneau entier en toile de Jouy beige et bleu." fetchpriority="high" decoding="async"></picture>
+<section class="hero" data-parallax-box style="--pos:60% 40%">
+<picture><source type="image/webp" srcset="assets/img/07-indigo-dos-768.webp 768w, assets/img/07-indigo-dos-1536.webp 1536w" sizes="100vw"><img src="assets/img/07-indigo-dos-1536.jpg" srcset="assets/img/07-indigo-dos-768.jpg 768w, assets/img/07-indigo-dos-1536.jpg 1536w" sizes="100vw" width="1536" height="1024" alt="Rendu généré : dos de la veste indigo, panneau entier en toile de Jouy beige et bleu." fetchpriority="high" decoding="async" data-parallax="0.14"></picture>
 <div class="wrap hero-text">
-<p class="eyebrow">AJ · Vestes en pièces uniques</p>
-<h1>Une veste.<br>Une seule.</h1>
-<p class="lead">Chaque veste est cousue par Julia, dans des tissus achetés en France. Pas d'usine, pas de série : un seul exemplaire de chaque.</p>
-<a class="btn" href="pieces.html">Voir les pièces</a>
-<p class="note">Rendu de campagne généré à partir de la pièce réelle, mannequin fictif. <a href="visuels.html">À propos des visuels</a>.</p>
+<p class="eyebrow" data-reveal>AJ · Vestes en pièces uniques</p>
+<h1 data-split>Une veste.<br>Une seule.</h1>
+<p class="lead" data-reveal style="--i:3">Chaque veste est cousue par Julia, dans des tissus achetés en France. Pas d'usine, pas de série : un seul exemplaire de chaque.</p>
+<p data-reveal style="--i:4"><a class="btn" href="pieces.html">Voir les pièces</a></p>
+<p class="note" data-reveal style="--i:5">Rendu de campagne généré à partir de la pièce réelle, mannequin fictif. <a href="visuels.html">À propos des visuels</a>.</p>
 </div>
 </section>
 
 <section class="section"><div class="wrap">
 <div class="trio">
-<div><h3>Une seule de chaque</h3><p>Chaque veste existe en un seul exemplaire. Il n'y en aura pas d'autre identique.</p></div>
-<div><h3>Cousue par Julia</h3><p>Pas d'usine, pas de série. Chaque pièce est cousue par Julia, sur sa Juki 7000A.</p></div>
-<div><h3>Tissus de France</h3><p>Les tissus sont achetés en France, toiles de Jouy comprises.</p></div>
+<div data-reveal style="--i:0"><h3>Une seule de chaque</h3><p>Chaque veste existe en un seul exemplaire. Il n'y en aura pas d'autre identique.</p></div>
+<div data-reveal style="--i:1"><h3>Cousue par Julia</h3><p>Pas d'usine, pas de série. Chaque pièce est cousue par Julia, sur sa Juki 7000A.</p></div>
+<div data-reveal style="--i:2"><h3>Tissus de France</h3><p>Les tissus sont achetés en France, toiles de Jouy comprises.</p></div>
 </div>
 </div></section>
 
-<section class="section tight"><div class="wrap">
-<div class="section-head"><p class="eyebrow">Les pièces</p><h2>Trois vestes. Une seule de chaque.</h2></div>
-<div class="grid"><a class="card" href="veste-bleue.html" style="--pos:40% 50%">
-<picture><source type="image/webp" srcset="assets/img/01-bleu-ouvert-768.webp 768w, assets/img/01-bleu-ouvert-1536.webp 1536w" sizes="(min-width: 1000px) 380px, (min-width: 660px) 45vw, 92vw"><img src="assets/img/01-bleu-ouvert-1536.jpg" srcset="assets/img/01-bleu-ouvert-768.jpg 768w, assets/img/01-bleu-ouvert-1536.jpg 1536w" sizes="(min-width: 1000px) 380px, (min-width: 660px) 45vw, 92vw" width="1536" height="1024" alt="Rendu généré : la veste bleue ceinturée portée ouverte, parements en toile de Jouy le long de l'encolure, vue de face." loading="lazy" decoding="async"></picture>
+<div class="marquee" aria-hidden="true"><div class="track"><span>Une veste. Une seule.</span><span class="dot" aria-hidden="true">◆</span><span>Cousue par Julia</span><span class="dot" aria-hidden="true">◆</span><span>Tissus achetés en France</span><span class="dot" aria-hidden="true">◆</span><span>Pas d'usine, pas de série</span><span class="dot" aria-hidden="true">◆</span><span>Pièces uniques</span><span class="dot" aria-hidden="true">◆</span><span>Une veste. Une seule.</span><span class="dot" aria-hidden="true">◆</span><span>Cousue par Julia</span><span class="dot" aria-hidden="true">◆</span><span>Tissus achetés en France</span><span class="dot" aria-hidden="true">◆</span><span>Pas d'usine, pas de série</span><span class="dot" aria-hidden="true">◆</span><span>Pièces uniques</span><span class="dot" aria-hidden="true">◆</span></div></div>
+
+<section class="section"><div class="wrap">
+<div class="section-head"><p class="eyebrow" data-reveal>Les pièces</p><h2 data-split>Trois vestes. Une seule de chaque.</h2></div>
+<div class="grid"><a class="card" href="veste-bleue.html" data-reveal style="--i:0;--pos:40% 50%">
+<span class="pic"><picture><source type="image/webp" srcset="assets/img/01-bleu-ouvert-768.webp 768w, assets/img/01-bleu-ouvert-1536.webp 1536w" sizes="(min-width: 1000px) 380px, (min-width: 660px) 45vw, 92vw"><img src="assets/img/01-bleu-ouvert-1536.jpg" srcset="assets/img/01-bleu-ouvert-768.jpg 768w, assets/img/01-bleu-ouvert-1536.jpg 1536w" sizes="(min-width: 1000px) 380px, (min-width: 660px) 45vw, 92vw" width="1536" height="1024" alt="Rendu généré : la veste bleue ceinturée portée ouverte, parements en toile de Jouy le long de l'encolure, vue de face." loading="lazy" decoding="async" style="view-transition-name:piece-veste-bleue"></picture><picture class="back" aria-hidden="true"><source type="image/webp" srcset="assets/img/02-bleu-dos-768.webp 768w, assets/img/02-bleu-dos-1536.webp 1536w" sizes="(min-width: 1000px) 380px, (min-width: 660px) 45vw, 92vw"><img src="assets/img/02-bleu-dos-1536.jpg" srcset="assets/img/02-bleu-dos-768.jpg 768w, assets/img/02-bleu-dos-1536.jpg 1536w" sizes="(min-width: 1000px) 380px, (min-width: 660px) 45vw, 92vw" width="1536" height="1024" alt="" loading="lazy" decoding="async" style="object-position:50% 50%"></picture></span>
 <span class="num">01 · Pièce unique</span>
 <h3>Veste bleue ceinturée</h3>
 <p>Bleu profond au reflet lustré, ceinture et parements en toile de Jouy crème et bleu.</p>
 <span class="more">Voir la pièce</span>
-</a><a class="card" href="surchemise-ecrue.html" style="--pos:33% 50%">
-<picture><source type="image/webp" srcset="assets/img/04-ecru-face-768.webp 768w, assets/img/04-ecru-face-1536.webp 1536w" sizes="(min-width: 1000px) 380px, (min-width: 660px) 45vw, 92vw"><img src="assets/img/04-ecru-face-1536.jpg" srcset="assets/img/04-ecru-face-768.jpg 768w, assets/img/04-ecru-face-1536.jpg 1536w" sizes="(min-width: 1000px) 380px, (min-width: 660px) 45vw, 92vw" width="1536" height="1024" alt="Rendu généré : la surchemise écrue côtelée zippée, col pointu, vue de face." loading="lazy" decoding="async"></picture>
+</a><a class="card" href="surchemise-ecrue.html" data-reveal style="--i:1;--pos:33% 50%">
+<span class="pic"><picture><source type="image/webp" srcset="assets/img/04-ecru-face-768.webp 768w, assets/img/04-ecru-face-1536.webp 1536w" sizes="(min-width: 1000px) 380px, (min-width: 660px) 45vw, 92vw"><img src="assets/img/04-ecru-face-1536.jpg" srcset="assets/img/04-ecru-face-768.jpg 768w, assets/img/04-ecru-face-1536.jpg 1536w" sizes="(min-width: 1000px) 380px, (min-width: 660px) 45vw, 92vw" width="1536" height="1024" alt="Rendu généré : la surchemise écrue côtelée zippée, col pointu, vue de face." loading="lazy" decoding="async" style="view-transition-name:piece-surchemise-ecrue"></picture><picture class="back" aria-hidden="true"><source type="image/webp" srcset="assets/img/05-ecru-dos-768.webp 768w, assets/img/05-ecru-dos-1536.webp 1536w" sizes="(min-width: 1000px) 380px, (min-width: 660px) 45vw, 92vw"><img src="assets/img/05-ecru-dos-1536.jpg" srcset="assets/img/05-ecru-dos-768.jpg 768w, assets/img/05-ecru-dos-1536.jpg 1536w" sizes="(min-width: 1000px) 380px, (min-width: 660px) 45vw, 92vw" width="1536" height="1024" alt="" loading="lazy" decoding="async" style="object-position:35% 50%"></picture></span>
 <span class="num">02 · Pièce unique</span>
 <h3>Surchemise écrue côtelée</h3>
 <p>Longue et ample, zip central, dos entier en toile de Jouy gris-sauge.</p>
 <span class="more">Voir la pièce</span>
-</a><a class="card" href="veste-indigo.html" style="--pos:37% 50%">
-<picture><source type="image/webp" srcset="assets/img/06-indigo-face-768.webp 768w, assets/img/06-indigo-face-1536.webp 1536w" sizes="(min-width: 1000px) 380px, (min-width: 660px) 45vw, 92vw"><img src="assets/img/06-indigo-face-1536.jpg" srcset="assets/img/06-indigo-face-768.jpg 768w, assets/img/06-indigo-face-1536.jpg 1536w" sizes="(min-width: 1000px) 380px, (min-width: 660px) 45vw, 92vw" width="1536" height="1024" alt="Rendu généré : la veste indigo zippée, deux poches basses bordées de toile de Jouy, vue de face." loading="lazy" decoding="async"></picture>
+</a><a class="card" href="veste-indigo.html" data-reveal style="--i:2;--pos:37% 50%">
+<span class="pic"><picture><source type="image/webp" srcset="assets/img/06-indigo-face-768.webp 768w, assets/img/06-indigo-face-1536.webp 1536w" sizes="(min-width: 1000px) 380px, (min-width: 660px) 45vw, 92vw"><img src="assets/img/06-indigo-face-1536.jpg" srcset="assets/img/06-indigo-face-768.jpg 768w, assets/img/06-indigo-face-1536.jpg 1536w" sizes="(min-width: 1000px) 380px, (min-width: 660px) 45vw, 92vw" width="1536" height="1024" alt="Rendu généré : la veste indigo zippée, deux poches basses bordées de toile de Jouy, vue de face." loading="lazy" decoding="async" style="view-transition-name:piece-veste-indigo"></picture><picture class="back" aria-hidden="true"><source type="image/webp" srcset="assets/img/07-indigo-dos-768.webp 768w, assets/img/07-indigo-dos-1536.webp 1536w" sizes="(min-width: 1000px) 380px, (min-width: 660px) 45vw, 92vw"><img src="assets/img/07-indigo-dos-1536.jpg" srcset="assets/img/07-indigo-dos-768.jpg 768w, assets/img/07-indigo-dos-1536.jpg 1536w" sizes="(min-width: 1000px) 380px, (min-width: 660px) 45vw, 92vw" width="1536" height="1024" alt="" loading="lazy" decoding="async" style="object-position:60% 40%"></picture></span>
 <span class="num">03 · Pièce unique</span>
 <h3>Veste indigo</h3>
 <p>Denim indigo, zip métal, poches bordées de toile de Jouy, dos entier beige et bleu.</p>
 <span class="more">Voir la pièce</span>
-</a></div><p class="grid-note">Rendus de campagne générés à partir des pièces réelles, mannequins fictifs. <a href="visuels.html">À propos des visuels</a>.</p>
+</a></div><p class="grid-note" data-reveal>Rendus de campagne générés à partir des pièces réelles, mannequins fictifs. <a href="visuels.html">À propos des visuels</a>.</p>
 </div></section>
 
-<section class="section tight"><div class="wrap">
+<section class="section tight"><div class="wrap section-head"><p class="eyebrow" data-reveal>La campagne</p><h2 data-split>Neuf vues, trois vestes.</h2></div><div class="strip" tabindex="0" aria-label="Galerie de la campagne, défilement horizontal"><a class="strip-item" href="veste-bleue.html" data-reveal style="--i:0"><figure class="fig"><picture><source type="image/webp" srcset="assets/img/01-bleu-ouvert-768.webp 768w, assets/img/01-bleu-ouvert-1536.webp 1536w" sizes="(min-width: 900px) 640px, 78vw"><img src="assets/img/01-bleu-ouvert-1536.jpg" srcset="assets/img/01-bleu-ouvert-768.jpg 768w, assets/img/01-bleu-ouvert-1536.jpg 1536w" sizes="(min-width: 900px) 640px, 78vw" width="1536" height="1024" alt="Rendu généré : la veste bleue ceinturée portée ouverte, parements en toile de Jouy le long de l'encolure, vue de face." loading="lazy" decoding="async"></picture><figcaption><b>Veste bleue ceinturée</b><span>01 / 09</span></figcaption></figure></a><a class="strip-item" href="veste-bleue.html" data-reveal style="--i:1"><figure class="fig"><picture><source type="image/webp" srcset="assets/img/02-bleu-dos-768.webp 768w, assets/img/02-bleu-dos-1536.webp 1536w" sizes="(min-width: 900px) 640px, 78vw"><img src="assets/img/02-bleu-dos-1536.jpg" srcset="assets/img/02-bleu-dos-768.jpg 768w, assets/img/02-bleu-dos-1536.jpg 1536w" sizes="(min-width: 900px) 640px, 78vw" width="1536" height="1024" alt="Rendu généré : dos de la veste bleue, entièrement en toile de Jouy crème et bleu, ceinture à la taille." loading="lazy" decoding="async"></picture><figcaption><b>Veste bleue ceinturée</b><span>02 / 09</span></figcaption></figure></a><a class="strip-item" href="veste-bleue.html" data-reveal style="--i:2"><figure class="fig"><picture><source type="image/webp" srcset="assets/img/03-bleu-ferme-768.webp 768w, assets/img/03-bleu-ferme-1536.webp 1536w" sizes="(min-width: 900px) 640px, 78vw"><img src="assets/img/03-bleu-ferme-1536.jpg" srcset="assets/img/03-bleu-ferme-768.jpg 768w, assets/img/03-bleu-ferme-1536.jpg 1536w" sizes="(min-width: 900px) 640px, 78vw" width="1536" height="1024" alt="Rendu généré : la veste bleue portée parements rabattus, encolure en V unie, ceinture en toile de Jouy." loading="lazy" decoding="async"></picture><figcaption><b>Veste bleue ceinturée</b><span>03 / 09</span></figcaption></figure></a><a class="strip-item" href="surchemise-ecrue.html" data-reveal style="--i:0"><figure class="fig"><picture><source type="image/webp" srcset="assets/img/04-ecru-face-768.webp 768w, assets/img/04-ecru-face-1536.webp 1536w" sizes="(min-width: 900px) 640px, 78vw"><img src="assets/img/04-ecru-face-1536.jpg" srcset="assets/img/04-ecru-face-768.jpg 768w, assets/img/04-ecru-face-1536.jpg 1536w" sizes="(min-width: 900px) 640px, 78vw" width="1536" height="1024" alt="Rendu généré : la surchemise écrue côtelée zippée, col pointu, vue de face." loading="lazy" decoding="async"></picture><figcaption><b>Surchemise écrue côtelée</b><span>04 / 09</span></figcaption></figure></a><a class="strip-item" href="surchemise-ecrue.html" data-reveal style="--i:1"><figure class="fig"><picture><source type="image/webp" srcset="assets/img/05-ecru-dos-768.webp 768w, assets/img/05-ecru-dos-1536.webp 1536w" sizes="(min-width: 900px) 640px, 78vw"><img src="assets/img/05-ecru-dos-1536.jpg" srcset="assets/img/05-ecru-dos-768.jpg 768w, assets/img/05-ecru-dos-1536.jpg 1536w" sizes="(min-width: 900px) 640px, 78vw" width="1536" height="1024" alt="Rendu généré : dos de la surchemise écrue, panneau entier en toile de Jouy gris-sauge et crème." loading="lazy" decoding="async"></picture><figcaption><b>Surchemise écrue côtelée</b><span>05 / 09</span></figcaption></figure></a><a class="strip-item" href="veste-indigo.html" data-reveal style="--i:2"><figure class="fig"><picture><source type="image/webp" srcset="assets/img/06-indigo-face-768.webp 768w, assets/img/06-indigo-face-1536.webp 1536w" sizes="(min-width: 900px) 640px, 78vw"><img src="assets/img/06-indigo-face-1536.jpg" srcset="assets/img/06-indigo-face-768.jpg 768w, assets/img/06-indigo-face-1536.jpg 1536w" sizes="(min-width: 900px) 640px, 78vw" width="1536" height="1024" alt="Rendu généré : la veste indigo zippée, deux poches basses bordées de toile de Jouy, vue de face." loading="lazy" decoding="async"></picture><figcaption><b>Veste indigo</b><span>06 / 09</span></figcaption></figure></a><a class="strip-item" href="veste-indigo.html" data-reveal style="--i:0"><figure class="fig"><picture><source type="image/webp" srcset="assets/img/07-indigo-dos-768.webp 768w, assets/img/07-indigo-dos-1536.webp 1536w" sizes="(min-width: 900px) 640px, 78vw"><img src="assets/img/07-indigo-dos-1536.jpg" srcset="assets/img/07-indigo-dos-768.jpg 768w, assets/img/07-indigo-dos-1536.jpg 1536w" sizes="(min-width: 900px) 640px, 78vw" width="1536" height="1024" alt="Rendu généré : dos de la veste indigo, panneau entier en toile de Jouy beige et bleu." loading="lazy" decoding="async"></picture><figcaption><b>Veste indigo</b><span>07 / 09</span></figcaption></figure></a><a class="strip-item" href="veste-indigo.html" data-reveal style="--i:1"><figure class="fig"><picture><source type="image/webp" srcset="assets/img/08-indigo-duo-768.webp 768w, assets/img/08-indigo-duo-1536.webp 1536w" sizes="(min-width: 900px) 640px, 78vw"><img src="assets/img/08-indigo-duo-1536.jpg" srcset="assets/img/08-indigo-duo-768.jpg 768w, assets/img/08-indigo-duo-1536.jpg 1536w" sizes="(min-width: 900px) 640px, 78vw" width="1536" height="1024" alt="Rendu généré : la veste indigo vue de dos, portée à côté d'une seconde silhouette en tenue noire." loading="lazy" decoding="async"></picture><figcaption><b>Veste indigo</b><span>08 / 09</span></figcaption></figure></a><a class="strip-item" href="surchemise-ecrue.html" data-reveal style="--i:2"><figure class="fig"><picture><source type="image/webp" srcset="assets/img/09-ecru-porte-768.webp 768w, assets/img/09-ecru-porte-1536.webp 1536w" sizes="(min-width: 900px) 640px, 78vw"><img src="assets/img/09-ecru-porte-1536.jpg" srcset="assets/img/09-ecru-porte-768.jpg 768w, assets/img/09-ecru-porte-1536.jpg 1536w" sizes="(min-width: 900px) 640px, 78vw" width="1536" height="1024" alt="Rendu généré : la surchemise écrue vue de trois quarts dos, toile de Jouy gris-sauge." loading="lazy" decoding="async"></picture><figcaption><b>Surchemise écrue côtelée</b><span>09 / 09</span></figcaption></figure></a></div><div class="wrap"><p class="grid-note" data-reveal>Rendus de campagne générés à partir des pièces réelles, mannequins fictifs. <a href="visuels.html">À propos des visuels</a>.</p></div></section>
+
+<section class="section"><div class="wrap">
 <div class="split">
-<div><p class="eyebrow">L'atelier</p><h2>Cousue par une seule personne.</h2>
-<p>Julia a un BTS Mode. Elle travaille comme conseillère de vente en prêt-à-porter féminin dans le Marais, et coud par passion. Chaque veste AJ passe par sa machine, une Juki 7000A.</p>
-<p><a class="btn" href="atelier.html">Découvrir l'atelier</a></p></div>
-<figure class="fig"><picture><source type="image/webp" srcset="assets/img/09-ecru-porte-768.webp 768w, assets/img/09-ecru-porte-1536.webp 1536w" sizes="(min-width: 860px) 45vw, 92vw"><img src="assets/img/09-ecru-porte-1536.jpg" srcset="assets/img/09-ecru-porte-768.jpg 768w, assets/img/09-ecru-porte-1536.jpg 1536w" sizes="(min-width: 860px) 45vw, 92vw" width="1536" height="1024" alt="Rendu généré : la surchemise écrue vue de trois quarts dos, toile de Jouy gris-sauge." loading="lazy" decoding="async"></picture><figcaption>Rendu de campagne généré à partir de la pièce réelle, mannequin fictif. Les couleurs, motifs et coutures peuvent différer de la pièce. <a href="visuels.html">À propos des visuels</a>.</figcaption></figure>
+<div><p class="eyebrow" data-reveal>L'atelier</p><h2 data-split>Cousue par une seule personne.</h2>
+<p data-reveal style="--i:2">Julia a un BTS Mode. Elle travaille comme conseillère de vente en prêt-à-porter féminin dans le Marais, et coud par passion. Chaque veste AJ passe par sa machine, une Juki 7000A.</p>
+<p data-reveal style="--i:3"><a class="btn" href="atelier.html">Découvrir l'atelier</a></p></div>
+<figure class="fig wipe" data-reveal style="--i:1"><picture><source type="image/webp" srcset="assets/img/09-ecru-porte-768.webp 768w, assets/img/09-ecru-porte-1536.webp 1536w" sizes="(min-width: 860px) 45vw, 92vw"><img src="assets/img/09-ecru-porte-1536.jpg" srcset="assets/img/09-ecru-porte-768.jpg 768w, assets/img/09-ecru-porte-1536.jpg 1536w" sizes="(min-width: 860px) 45vw, 92vw" width="1536" height="1024" alt="Rendu généré : la surchemise écrue vue de trois quarts dos, toile de Jouy gris-sauge." loading="lazy" decoding="async"></picture><figcaption>Rendu de campagne généré à partir de la pièce réelle, mannequin fictif. Les couleurs, motifs et coutures peuvent différer de la pièce. <a href="visuels.html">À propos des visuels</a>.</figcaption></figure>
 </div>
 </div></section>
 
 <section class="section tight"><div class="wrap">
-<div class="cta"><p>Julia propose aussi des retouches : ourlets et autres reprises.</p><a class="btn" href="retouches.html">Les retouches</a></div>
+<div class="cta" data-reveal><p>Julia propose aussi des retouches : ourlets et autres reprises.</p><a class="btn" href="retouches.html">Les retouches</a></div>
 </div></section>
 </main>
 <footer class="site-footer"><div class="wrap">
 <div class="foot">
-<div><a class="brand" href="index.html" aria-label="AJ, accueil"><img src="assets/logo/aj-monogramme-papier.svg" alt="" width="30" height="27"><span aria-hidden="true">AJ</span></a>
+<div data-reveal><a class="brand" href="index.html" aria-label="AJ, accueil"><img src="assets/logo/aj-monogramme-papier.svg" alt="" width="30" height="27"><span aria-hidden="true">AJ</span></a>
 <p>Vestes en pièces uniques, cousues par Julia dans des tissus achetés en France.</p></div>
-<nav aria-label="Pied de page"><a href="pieces.html">Pièces</a><a href="atelier.html">Atelier</a><a href="retouches.html">Retouches</a><a href="contact.html">Contact</a><a href="visuels.html">À propos des visuels</a></nav>
-<div><p>Les images de ce site sont des rendus de campagne générés par un outil d'intelligence artificielle à partir des pièces réelles. Les mannequins et les décors sont fictifs. <a href="visuels.html">Nous l'expliquons ici</a>.</p></div>
+<nav aria-label="Pied de page" data-reveal style="--i:1"><a href="pieces.html">Pièces</a><a href="atelier.html">Atelier</a><a href="retouches.html">Retouches</a><a href="contact.html">Contact</a><a href="visuels.html">À propos des visuels</a></nav>
+<div data-reveal style="--i:2"><p>Les images de ce site sont des rendus de campagne générés par un outil d'intelligence artificielle à partir des pièces réelles. Les mannequins et les décors sont fictifs. <a href="visuels.html">Nous l'expliquons ici</a>.</p></div>
 </div>
-<div class="legal"><span>© 2026 AJ</span><span>Une seule veste de chaque.</span></div>
+<div class="legal" data-reveal style="--i:3"><span>© 2026 AJ</span><span>Une seule veste de chaque.</span></div>
 </div></footer>
 <script src="assets/js/config.js"></script>
 <script src="assets/js/site.js"></script>
+<script src="assets/js/lenis.min.js"></script>
+<script src="assets/js/motion.js"></script>
 </body>
 </html>
