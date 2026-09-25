@@ -278,3 +278,13 @@ body::after{content:"";position:fixed;inset:-100px;pointer-events:none;z-index:4
 /* Lenis (défilement inertiel) : règles de base recommandées */
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth iframe{pointer-events:none}
+
+/* ------------------------------------------------------------------ V5 : pages de texte (retouches, visuels, mentions, 404) */
+.scene{position:relative}
+.scene-text{min-height:100svh;display:grid;align-items:center;padding:clamp(120px,18vh,200px) 0 clamp(64px,10vh,120px)}
+.text-page .eyebrow{margin-bottom:1.6em}
+.text-page .text-title{font-size:clamp(44px,9vw,132px);letter-spacing:-.02em;margin-bottom:.35em}
+.text-page .lead{margin-bottom:2.2em}
+.text-page .prose{max-width:40em}
+.text-page .prose h2{font-size:clamp(26px,3vw,38px);margin-top:1.8em}
+body.inner .site-header{display:none}
