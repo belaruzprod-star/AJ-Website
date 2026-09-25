@@ -40,16 +40,23 @@
     el.setAttribute('data-reveal', '');
   });
 
-  /* Apparitions au défilement */
+  /* Apparitions au défilement : un élément apparaît dès que son bord haut passe sous le bas de l'écran,
+     ou s'il est déjà passé au-dessus (saut de défilement). Contrôle léger, exécuté au plus une fois par image. */
   var hero = document.querySelector('.hero');
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  var pending = [];
+  function reveal() {
+    if (!pending.length) return;
+    var vh = window.innerHeight, keep = [];
+    for (var i = 0; i < pending.length; i++) {
+      var el = pending[i];
+      if (el.getBoundingClientRect().top < vh) el.classList.add('in'); else keep.push(el);
+    }
+    pending = keep;
+  }
   function start() {
     doc.classList.add('ready');
-    document.querySelectorAll('[data-reveal]').forEach(function (el) { io.observe(el); });
+    pending = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
+    reveal();
     if (hero) hero.classList.add('in');
   }
   if (introShown) setTimeout(start, 1400); else start();
@@ -78,6 +85,7 @@
       var offset = (r.top + r.height / 2 - vh / 2) * speed;
       el.style.transform = 'translate3d(0,' + offset.toFixed(1) + 'px,0)';
     });
+    reveal();
     lastY = y; ticking = false;
   }
   window.addEventListener('scroll', function () {
