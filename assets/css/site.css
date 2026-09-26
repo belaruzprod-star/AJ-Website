@@ -288,3 +288,13 @@ html.lenis,html.lenis body{height:auto}
 .text-page .prose{max-width:40em}
 .text-page .prose h2{font-size:clamp(26px,3vw,38px);margin-top:1.8em}
 body.inner .site-header{display:none}
+
+/* V5 : fond en perspective des pages de texte (même esprit que la scène contact), sans image */
+.scene-text{position:relative;isolation:isolate;overflow:hidden;overflow:clip}
+.scene-text::before,.scene-text::after{content:"";position:absolute;left:-30%;right:-30%;height:60%;pointer-events:none;z-index:-1;
+  background-image:linear-gradient(rgba(232,227,216,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(232,227,216,.08) 1px,transparent 1px);
+  background-size:120px 120px;transform-origin:50% 100%;
+  -webkit-mask-image:radial-gradient(ellipse at 50% 100%,#000 20%,transparent 70%);mask-image:radial-gradient(ellipse at 50% 100%,#000 20%,transparent 70%)}
+.scene-text::before{bottom:-12%;transform:perspective(700px) rotateX(72deg)}
+.scene-text::after{display:none}
+.text-page{position:relative}
