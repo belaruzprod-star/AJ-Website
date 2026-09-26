@@ -7,7 +7,7 @@
 .scene-campagne{position:relative;background:var(--bg);color:var(--text);overflow:clip}
 .scene-campagne .cp-head{max-width:var(--max);margin:0 auto;padding:clamp(56px,9vw,128px) var(--gutter) clamp(28px,4vw,48px)}
 .scene-campagne .cp-head .eyebrow{margin-bottom:1.4em}
-.scene-campagne .cp-title{font-size:clamp(40px,7vw,112px);letter-spacing:-.015em;line-height:1;margin:0}
+.scene-campagne .cp-title{font-size:clamp(40px,6.2vw,108px);font-weight:500;letter-spacing:-.018em;line-height:.98;margin:0}
 .scene-campagne .cp-line{display:inline-block;vertical-align:bottom}
 .scene-campagne .cp-line-in{display:inline-block}
 .scene-campagne .cp-world{max-width:var(--max);margin:0 auto;padding:0 var(--gutter) clamp(56px,9vw,128px);display:grid;gap:clamp(32px,5vw,72px)}
@@ -17,7 +17,7 @@
 .scene-campagne .cp-frame img{object-fit:cover;object-position:var(--pos,50% 50%)}
 .scene-campagne .cp-frame canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1}
 .scene-campagne .cp-veil{display:none}
-.scene-campagne .cp-cap{display:flex;align-items:baseline;gap:1.4em;margin-top:12px;font:500 12px/1.5 var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.scene-campagne .cp-cap{display:flex;align-items:baseline;gap:1.4em;margin-top:12px;font:500 12px/1.5 var(--font-body);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
 .scene-campagne .cp-cap b{font-weight:500;color:var(--text)}
 .scene-campagne .cp-num{font-variant-numeric:tabular-nums}
 .scene-campagne .cp-item:focus-visible{outline:2px solid var(--accent);outline-offset:6px}
@@ -43,7 +43,7 @@
 .js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-item:focus-visible{outline-offset:10px}
 .js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-frame{background:var(--bg)}
 /* voile de profondeur : opacité pilotée par le script (0 au plan focal, ~.9 au loin) */
-.js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-veil{display:block;position:absolute;inset:-1px;z-index:2;background:#0f151c;opacity:0;pointer-events:none}
+.js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-veil{display:block;position:absolute;inset:-1px;z-index:2;background:var(--bg);opacity:0;pointer-events:none}
 /* légende ancrée au coin bas‑gauche, contre‑mise à l’échelle par le script pour rester à taille constante */
 .js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-cap{position:absolute;left:0;top:100%;margin-top:16px;transform-origin:0 0;opacity:0}
 .js:not(.reduce) .scene-campagne:not(.cp-flat) .cp-cap::before{content:"";display:inline-block;width:22px;height:1px;background:var(--muted);vertical-align:middle;margin-right:.2em}

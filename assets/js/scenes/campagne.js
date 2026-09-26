@@ -10,18 +10,19 @@
   var CFG = {
     perspective: 1000,          // distance focale (px) : scale = P / (P + z)
     gap: 900,                   // écart en Z entre deux images (px)
-    scrollPerImage: 900,        // défilement (px) par unité image, bureau  → hauteur d’épinglage = (camEnd − camStart) × 900 ≈ 9 200 px
+    scrollPerImage: 840,        // défilement (px) par unité image, bureau  → hauteur d’épinglage = (camEnd − camStart) × 900 ≈ 9 200 px
     scrollPerImageMobile: 520,  // idem, mobile (≤ 760 px de large) ≈ 5 300 px
-    camStart: -1.7,             // caméra au départ (unités image : l’image i est à z = i)
-    camEnd: 8.45,               // caméra à la fin : la neuvième image vient de dépasser la caméra
-    titleSpan: 1.0,             // unités de caméra pendant lesquelles le titre s’éloigne
-    fadeOut: [-0.03, -0.3],     // rel = i − cam : opacité 1 → 0 quand l’image dépasse la caméra (échelle 1,03 → 1,43)
+    camStart: -2.6,             // caméra au départ (unités image : l’image i est à z = i)
+    camEnd: 8.0,                // caméra à la fin : la neuvième image vient de dépasser la caméra
+    titleSpan: 0.7,             // unités de caméra pendant lesquelles le titre s’éloigne
+    passVeil: [0, 0.28],        // rel = i − cam (négatif) : l’image qui dépasse la caméra s’enfonce d’abord dans le fond (voile 0 → passDim), sans transparence
+    fadeOut: [-0.28, -0.4],     // rel : puis opacité 1 → 0, une fois voilée (l’image suivante émerge du fond, sans double exposition)
     fogNear: [0.18, 0.95],      // rel : voile 0 → fogNearMax juste derrière le plan focal (l’image suivante attend, voilée, que la précédente soit passée)
-    fogNearMax: 0.42,
+    fogNearMax: 0.6,
     fog: [0.95, 3.4],           // rel : voile fogNearMax → fogMax au loin
     fogMax: 0.94,
-    passDim: 0.7,               // voile ajouté à l’image qui dépasse la caméra (elle s’enfonce dans le noir en plus de s’effacer)
-    farFade: [3.2, 4.4],        // rel : opacité 1 → 0 tout au loin (au-delà : masquée)
+    passDim: 1,                 // opacité maximale du voile de l’image qui dépasse la caméra (1 : couleur du fond, opaque)
+    farFade: [1.9, 2.3],        // rel : opacité 1 → 0 au loin (au-delà : masquée ; la première image n’apparaît qu’une fois le titre parti)
     blur: [0.9, 3.6],           // rel : flou 0 → blurMax (bureau seulement)
     blurMax: 8,
     capIn: [0.62, 0.3],         // rel : légende 0 → 1 à l’approche
@@ -109,7 +110,7 @@
       if (rel < CFG.fadeOut[0]) a = ramp(rel, CFG.fadeOut[1], CFG.fadeOut[0]);
       if (rel > CFG.farFade[0]) a *= 1 - ramp(rel, CFG.farFade[0], CFG.farFade[1]);
       a *= reveal;
-      var v = rel < 0 ? ramp(-rel, 0, -CFG.fadeOut[1]) * CFG.passDim
+      var v = rel < 0 ? ramp(-rel, CFG.passVeil[0], CFG.passVeil[1]) * CFG.passDim
         : ramp(rel, CFG.fogNear[0], CFG.fogNear[1]) * CFG.fogNearMax + ramp(rel, CFG.fog[0], CFG.fog[1]) * (CFG.fogMax - CFG.fogNearMax);
       var b = mobile ? 0 : ramp(rel, CFG.blur[0], CFG.blur[1]) * CFG.blurMax;
       var c = ramp(rel, CFG.capIn[0], CFG.capIn[1]) * (1 - ramp(rel, CFG.capOut[0], CFG.capOut[1])) * reveal;

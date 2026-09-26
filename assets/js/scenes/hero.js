@@ -19,7 +19,7 @@
   var PARALLAX_LAYER2 = 26;    /* px : amplitude souris de la seconde ligne (couche proche) */
   var LAYER2_Z = 40;           /* px : translateZ de la seconde ligne (même valeur que hero.css) */
   var PIN_LENGTH = function () { return window.innerHeight; };   /* hauteur de défilement de la sortie : +100vh */
-  var PIN_SPACING = true;      /* false : la scène suivante glisse par-dessus pendant la sortie (elle doit alors être opaque et au-dessus) */
+  var PIN_SPACING = false;      /* false : la scène suivante glisse par-dessus pendant la sortie (elle doit alors être opaque et au-dessus) */
   var SCRUB = 0.6;             /* lissage du scrub (s) */
   var EXIT_SCALE = 0.86;       /* échelle finale de l'image */
   var EXIT_TEXT_Y = -70;       /* px : dérive verticale du texte pendant la sortie */

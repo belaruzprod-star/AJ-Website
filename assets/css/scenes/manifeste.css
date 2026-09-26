@@ -2,12 +2,12 @@
    (translate3d + scale) ; la perspective CSS du monde sert de référence (1000 px, même valeur dans manifeste.js).
    Sans JS ou en mouvement réduit (html.reduce) : phrases empilées à plat, lisibles, statiques. */
 
-.scene-manifeste{position:relative;min-height:100vh;min-height:100svh;background:var(--bg);color:var(--text);overflow:clip;isolation:isolate}
+.scene-manifeste{position:relative;z-index:2;min-height:100vh;min-height:100svh;background:var(--bg);color:var(--text);overflow:clip;isolation:isolate}
 
 /* ---- Phrases ------------------------------------------------------------- */
 .mf-world{position:relative;padding:clamp(80px,14vh,140px) var(--gutter);display:flex;flex-direction:column;justify-content:center;gap:clamp(18px,3vh,32px);min-height:100svh}
 .mf-line{position:relative;margin:0;font-family:var(--font-display);font-weight:500;font-size:clamp(32px,6.5vw,96px);line-height:1;letter-spacing:-.012em;color:var(--text);text-wrap:balance;max-width:11em}
-.mf-num{position:absolute;left:0;top:-1.55em;display:inline-flex;align-items:center;gap:10px;font:500 11px/1 var(--font-body);font-style:normal;letter-spacing:.22em;color:var(--muted);white-space:nowrap}
+.mf-num{position:absolute;left:0;top:-1.55em;display:inline-flex;align-items:center;gap:10px;font:500 11px/1 var(--font-body);font-style:normal;letter-spacing:.2em;color:var(--muted);white-space:nowrap}
 .mf-num::after{content:"";display:block;width:36px;height:1px;background:currentColor;opacity:.7}
 .mf-text{display:block}
 
@@ -27,7 +27,7 @@
 .mf-counter,.mf-tag{position:absolute;bottom:var(--gutter);font:500 11px/1 var(--font-body);letter-spacing:.22em;text-transform:uppercase;color:var(--muted);transform:translateY(-14px)}
 .mf-counter{left:var(--gutter);font-variant-numeric:tabular-nums}
 .mf-counter b{font-weight:500;color:var(--text)}
-.mf-tag{right:var(--gutter)}
+.mf-tag{right:var(--gutter);display:none}
 
 /* Flou de profondeur : bureau seulement (piloté par --mf-blur depuis le JS) */
 @media (hover:hover) and (pointer:fine){

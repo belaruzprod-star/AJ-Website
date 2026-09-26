@@ -1,6 +1,6 @@
 /* Scène « pieces » : anneau 3D de trois panneaux (perspective CSS). */
 .scene-pieces{
-  --ring-w:clamp(280px,min(34vw,44vh),520px);   /* largeur d'un panneau (de face : taille réelle) */
+  --ring-w:clamp(280px,min(36vw,52vh),560px);   /* largeur d'un panneau (de face : taille réelle) */
   --ring-r:calc(var(--ring-w) * 1.05);            /* rayon de l'anneau */
   --ring-tilt:-3deg;
   --ring-a:0deg;                                  /* rotation de l'anneau, pilotée par le JS */
@@ -8,12 +8,12 @@
   background:var(--bg);color:var(--text);
 }
 .scene-pieces .pieces-head{
-  position:absolute;left:0;right:0;top:clamp(56px,9vh,110px);z-index:3;pointer-events:none;
+  position:absolute;left:0;right:0;top:clamp(32px,5vh,56px);z-index:3;pointer-events:none;
   padding:0 var(--gutter);text-align:center;
 }
 .scene-pieces .pieces-head .eyebrow{margin-bottom:.9em}
 .scene-pieces .pieces-title{
-  margin:0;font:400 clamp(28px,4.2vw,64px)/1.05 var(--font-display);letter-spacing:-.015em;color:var(--text);
+  margin:0;font:500 clamp(28px,3.4vw,48px)/1.05 var(--font-display);letter-spacing:-.018em;color:var(--text);white-space:nowrap;
 }
 
 /* Scène en perspective */
@@ -61,7 +61,7 @@
 }
 .scene-pieces .ring-panel.is-front .ring-text{opacity:1;transform:none}
 .scene-pieces .ring-num{
-  display:block;font:500 11px/1.5 var(--font-body);letter-spacing:.2em;color:var(--muted);margin-bottom:.5em;
+  display:block;font:500 11px/1.5 var(--font-body);letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:.5em;
 }
 .scene-pieces .ring-name{
   display:block;font:400 clamp(24px,2.6vw,40px)/1.05 var(--font-display);letter-spacing:-.01em;color:var(--text);
@@ -75,7 +75,7 @@
 }
 .scene-pieces .ring-hint{
   position:absolute;left:var(--gutter);bottom:clamp(18px,4vh,40px);margin:0;text-align:left;
-  font:500 10.5px/1.5 var(--font-body);letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+  font:500 11px/1.5 var(--font-body);letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
   opacity:.75;pointer-events:none;
 }
 .scene-pieces .ring-hint-line{display:block;width:1px;height:28px;margin:0 0 10px;background:var(--muted);opacity:.6}
@@ -86,6 +86,7 @@
 /* Mobile : panneaux plus larges, rayon plus court */
 @media (max-width:760px){
   .scene-pieces{--ring-w:min(78vw,52vh);--ring-r:calc(var(--ring-w) * 1.05)}
+  .scene-pieces .pieces-title{white-space:normal}
   .scene-pieces .ring-stage{perspective:1000px}
   .scene-pieces .pieces-head{top:clamp(44px,8vh,80px)}
   .scene-pieces .ring-stage{padding-top:clamp(120px,19vh,170px)}
