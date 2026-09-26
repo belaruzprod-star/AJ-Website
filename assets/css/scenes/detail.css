@@ -36,7 +36,7 @@ html.detail-open,html.detail-open body{overflow:hidden}
 .detail-bignum{position:absolute;right:.02em;bottom:-.14em;z-index:2;font:300 clamp(150px,30vw,340px)/1 var(--font-display);letter-spacing:-.06em;color:var(--text);opacity:.16;pointer-events:none;mix-blend-mode:screen;transform:translate3d(calc(var(--mx) * 12px),calc(var(--my) * 8px),0)}
 .detail-text{padding:clamp(40px,7vw,64px) var(--gutter) clamp(24px,4vw,40px);position:relative;z-index:1}
 .detail-eyebrow{margin-bottom:2.2em}
-.detail-name{font-family:var(--font-display);font-weight:400;font-size:clamp(50px,7vw,106px);line-height:.96;letter-spacing:-.018em;margin:0 0 .4em;text-wrap:balance;transform:translate3d(calc(var(--mx) * -7px),calc(var(--my) * -4px),0)}
+.detail-name{font-family:var(--font-display);font-weight:500;font-size:clamp(50px,7vw,106px);line-height:.96;letter-spacing:-.018em;margin:0 0 .4em;text-wrap:balance;transform:translate3d(calc(var(--mx) * -7px),calc(var(--my) * -4px),0)}
 .detail-name .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding:0 .06em .14em 0;margin:0 -.06em -.14em 0}
 .detail-name .wi{display:inline-block}
 .detail-lead{margin-bottom:1.6em}

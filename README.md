@@ -12,7 +12,8 @@ Le site est **statique** (HTML, CSS, un peu de JavaScript), **sans framework ni 
 | `pieces.html` | Anneau 3D des pièces |
 | `veste-bleue.html`, `surchemise-ecrue.html`, `veste-indigo.html` | Fiche d'une pièce (lien profond ; sur l'accueil la même fiche s'ouvre en overlay) |
 | `atelier.html` | Julia |
-| `retouches.html`, `visuels.html`, `contact.html`, `mentions-legales.html`, `404.html` | Pages de texte et contact |
+| `retouches.html` | Les retouches : même scène immersive que Julia, avec l'image 03 (`data-image` sur la section) |
+| `visuels.html`, `contact.html`, `mentions-legales.html`, `404.html` | Pages de texte et contact |
 | `partials/` | Fragments HTML de chaque scène, à partir desquels les pages ont été assemblées |
 | `assets/css/site.css`, `assets/css/scenes/*.css` | Base (couleurs, typographie, boutons) et feuille de chaque scène |
 | `assets/js/core.js` | Socle : contexte `window.AJ` (données, bibliothèques, préchargeur) |

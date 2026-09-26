@@ -13,11 +13,11 @@
   var PIN_MOBILE = 2600;      /* idem, mobile (≤ 860 px) */
   var SCRUB = 0.9;            /* lissage du scrub (s) */
   var Z_START = -720;         /* position de la caméra au début (la première phrase est à 720 px devant) */
-  var Z_AFTER = 520;          /* distance parcourue après la dernière phrase (elle passe derrière la caméra) */
-  var NEAR = 700;             /* jusqu'à cette distance la phrase est pleinement nette et crème */
-  var FAR = 2500;             /* au-delà : invisible (brouillard) */
+  var Z_AFTER = 0;            /* distance parcourue après la dernière phrase (elle passe derrière la caméra) */
+  var NEAR = 300;             /* jusqu'à cette distance la phrase est pleinement nette et crème */
+  var FAR = 1700;             /* au-delà : invisible (brouillard) */
   var BEHIND = 360;           /* distance derrière la caméra sur laquelle la phrase disparaît */
-  var BLUR_MAX = 5;           /* flou maximal (px), bureau seulement */
+  var BLUR_MAX = 8;           /* flou maximal (px), bureau seulement */
   var MOUSE_AMP = 70;         /* amplitude de la parallaxe souris (px de décalage caméra) */
   var MOUSE_LERP = 0.08;      /* lissage de la souris */
   var MOBILE = '(max-width: 860px)';

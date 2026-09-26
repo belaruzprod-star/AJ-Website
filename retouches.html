@@ -58,13 +58,25 @@
 </div>
 <a class="skip" href="#contenu">Aller au contenu</a>
 <main id="contenu">
-<section class="scene scene-text" data-scene="text" data-scene-name="Les retouches" id="texte"><div class="wrap text-page">
-<p class="eyebrow">Les retouches</p><h1 class="text-title">Ourlets et autres retouches.</h1>
-<p class="lead">En plus des vestes, Julia propose des retouches.</p>
-<div class="prose">
-<p>Un ourlet à reprendre, une retouche sur un vêtement que vous aimez : écrivez-nous en décrivant la pièce et ce que vous souhaitez, et nous vous répondrons.</p>
-<p><a class="btn" href="contact.html" data-aj-mailto="Demande de retouche">Demander une retouche</a></p></div>
-</div></section>
+<section class="scene scene-julia" data-scene="julia" data-scene-name="Retouches" data-image="03" id="retouches" aria-labelledby="retouches-title">
+  <div class="julia-media" style="--pos:34% 50%">
+    <picture><source type="image/webp" srcset="assets/img/03-bleu-ferme-768.webp 768w, assets/img/03-bleu-ferme-1536.webp 1536w" sizes="100vw"><img src="assets/img/03-bleu-ferme-1536.jpg" srcset="assets/img/03-bleu-ferme-768.jpg 768w, assets/img/03-bleu-ferme-1536.jpg 1536w" sizes="100vw" width="1536" height="1024" alt="La veste bleue portée avec les parements rabattus, encolure en V unie, ceinture en toile de Jouy." loading="eager" decoding="async"></picture>
+    <div class="julia-veil" aria-hidden="true"></div>
+  </div>
+  <div class="julia-content">
+    <div class="julia-text">
+      <i class="julia-line" aria-hidden="true"></i>
+      <p class="eyebrow julia-eyebrow">Les retouches</p>
+      <h1 class="julia-title" id="retouches-title">Ourlets et autres retouches.</h1>
+      <p class="lead julia-lead">En plus des vestes, Julia propose des retouches.</p>
+      <div class="julia-body">
+        <p>Julia a un BTS Mode et coud sur sa Juki 7000A. En plus des vestes AJ, elle reprend aussi vos vêtements : ourlets et autres retouches.</p>
+        <p>Un ourlet à reprendre, une retouche sur un vêtement que vous aimez : écrivez-nous en décrivant la pièce et ce que vous souhaitez, et nous vous répondrons.</p>
+      </div>
+      <p class="julia-cta"><a class="btn" href="contact.html" data-aj-mailto="Demande de retouche">Demander une retouche</a></p>
+    </div>
+  </div>
+</section>
 <!-- AJ — scène « contact » : scène finale de l'accueil, et pied de page de toutes les pages.
      Textes : pieces.json (texts.contact_*, brand.baseline, nav sans Accueil) et contrat (« © 2026 AJ », « Une seule veste de chaque. »).
      site.js remplit [data-aj="email"] (lien mailto + classe contact-big) et [data-aj="instagram"] quand config.js est rempli.

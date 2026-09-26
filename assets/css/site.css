@@ -23,7 +23,7 @@ html.js:not(.reduce){scroll-behavior:auto}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
 body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.65 var(--font-body);min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden}
 main{flex:1}
-body.inner main{padding-top:var(--header-h,76px)}
+body.inner main{padding-top:0}
 img{max-width:100%;height:auto;display:block}
 a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:.18em}
 a:hover{color:var(--text)}
@@ -283,7 +283,7 @@ html.lenis,html.lenis body{height:auto}
 .scene{position:relative}
 .scene-text{min-height:100svh;display:grid;align-items:center;padding:clamp(120px,18vh,200px) 0 clamp(64px,10vh,120px)}
 .text-page .eyebrow{margin-bottom:1.6em}
-.text-page .text-title{font-size:clamp(44px,9vw,132px);letter-spacing:-.02em;margin-bottom:.35em}
+.text-page .text-title{font-size:clamp(44px,6.2vw,108px);font-weight:500;letter-spacing:-.018em;line-height:.98;margin-bottom:.35em}
 .text-page .lead{margin-bottom:2.2em}
 .text-page .prose{max-width:40em}
 .text-page .prose h2{font-size:clamp(26px,3vw,38px);margin-top:1.8em}

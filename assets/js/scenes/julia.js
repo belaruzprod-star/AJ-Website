@@ -7,7 +7,7 @@
   'use strict';
 
   /* ---- Réglages ------------------------------------------------------------- */
-  var IMAGE = '05';           /* clé de l'image dans AJ.images */
+  var IMAGE = '05';           /* clé de l'image dans AJ.images (remplaçable par data-image sur la section) */
   var AMOUNT = 1;             /* amplitude Photo3D (0.5–2) */
   var MIST = true;            /* brume légère Photo3D */
   var GYRO = false;           /* gyroscope sur mobile (permission iOS demandée sur geste par Photo3D) */
@@ -22,6 +22,7 @@
 
   var AJ = window.AJ; if (!AJ) return;
   var section = document.querySelector('[data-scene="julia"]'); if (!section) return;
+  if (section.getAttribute('data-image') && AJ.images && AJ.images[section.getAttribute('data-image')]) IMAGE = section.getAttribute('data-image');
   var G = AJ.gsap, ST = AJ.ScrollTrigger;
   var media = section.querySelector('.julia-media');
   var text = section.querySelector('.julia-text');
